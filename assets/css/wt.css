@@ -1,0 +1,293 @@
+:root {
+    --primary-color: #6200EE;
+    --primary-color-text: #fff;
+    --secondary-color: #deee00;
+    --secondary-color-text: #000;
+    --surface: #fff;
+    /* --mdc-theme-background: #fff; */
+}
+
+body {
+    font-family: Helvetica, sans-serif;
+}
+
+/* Grid system */
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* .wt-grid-container::after {
+    content: "";
+    clear: both;
+    display: table;
+  } */
+
+[class*="size-"] {
+    float: left;
+    padding: 8px;
+}
+
+.size-1\@p {
+    width: 8.33%;
+}
+
+.size-2\@p {
+    width: 16.66%;
+}
+
+.size-3\@p {
+    width: 25%;
+}
+
+.size-4\@p {
+    width: 33.33%;
+}
+
+.size-5\@p {
+    width: 41.66%;
+}
+
+.size-6\@p {
+    width: 50%;
+}
+
+.size-7\@p {
+    width: 58.33%;
+}
+
+.size-8\@p {
+    width: 66.66%;
+}
+
+.size-9\@p {
+    width: 75%;
+}
+
+.size-10\@p {
+    width: 83.33%;
+}
+
+.size-11\@p {
+    width: 91.66%;
+}
+
+.size-12\@p {
+    width: 100%;
+}
+
+@media (min-width: 1024px) {
+    .size-1\@t {
+        width: 8.33%;
+    }
+
+    .size-2\@t {
+        width: 16.66%;
+    }
+
+    .size-3\@t {
+        width: 25%;
+    }
+
+    .size-4\@t {
+        width: 33.33%;
+    }
+
+    .size-5\@t {
+        width: 41.66%;
+    }
+
+    .size-6\@t {
+        width: 50%;
+    }
+
+    .size-7\@t {
+        width: 58.33%;
+    }
+
+    .size-8\@t {
+        width: 66.66%;
+    }
+
+    .size-9\@t {
+        width: 75%;
+    }
+
+    .size-10\@t {
+        width: 83.33%;
+    }
+
+    .size-11\@t {
+        width: 91.66%;
+    }
+
+    .size-12\@t {
+        width: 100%;
+    }
+}
+
+@media (min-width: 1920px) {
+    .size-1\@d {
+        width: 8.33%;
+    }
+
+    .size-2\@d {
+        width: 16.66%;
+    }
+
+    .size-3\@d {
+        width: 25%;
+    }
+
+    .size-4\@d {
+        width: 33.33%;
+    }
+
+    .size-5\@d {
+        width: 41.66%;
+    }
+
+    .size-6\@d {
+        width: 50%;
+    }
+
+    .size-7\@d {
+        width: 58.33%;
+    }
+
+    .size-8\@d {
+        width: 66.66%;
+    }
+
+    .size-9\@d {
+        width: 75%;
+    }
+
+    .size-10\@d {
+        width: 83.33%;
+    }
+
+    .size-11\@d {
+        width: 91.66%;
+    }
+
+    .size-12\@d {
+        width: 100%;
+    }
+}
+
+
+/* Components */
+
+.wt-btn {
+    user-select: none;
+    border: none;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    min-height: 31px;
+    min-width: 70px;
+    padding: 2px 16px;
+    -webkit-appearance: none;
+    cursor: pointer;
+    border-radius: 14px;
+}
+
+.wt-btn:active {
+    box-shadow: rgba(60, 64, 67, 0.9) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.wt-btn-primary {
+    background: var(--primary-color);
+    color: var(--primary-color-text);
+}
+
+.wt-btn-secondary {
+    background: var(--secondary-color);
+    color: var(--secondary-color-text);
+}
+
+.wt-card {
+    border-radius: 4px;
+    box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+    -webkit-box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+    background-color: var(--surface);
+}
+
+.wt-card-content {
+    padding: 8px;
+}
+
+input, select {
+    padding: 8px;
+    border: none;
+    background-color: #f5f5f5;
+    width: 100%;
+
+}
+
+input:hover {
+    background-color: #ebebeb;
+
+}
+.input-full-width{
+    width: 100%;
+}
+/* Modal */
+
+
+/* The Modal (background) */
+
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+
+/* Modal Content/Box */
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    box-shadow: 0 19px 38px rgb(0 0 0 / 30%), 0 15px 12px rgb(0 0 0 / 22%);
+    width: 80%;
+
+    border-radius: 15px;
+    /* Could be more or less, depending on screen size */
+}
+
+
+/* The Close Button */
+
+.close {
+    position: relative;
+    top: -10px;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
