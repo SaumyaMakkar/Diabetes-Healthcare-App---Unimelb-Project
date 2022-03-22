@@ -1,22 +1,45 @@
+/* WT CSS (Web Technologies Unimelb)
+   v1.0
+*/
 :root {
-    --primary-color: #6200EE;
+    --primary-color: #13678A;
     --primary-color-text: #fff;
     --secondary-color: #deee00;
     --secondary-color-text: #000;
     --surface: #fff;
+    --surface-color-text: #000;
     /* --mdc-theme-background: #fff; */
 }
 
 body {
-    font-family: Helvetica, sans-serif;
+    margin: 0px;
+    font-family: Roboto, sans-serif;
 }
 
 /* Grid system */
 
-* {
+/* * {
     box-sizing: border-box;
+} */
+
+.wt-grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
+/* .wt-grid-container>* {
+    padding-left: 30px;
+} */
+
+[class*="size-"] {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    padding: 15px;
+}
 
 /* .wt-grid-container::after {
     content: "";
@@ -24,10 +47,10 @@ body {
     display: table;
   } */
 
-[class*="size-"] {
+/* [class*="size-"] {
     float: left;
     padding: 8px;
-}
+} */
 
 .size-1\@p {
     width: 8.33%;
@@ -77,7 +100,31 @@ body {
     width: 100%;
 }
 
+.wt-hidden\@p {
+    display: none !important;
+}
+
+.wt-visible\@p {
+    display: block !important;
+}
+
+.wt-visible-flex\@p {
+    display: flex !important;
+}
+
 @media (min-width: 1024px) {
+    .wt-hidden\@t {
+        display: none !important;
+    }
+
+    .wt-visible\@t {
+        display: block !important;
+    }
+
+    .wt-visible-flex\@t {
+        display: flex !important;
+    }
+
     .size-1\@t {
         width: 8.33%;
     }
@@ -128,6 +175,19 @@ body {
 }
 
 @media (min-width: 1920px) {
+
+    .wt-hidden\@d {
+        display: none !important;
+    }
+
+    .wt-visible\@d {
+        display: block !important;
+    }
+
+    .wt-visible-flex\@d {
+        display: flex !important;
+    }
+
     .size-1\@d {
         width: 8.33%;
     }
@@ -177,8 +237,44 @@ body {
     }
 }
 
+/* Text */
+.wt-text-jumbo {
+    font-size: 60px;
+    margin-bottom: 30px;
+}
+
+.wt-text-align-center {
+    text-align: center;
+}
+
+.wt-text-divider {
+    background-color: var(--primary-color);
+    height: 4px;
+    border: none;
+}
 
 /* Components */
+.wt-header {
+    display: flex;
+    padding: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.wt-header-icon {
+    flex-grow: 1;
+    align-content: center;
+}
+
+.wt-header-menu {
+    display: flex;
+    align-items: center;
+}
+
+.wt-header-menu>span {
+    padding: 0px 20px;
+    cursor: pointer;
+}
 
 .wt-btn {
     user-select: none;
@@ -189,11 +285,26 @@ body {
     padding: 2px 16px;
     -webkit-appearance: none;
     cursor: pointer;
-    border-radius: 14px;
+    border-radius: 25px;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.wt-btn-large {
+    line-height: 42px !important;
+    font-size: 16px !important;
 }
 
 .wt-btn:active {
     box-shadow: rgba(60, 64, 67, 0.9) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.wt-btn-outlined {
+    cursor: pointer;
+    border-radius: 25px;
+    border: 1px solid black;
+    padding: 10px;
 }
 
 .wt-btn-primary {
@@ -206,11 +317,48 @@ body {
     color: var(--secondary-color-text);
 }
 
+.wt-btn-icon {
+    font-size: 24px;
+    line-height: 34px !important;
+    height: 34px !important;
+    color: var(--surface-color-text);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 34px !important;
+    text-align: center;
+    -webkit-appearance: none;
+    background: none;
+    user-select: none;
+    /* 
+    -webkit-transition: background 280ms ease-out, color 280ms ease-out;
+    transition: background 280ms ease-out, color 280ms ease-out;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    padding: 0px; */
+}
+
+.wt-btn-icon:active {
+    background-color: #f5f5f5;
+}
+
 .wt-card {
     border-radius: 4px;
     box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
     -webkit-box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
     background-color: var(--surface);
+}
+
+.wt-profile-card {
+    position: relative;
+    padding-top: 100px;
+    margin-top: 100px;
+}
+
+.wt-profile-card-image {
+    position: absolute;
+    top: -95px;
+    left: 50%;
+    margin-left: -85px;
 }
 
 .wt-card-content {
@@ -229,15 +377,14 @@ input:hover {
     background-color: #ebebeb;
 
 }
-.input-full-width{
+
+.input-full-width {
     width: 100%;
 }
+
 /* Modal */
 
-
-/* The Modal (background) */
-
-.modal {
+.wt-modal {
     display: none;
     /* Hidden by default */
     position: fixed;
@@ -259,9 +406,7 @@ input:hover {
 }
 
 
-/* Modal Content/Box */
-
-.modal-content {
+.wt-modal-content {
     background-color: #fefefe;
     margin: 15% auto;
     /* 15% from the top and centered */
@@ -274,9 +419,7 @@ input:hover {
 }
 
 
-/* The Close Button */
-
-.close {
+.wt-modal-close {
     position: relative;
     top: -10px;
     color: #aaa;
@@ -285,9 +428,71 @@ input:hover {
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.wt-close:hover,
+.wt-close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+/* Utils */
+.wt-banner {
+    position: relative;
+}
+
+.wt-banner-content {
+    position: absolute;
+    top: 80px;
+    left: 20px;
+    width: 520px;
+}
+
+.wt-banner-content-phone {
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    width: 160px;
+}
+
+@media (min-width: 960px) {
+    .wt-container {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+
+.wt-footer {
+    /* padding-top: 30px;
+    padding-bottom: 30px; */
+    background-image: url("../img/footer-background-01.jpeg");
+}
+
+.wt-section {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+.wt-border-circle {
+    border-radius: 50%;
+}
+
+.wt-border-rounded {
+    border-radius: 25%;
+}
+
+.wt-background-alt {
+    background-color: #F5F5F8;
+}
+
+.wt-shadow {
+    box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.09);
+}
+
+/* Colors */
+.wt-color-white {
+    color: white;
+}
+
+.wt-color-grey {
+    color: #848484;
 }

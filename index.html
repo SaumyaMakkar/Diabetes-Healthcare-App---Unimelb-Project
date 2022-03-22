@@ -5,60 +5,170 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet" />
+    <title>Home - Diabetes Partner App</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/wt.css">
 </head>
 
 <body>
-    <div class="wt-grid-container">
-        <div class="wt-grid-item size-6@t size-6@p size-12@d">
-            <div class="wt-card">
-                <div class="wt-card-content">
-                    <h3>Buttons</h3>
-                    <button class="wt-btn wt-btn-primary">primary</button>
-                    <button class="wt-btn wt-btn-secondary">secondary</button>
+    <header class="wt-header">
+        <div class="wt-header-icon">
+            <img src="./assets/img/logo-black.png" alt="" width="200px">
+        </div>
+        <div class="wt-hidden@p wt-visible-flex@t wt-header-menu">
+            <span><a>HOME</a></span>
+            <span><a>ABOUT</a></span>
+            <span><a class="wt-btn-outlined">LOGIN</a></span>
+        </div>
+        <div class="wt-visible-flex@p wt-hidden@t wt-header-menu">
+            <i class="wt-btn-icon material-icons">menu</i>
+        </div>
+    </header>
+    <div class="wt-banner">
+        <img src="./assets/img/banner.png" alt="" width="100%">
+        <div class="wt-hidden@p wt-visible@t wt-banner-content">
+            <p class=" wt-text-jumbo wt-color-grey">Look what this app
+                can do for you </p>
+            <a class="wt-btn wt-btn-large wt-btn-primary">LOGIN</a>
+        </div>
+        <div class="wt-hidden@t wt-banner-content-phone">
+            <p class=" wt-color-grey">Look what this app
+                can do for you </p>
+            <a class="wt-btn wt-btn-large wt-btn-primary">LOGIN</a>
+        </div>
+    </div>
+    <section class="wt-section wt-container">
+        <div class="wt-grid-container">
+            <div class="wt-grid-item size-12@p">
+                <div class="wt-text-align-center">
+                    <h1>How it works</h1>
+                    <hr class="wt-text-divider" width="150px" />
+                </div>
+            </div>
+            <div class="wt-grid-item size-4@t size-12@p">
+                <div class="wt-text-align-center">
+                    <img class="wt-border-circle wt-shadow" src="./assets/img/home-step1.png" alt="" width="200px">
+                    <h3>Login in the app</h3>
+                    <p>Easy access from phones, tables or laptops</p>
+                </div>
+            </div>
+            <div class="wt-grid-item size-4@t size-12@p">
+                <div class="wt-text-align-center">
+                    <img class="wt-border-circle wt-shadow" src="./assets/img/home-step2.png" alt="" width="200px">
+                    <h3>Add you health data</h3>
+                    <p>Track your glucose leve, weight, insuline dosis and exercise</p>
+                </div>
+            </div>
+            <div class="wt-grid-item size-4@t size-12@p">
+                <div class="wt-text-align-center">
+                    <img class="wt-border-circle wt-shadow" src="./assets/img/home-step3.png" alt="" width="200px">
+                    <h3>Get feedback</h3>
+                    <p>Receive directions and motivation
+                        from you clinician</p>
                 </div>
             </div>
         </div>
-        <div class="wt-grid-item size-6@t size-6@p">
-            <div class="wt-card">
-                <div class="wt-card-content">
-                    <span>Ejercicios</span>
-                    <select>
-                        <option>s</option>
-                        <option>s</option>
-                        <option>s</option>
-                        <option>s</option>
-                    </select>
+    </section>
+    <section>
+        <img src="./assets/img/banner2.jpeg" alt="" width="100%">
+    </section>
+    <section class="wt-section wt-container wt-background-alt">
+        <div class="wt-grid-container">
+            <div class="wt-grid-item size-12@p">
+                <div class="wt-text-align-center">
+                    <h1>Our team</h1>
+                    <hr class="wt-text-divider" width="150px" />
+                </div>
+            </div>
+
+            <div class="wt-grid-item size-6@p size-3@t">
+                <div class="wt-card">
+                    <div class="wt-profile-card  ">
+                        <img class="wt-profile-card-image wt-border-rounded" src="./assets/img/profile.png" alt=""
+                            width="190px">
+                    </div>
+                    <div class="wt-card-content wt-text-align-center">
+                        <h4>Saumya Makkar</h4>
+                        <p>Frontend Developer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="wt-grid-item size-6@p size-3@t">
+                <div class="wt-card">
+                    <div class="wt-profile-card  ">
+                        <img class="wt-profile-card-image wt-border-rounded" src="./assets/img/profile.png" alt=""
+                            width="190px">
+                    </div>
+                    <div class="wt-card-content wt-text-align-center">
+                        <h4>Saumya Makkar</h4>
+                        <p>Frontend Developer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="wt-grid-item size-6@p size-3@t">
+                <div class="wt-card">
+                    <div class="wt-profile-card  ">
+                        <img class="wt-profile-card-image wt-border-rounded" src="./assets/img/profile.png" alt=""
+                            width="190px">
+                    </div>
+                    <div class="wt-card-content wt-text-align-center">
+                        <h4>Saumya Makkar</h4>
+                        <p>Frontend Developer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="wt-grid-item size-6@p size-3@t">
+                <div class="wt-card">
+                    <div class="wt-profile-card  ">
+                        <img class="wt-profile-card-image wt-border-rounded" src="./assets/img/profile.png" alt=""
+                            width="190px">
+                    </div>
+                    <div class="wt-card-content wt-text-align-center">
+                        <h4>Saumya Makkar</h4>
+                        <p>Frontend Developer</p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="wt-grid-item size-4">
-            <div class="wt-card">
-                <div class="wt-card-content">
-                    <input type="text" class="md-input" />
-                </div>
+    </section>
+    <section class="wt-footer">
+        <div class="wt-grid-container">
+            <div class="wt-grid-item size-12@p size-6@t">
+                <h3 class="wt-color-white">DIABETES PARTNER APP</h3>
+                <p class="wt-color-white">Diabetes Partner App is a project
+                    for the subject of Web Information Technologies
+                    at the Unimersity of Melbourne</p>
+                <img src="./assets/img/logo-3d.png" alt="" width="180px">
+            </div>
+            <div class="wt-grid-item size-12@p size-6@t">
+                <h3 class="wt-color-white">ACKNOWLEDGEMENT</h3>
+                <p class="wt-color-white">Diabetes Partner App acknowledges the traditional custodians of
+                    our lands and pays respect to their Elders, past and present.
+                    <br />
+                    We strive to reduce the impact of diabetes on
+                    Aboriginal and Torres Strait Islander people living in Victoria.
+                </p>
+                <img src="./assets/img/a1f0o00000H3NktAAF.png" alt="" width="100px">
+                <img src="./assets/img/a1f0o00000H3NkyAAF.png" alt="" width="100px">
+            </div>
+            <div class="wt-grid-item size-12@p">
+                <p class="wt-color-white"> © Diabetes Partner App 2022. All Rights Reserved </p>
             </div>
         </div>
-        <div class="wt-grid-item size-8">
-            <div class="wt-card">
-                <div class="wt-card-content">
-                    <button onclick="openModal('myModal')">Open Modal</button>
-                </div>
-            </div>
+    </section>
+    <!-- The Modal -->
+    <div id="myModal" class="wt-modal">
+        <!-- Modal content -->
+        <div class="wt-modal-content">
+            <span class="wt-modal-close">&times;</span>
+            <p>Some text in the Modal..</p>
         </div>
 
-        <!-- The Modal -->
-        <div id="myModal" class="modal">
-            <!-- Modal content -->
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <p>Some text in the Modal..</p>
-            </div>
-
-        </div>
     </div>
 </body>
 <script src="./assets/js/wt.js">
