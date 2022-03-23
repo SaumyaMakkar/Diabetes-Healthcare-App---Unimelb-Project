@@ -8,6 +8,7 @@
     --secondary-color-text: #000;
     --surface: #fff;
     --surface-color-text: #000;
+    --border-radius: 7px;
     /* --mdc-theme-background: #fff; */
 }
 
@@ -254,11 +255,15 @@ body {
 }
 
 /* Components */
-.wt-header {
+.wt-header\@t {
     display: flex;
     padding: 15px;
     margin-left: 10px;
     margin-right: 10px;
+}
+
+.wt-header\@p {
+    padding: 25px 0;
 }
 
 .wt-header-icon {
@@ -266,14 +271,23 @@ body {
     align-content: center;
 }
 
-.wt-header-menu {
+.wt-header-menu\@t {
     display: flex;
     align-items: center;
 }
 
-.wt-header-menu>span {
+.wt-header-menu\@p>span {
     padding: 0px 20px;
     cursor: pointer;
+}
+
+.wt-header-menu\@t>span {
+    padding: 0px 20px;
+    cursor: pointer;
+}
+
+[class*="wt-header"]>span>a {
+    text-decoration: none;
 }
 
 .wt-btn {
@@ -342,23 +356,32 @@ body {
 }
 
 .wt-card {
-    border-radius: 4px;
+    border-radius: var(--border-radius);
     box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
     -webkit-box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
     background-color: var(--surface);
 }
 
-.wt-profile-card {
-    position: relative;
-    padding-top: 100px;
-    margin-top: 100px;
+.wt-card>* {
+    border-radius: var(--border-radius);
 }
 
-.wt-profile-card-image {
-    position: absolute;
-    top: -95px;
-    left: 50%;
-    margin-left: -85px;
+.wt-card-narrower {
+    margin-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.wt-card-narrower-overlay {
+    margin-left: 4%;
+    margin-right: 4%;
+    border-radius: var(--border-radius);
+    margin-top: -1.25rem;
+}
+
+.wt-card-narrower-overlay>img {
+    border-radius: var(--border-radius);
 }
 
 .wt-card-content {
@@ -414,7 +437,7 @@ input:hover {
     box-shadow: 0 19px 38px rgb(0 0 0 / 30%), 0 15px 12px rgb(0 0 0 / 22%);
     width: 80%;
 
-    border-radius: 15px;
+    border-radius: var(--border-radius);
     /* Could be more or less, depending on screen size */
 }
 
@@ -436,19 +459,60 @@ input:hover {
 }
 
 /* Utils */
+a {
+    /* text-decoration: none; */
+    color: #000;
+    cursor: pointer;
+}
+
+.title-with-divider:after {
+    content: " ";
+    border: 2px solid var(--primary-color);
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: block;
+    max-width: 100px;
+}
+
 .wt-banner {
     position: relative;
 }
 
 .wt-banner-content {
     position: absolute;
+}
+
+.banner-home-1\@t {
+    top: 150px;
+    left: 20px;
+    width: 420px;
+}
+
+.banner-home-1\@p {
+    top: 40px;
+    left: 20px;
+    width: 160px;
+}
+
+.banner-home-2\@t {
     top: 80px;
     left: 20px;
     width: 520px;
 }
 
-.wt-banner-content-phone {
-    position: absolute;
+.banner-home-2\@p {
+    top: 80px;
+    left: 20px;
+    width: 160px;
+}
+
+.banner-about-2\@t {
+    top: 80px;
+    left: 20px;
+    width: 520px;
+}
+
+.banner-about-2\@p {
     top: 40px;
     left: 20px;
     width: 160px;
