@@ -1,6 +1,10 @@
 /* WT CSS (Web Technologies Unimelb)
    v1.0
 */
+.h1 {
+    font-size: 5vw;
+}
+
 :root {
     --primary-color: #13678A;
     --primary-color-text: #fff;
@@ -29,6 +33,11 @@ body {
     margin: 0;
     padding: 0;
     list-style: none;
+}
+
+.wt-grid-item {
+    margin: 0;
+    padding: 0;
 }
 
 /* .wt-grid-container>* {
@@ -240,12 +249,16 @@ body {
 
 /* Text */
 .wt-text-jumbo {
-    font-size: 60px;
+    font-size: 5vw;
     margin-bottom: 30px;
 }
 
 .wt-text-align-center {
     text-align: center;
+}
+
+.wt-text-align-right {
+    text-align: right;
 }
 
 .wt-text-divider {
@@ -276,6 +289,12 @@ body {
     align-items: center;
 }
 
+.wt-header-menu\@p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .wt-header-menu\@p>span {
     padding: 0px 20px;
     cursor: pointer;
@@ -288,6 +307,14 @@ body {
 
 [class*="wt-header"]>span>a {
     text-decoration: none;
+}
+
+[class*="wt-header"]>span.active-menu>a:after {
+    content: " ";
+    border: 2px solid var(--primary-color);
+    margin-top: 0;
+    display: block;
+    max-width: 120px;
 }
 
 .wt-btn {
@@ -319,6 +346,15 @@ body {
     border-radius: 25px;
     border: 1px solid black;
     padding: 10px;
+}
+
+.wt-btn-with-icon {
+    display: flex;
+    align-items: center;
+}
+
+.wt-btn-with-icon>i.material-icons {
+    padding-right: 8px;
 }
 
 .wt-btn-primary {
@@ -389,7 +425,11 @@ body {
 }
 
 input, select {
-    padding: 8px;
+    border-radius: var(--border-radius);
+    margin-top: 5px;
+    font-size: 15px;
+    line-height: 18px;
+    padding: 12px;
     border: none;
     background-color: #f5f5f5;
     width: 100%;
@@ -465,6 +505,18 @@ a {
     cursor: pointer;
 }
 
+.wt-padding-small {
+    padding: 8px;
+}
+
+.wt-padding-large {
+    padding: 30px;
+}
+
+.wt-fullwidth {
+    width: 100%;
+}
+
 .title-with-divider:after {
     content: " ";
     border: 2px solid var(--primary-color);
@@ -474,49 +526,6 @@ a {
     max-width: 100px;
 }
 
-.wt-banner {
-    position: relative;
-}
-
-.wt-banner-content {
-    position: absolute;
-}
-
-.banner-home-1\@t {
-    top: 150px;
-    left: 20px;
-    width: 420px;
-}
-
-.banner-home-1\@p {
-    top: 40px;
-    left: 20px;
-    width: 160px;
-}
-
-.banner-home-2\@t {
-    top: 80px;
-    left: 20px;
-    width: 520px;
-}
-
-.banner-home-2\@p {
-    top: 80px;
-    left: 20px;
-    width: 160px;
-}
-
-.banner-about-2\@t {
-    top: 80px;
-    left: 20px;
-    width: 520px;
-}
-
-.banner-about-2\@p {
-    top: 40px;
-    left: 20px;
-    width: 160px;
-}
 
 @media (min-width: 960px) {
     .wt-container {
@@ -532,7 +541,7 @@ a {
 }
 
 .wt-section {
-    padding-top: 70px;
+    padding-top: 35px;
     padding-bottom: 70px;
 }
 
@@ -553,6 +562,14 @@ a {
 }
 
 /* Colors */
+.wt-color-primary {
+    color: var(--primary-color);
+}
+
+.wt-color-secondary {
+    color: var(--secondary-color);
+}
+
 .wt-color-white {
     color: white;
 }

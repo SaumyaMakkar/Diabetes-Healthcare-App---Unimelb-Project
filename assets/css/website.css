@@ -1,0 +1,44 @@
+
+.wt-banner {
+    position: relative;
+}
+
+.wt-banner-content {
+    position: absolute;
+}
+
+.banner-home-1\@t {
+    top: 150px;
+    left: 20px;
+    width: 420px;
+}
+
+.banner-home-1\@p {
+    top: 40px;
+    left: 20px;
+    width: 160px;
+}
+
+.banner-home-2\@t {
+    top: 80px;
+    left: 20px;
+    width: 520px;
+}
+
+.banner-home-2\@p {
+    top: 80px;
+    left: 20px;
+    width: 160px;
+}
+
+.banner-about-2\@t {
+    top: 80px;
+    left: 20px;
+    width: 520px;
+}
+
+.banner-about-2\@p {
+    top: 40px;
+    left: 20px;
+    width: 160px;
+}

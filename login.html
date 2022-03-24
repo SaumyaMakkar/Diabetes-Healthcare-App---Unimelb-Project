@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Diabetes Partner App</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="icon" href="./assets/img/logo_diabetes_black.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/wt.css">
+    <link rel="stylesheet" href="./assets/css/login.css">
+</head>
+
+<body>
+
+    <div class="wt-grid-container " style="min-height: calc(100vh);">
+        <div class="left-login wt-grid-item wt-hidden@p wt-visible@t size-6@t">
+        </div>
+        <div class="wt-grid-item size-12@p size-6@t">
+            <div class="wt-grid-container wt-padding-large">
+                <div class="wt-grid-item size-12@p size-12@t">
+                    <a class="wt-color-primary wt-btn-with-icon" onclick="history.back()"><i class="material-icons">arrow_back</i>BACK TO WEBSITE</a>
+                </div>
+                <div class="wt-grid-item size-12@p size-12@t">
+                    <h1>Sign In</h1>
+                    <p>Login to your account to access our services</p>
+                </div>
+                <div class="wt-grid-item size-12@p size-12@t">
+                    <label>Username</label>
+                    <input type="text" />
+                </div>
+                <div class="wt-grid-item size-12@p size-12@t">
+                    <label>Password</label>
+                    <input type="password" />
+                </div>
+                <div class="wt-grid-item size-12@p">
+                    <div class="wt-text-align-right">
+                        <a class="wt-color-primary" onclick="openModal('forgotModal')">Forgot password</a>
+                    </div>
+                </div>
+                <div class="wt-grid-item size-12@p">
+                    <button class="wt-btn wt-btn-primary wt-btn-large wt-fullwidth"
+                        onclick="openModal('forgotModal')">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="forgotModal" class="wt-modal">
+        <div class="wt-modal-content">
+            <span class="wt-modal-close">&times;</span>
+            <h3>Forgot password</h3>
+            <p>Please contact support jverasoto@student.unimelb.edu.au</p>
+        </div>
+    </div>
+</body>
+<script src="./assets/js/wt.js"></script>
+
+</html>
