@@ -34,6 +34,9 @@ app.get('/profile', (req, res) => {
 app.get('/patient_comments', (req, res) => {
     res.render("patient_comments")
 })
+app.get('/patient_dash_demo', (req, res) => {
+    res.render("patient-dash-demo")
+})
 
 app.get('/food/:id', (req, res) => {
     res.render("showFood",{

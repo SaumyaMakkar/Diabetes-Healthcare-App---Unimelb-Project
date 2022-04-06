@@ -1,0 +1,56 @@
+{{> sidebar}}
+{{> header}}
+<div class="panel-content ">
+    <div class="wt-grid-container">
+        <div class="wt-grid-item size-12@p size-9@t">
+            <a class="wt-color-primary wt-btn-with-icon" onclick="history.back()"><i
+                    class="material-icons">arrow_back</i>BACK TO dashboard</a>
+        </div>
+        <div class="wt-grid-item size-12@p size-12@t">
+            <div class="list-item">
+                <div class="list-item-avatar">
+                    <img class="wt-border-rounded" src="./assets/img/patient_img.png" width="60px" alt="">
+                </div>
+                <div class="list-item-text">
+                    <h1>Jape Cooper</h1>
+                </div>
+            </div>
+
+        </div>
+        <div class="wt-grid-item size-12@p size-3@t">
+            {{> patient_menu}}
+        </div>
+        <div class="wt-grid-item size-12@p size-9@t border-left">
+            content
+        </div>
+    </div>
+    <div id="forgotModal" class="wt-modal">
+        <div class="wt-modal-content">
+            <span class="wt-modal-close">&times;</span>
+            <div class="wt-grid-container">
+                <div class="wt-grid-item size-12@p size-12@t">
+                    <h2>Add Patient</h2>
+                    <p>Please enter the following details</p>
+                </div>
+                <div class="wt-grid-item size-12@p size-6@t">
+                    <label>First Name</label>
+                    <input type="text" />
+                </div>
+                <div class="wt-grid-item size-12@p size-6@t">
+                    <label>Last Name</label>
+                    <input type="text" />
+                </div>
+                <div class="wt-grid-item size-12@p size-12@t">
+                    <label>Bio</label>
+                    <textarea rows="5"></textarea>
+                </div>
+                <div class="wt-grid-item size-12@p">
+                    <div class="wt-text-align-right">
+                        <button class="wt-btn wt-btn-secondary">ADD PATIENT</button>
+                    </div>
+                </div>
+                <div class="wt-grid-item size-12@p">
+                </div>
+            </div>
+        </div>
+    </div>
