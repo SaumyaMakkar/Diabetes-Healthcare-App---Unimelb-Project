@@ -1,0 +1,27 @@
+{
+  "name": "web-information-tech-team",
+  "version": "1.0.0",
+  "description": "University of Melbourne - Web Technologies",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon app-hanldebars"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SaumyaMakkar/Web-Information-Tech-Team.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SaumyaMakkar/Web-Information-Tech-Team/issues"
+  },
+  "homepage": "https://github.com/SaumyaMakkar/Web-Information-Tech-Team#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "express-handlebars": "^6.0.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

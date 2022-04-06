@@ -1,0 +1,40 @@
+<div class="wt-grid-container " style="min-height: calc(100vh);">
+    <div class="left-login wt-grid-item wt-hidden@p wt-visible@t size-6@t">
+    </div>
+    <div class="wt-grid-item size-12@p size-6@t">
+        <div class="wt-grid-container wt-padding-large">
+            <div class="wt-grid-item size-12@p size-12@t">
+                <a class="wt-color-primary wt-btn-with-icon" onclick="history.back()"><i
+                        class="material-icons">arrow_back</i>BACK TO WEBSITE</a>
+            </div>
+            <div class="wt-grid-item size-12@p size-12@t">
+                <h1>Sign In</h1>
+                <p>Login to your account to access our services</p>
+            </div>
+            <div class="wt-grid-item size-12@p size-12@t">
+                <label>Username</label>
+                <input type="text" />
+            </div>
+            <div class="wt-grid-item size-12@p size-12@t">
+                <label>Password</label>
+                <input type="password" />
+            </div>
+            <div class="wt-grid-item size-12@p">
+                <div class="wt-text-align-right">
+                    <a class="wt-color-primary" onclick="openModal('forgotModal')">Forgot password</a>
+                </div>
+            </div>
+            <div class="wt-grid-item size-12@p">
+                <button class="wt-btn wt-btn-primary wt-btn-large wt-fullwidth"
+                    onclick="openModal('forgotModal')">Login</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="forgotModal" class="wt-modal">
+    <div class="wt-modal-content">
+        <span class="wt-modal-close">&times;</span>
+        <h3>Forgot password</h3>
+        <p>Please contact support jverasoto@student.unimelb.edu.au</p>
+    </div>
+</div>
