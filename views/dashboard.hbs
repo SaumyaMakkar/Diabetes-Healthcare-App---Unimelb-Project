@@ -45,7 +45,7 @@
                             <img class="wt-border-rounded" src="/assets/img/patient_img.png" width="40px" alt="">
                         </div>
                         <div class="wt-grid-item size-2@t">
-                            {{firstName}}  {{lastName}}
+                            {{firstName}} {{lastName}}
                         </div>
                         <div class="wt-grid-item size-2@t">
                             data
@@ -59,6 +59,7 @@
                     </div>
                 </div>
             </div>
+            <br/>
             {{/each}}
         </div>
         <div class="wt-grid-item size-12@p size-10@t">
@@ -86,30 +87,32 @@
     <div id="addPatientModal" class="wt-modal">
         <div class="wt-modal-content">
             <span class="wt-modal-close">&times;</span>
-            <div class="wt-grid-container">
-                <div class="wt-grid-item size-12@p size-12@t">
-                    <h2>Add Patient</h2>
-                    <p>Please enter the following details</p>
-                </div>
-                <div class="wt-grid-item size-12@p size-6@t">
-                    <label>First Name</label>
-                    <input type="text" />
-                </div>
-                <div class="wt-grid-item size-12@p size-6@t">
-                    <label>Last Name</label>
-                    <input type="text" />
-                </div>
-                <div class="wt-grid-item size-12@p size-12@t">
-                    <label>Bio</label>
-                    <textarea rows="5"></textarea>
-                </div>
-                <div class="wt-grid-item size-12@p">
-                    <div class="wt-text-align-right">
-                        <button class="wt-btn wt-btn-secondary">ADD PATIENT</button>
+            <form action="/dashboard/insertPatient" method="POST">
+                <div class="wt-grid-container">
+                    <div class="wt-grid-item size-12@p size-12@t">
+                        <h2>Add Patient</h2>
+                        <p>Please enter the following details</p>
+                    </div>
+                    <div class="wt-grid-item size-12@p size-6@t">
+                        <label>First Name</label>
+                        <input name="firstName" type="text" />
+                    </div>
+                    <div class="wt-grid-item size-12@p size-6@t">
+                        <label>Last Name</label>
+                        <input name="lastName" type="text" />
+                    </div>
+                    <div class="wt-grid-item size-12@p size-12@t">
+                        <label>Bio</label>
+                        <textarea rows="5"></textarea>
+                    </div>
+                    <div class="wt-grid-item size-12@p">
+                        <div class="wt-text-align-right">
+                            <button type="submit" class="wt-btn wt-btn-secondary">ADD PATIENT</button>
+                        </div>
+                    </div>
+                    <div class="wt-grid-item size-12@p">
                     </div>
                 </div>
-                <div class="wt-grid-item size-12@p">
-                </div>
-            </div>
+            </form>
         </div>
     </div>
