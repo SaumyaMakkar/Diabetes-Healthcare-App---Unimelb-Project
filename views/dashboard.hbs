@@ -12,7 +12,7 @@
                             class="material-icons">add</i>Add patient</button>
                 </div> -->
             <div class="wt-text-align-right">
-                <button class="wt-btn wt-btn-secondary wt-btn-with-icon" onclick="openModal('forgotModal')">
+                <button class="wt-btn wt-btn-secondary wt-btn-with-icon" onclick="openModal('addPatientModal')">
                     <i class="material-icons">add</i> ADD PATIENT</button>
             </div>
         </div>
@@ -24,7 +24,7 @@
 
                     </div>
                     <div class="wt-grid-item size-2@t">
-                        <strong>title</strong>
+                        <strong>Full Name</strong>
                     </div>
                     <div class="wt-grid-item size-2@t">
                         <strong>title</strong>
@@ -37,14 +37,15 @@
                     </div>
                 </div>
             </div>
+            {{#each patients}}
             <div class="wt-card">
                 <div class="wt-card-content">
                     <div class="wt-grid-container">
                         <div class="wt-grid-item size-2@t">
-                            <img class="wt-border-rounded" src="./assets/img/patient_img.png" width="40px" alt="">
+                            <img class="wt-border-rounded" src="/assets/img/patient_img.png" width="40px" alt="">
                         </div>
                         <div class="wt-grid-item size-2@t">
-                            Jane Cooper
+                            {{firstName}}  {{lastName}}
                         </div>
                         <div class="wt-grid-item size-2@t">
                             data
@@ -58,6 +59,7 @@
                     </div>
                 </div>
             </div>
+            {{/each}}
         </div>
         <div class="wt-grid-item size-12@p size-10@t">
             <h3>Title 3</h3>
@@ -81,7 +83,7 @@
             </div>
         </div>
     </div>
-    <div id="forgotModal" class="wt-modal">
+    <div id="addPatientModal" class="wt-modal">
         <div class="wt-modal-content">
             <span class="wt-modal-close">&times;</span>
             <div class="wt-grid-container">
