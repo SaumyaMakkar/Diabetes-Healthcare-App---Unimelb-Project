@@ -349,8 +349,6 @@ body {
     padding: 10px;
 }
 
-.wt-btn-with-icon {}
-
 .wt-btn-with-icon>i.material-icons {
     vertical-align: -5px;
     padding-right: 8px;
@@ -740,26 +738,6 @@ ul {
     text-decoration: none;
     display: contents;
 }
-
-/* .panel-sidebar-logout {
-    color: var(--primary-color-text);
-    bottom: 0;
-}
-
-.panel-sidebar-logout> ul li{
-    cursor: pointer;
-    align-items: center;
-    display: flex;
-    padding: 16px;
-}
-
-.panel-sidebar-logout>li a {
-    color: var(--primary-color-text);
-    text-decoration: none;
-    display: contents;
-} */
-
-/* -------------- */
 
 .panel-sidebar-menu.primary-color>li a {
     color: var(--primary-color);
