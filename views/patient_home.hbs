@@ -1,0 +1,87 @@
+{{> patient_sidebar}}
+{{> header}}
+<div class="panel-content">
+    <div class="wt-grid-container">
+        <div class="wt-grid-item size-12@p size-9@t">
+            <h1>Welcome back 👋</h1>
+            <p>jane Cooper</p>
+        </div>
+
+        <div class="wt-grid-item size-12@p size-10@t">
+            <h3>Title 3</h3>
+            <p>Subtitle</p>
+        </div>
+        <div class="wt-grid-item size-12@p size-12@t">
+            <div class="wt-card">
+                <div class="wt-card-content">
+                    <div class="wt-grid-container align-items-center">
+                        <div class="wt-grid-item size-11@p size-11@t">
+                            <label>First Name</label>
+                            <input type="text" />
+                        </div>
+                        <div class="wt-grid-item size-1@p size-1@t">
+                            <button class="wt-btn-icon" onclick="openModal('addPatientModal')"><i
+                                    class="material-icons">chat</i></button>
+                        </div>
+                        <div class="wt-grid-item size-12@p">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wt-grid-item size-12@p size-12@t">
+            <div class="wt-card">
+                <div class="wt-card-content">
+                    <table class="wt-datatable">
+                        <th>title</th>
+                        <th>title</th>
+                        <th>title</th>
+                        <tbody>
+                            <tr>
+                                <td>val1</td>
+                                <td>val1</td>
+                                <td>val1</td>
+                            </tr>
+                            <tr>
+                                <td>val1</td>
+                                <td>val1</td>
+                                <td>val1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="addPatientModal" class="wt-modal">
+        <div class="wt-modal-content">
+            <span class="wt-modal-close">&times;</span>
+            <form action="/dashboard/insertPatient" method="POST">
+                <div class="wt-grid-container">
+                    <div class="wt-grid-item size-12@p size-12@t">
+                        <h2>Add Patient</h2>
+                        <p>Please enter the following details</p>
+                    </div>
+                    <div class="wt-grid-item size-12@p size-6@t">
+                        <label>First Name</label>
+                        <input name="firstName" type="text" />
+                    </div>
+                    <div class="wt-grid-item size-12@p size-6@t">
+                        <label>Last Name</label>
+                        <input name="lastName" type="text" />
+                    </div>
+                    <div class="wt-grid-item size-12@p size-12@t">
+                        <label>Bio</label>
+                        <textarea rows="5"></textarea>
+                    </div>
+                    <div class="wt-grid-item size-12@p">
+                        <div class="wt-text-align-right">
+                            <button type="submit" class="wt-btn wt-btn-secondary">ADD PATIENT</button>
+                        </div>
+                    </div>
+                    <div class="wt-grid-item size-12@p">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>

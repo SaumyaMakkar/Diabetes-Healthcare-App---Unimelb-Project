@@ -30,26 +30,62 @@ app.use((req, res, next) => {
 
 /* Setting routes */
 
+/* Website */
 app.get('/', (req, res) => {
     res.render("index")
+})
+
+app.get('/about', (req, res) => {
+    res.render("about")
 })
 
 app.get('/login', (req, res) => {
     res.render("login")
 })
 
-app.use('/dashboard', patientRouter)
+/* Clinician */
+app.use('/clinician_dashboard', patientRouter)
 
-app.get('/profile', (req, res) => {
-    res.render("profile")
+app.get('/clinician_patient_data', (req, res) => {
+    res.render("clinician_patient_data")
 })
 
-app.get('/patient_comments', (req, res) => {
-    res.render("patient_comments")
+app.get('/clinician_patient_support_messages', (req, res) => {
+    res.render("clinician_patient_support_messages")
 })
 
-app.get('/patient_dash_demo', (req, res) => {
-    res.render("patient-dash-demo")
+app.get('/clinician_patient_notes', (req, res) => {
+    res.render("clinician_patient_notes")
+})
+
+app.get('/clinician_patient_profile', (req, res) => {
+    res.render("clinician_patient_profile")
+})
+
+app.get('/clinician_profile', (req, res) => {
+    res.render("clinician_profile")
+})
+
+app.get('/clinician_patients_comments', (req, res) => {
+    res.render("clinician_patients_comments")
+})
+
+/* Patient */
+
+app.get('/patient_home', (req, res) => {
+    res.render("patient_home")
+})
+
+app.get('/patient_records', (req, res) => {
+    res.render("patient_records")
+})
+
+app.get('/patient_leaderboard', (req, res) => {
+    res.render("patient_leaderboard")
+})
+
+app.get('/patient_profile', (req, res) => {
+    res.render("patient_profile")
 })
 
 /* MongoDB config */

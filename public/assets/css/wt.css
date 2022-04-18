@@ -28,6 +28,7 @@ body {
 } */
 
 .wt-grid-container {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     margin: 0;
@@ -35,6 +36,12 @@ body {
     list-style: none;
 }
 
+.justify-content-center{
+    justify-content: center;
+}
+.align-items-center{
+    align-items: center;
+}
 .wt-grid-item {
     margin: 0;
     padding: 0;
@@ -261,6 +268,9 @@ body {
     text-align: right;
 }
 
+.wt-text-align-left {
+    text-align: left;
+}
 .wt-text-divider {
     background-color: var(--primary-color);
     height: 4px;
@@ -578,6 +588,10 @@ a {
     color: #848484;
 }
 
+.wt-bg-white {
+    background-color: #FFF;
+}
+
 /* Website */
 
 
@@ -637,9 +651,11 @@ a {
     display: flex;
     align-items: center;
 }
+
 .list-item-avatar {
     display: flex;
 }
+
 .list-item-text {
     padding-left: 20px;
 }
@@ -763,6 +779,11 @@ ul {
     padding-right: 8px;
 }
 
+
+.patient_content {
+    display: block;
+}
+
 @media (min-width: 1024px) {
     .panel-content {
         margin-left: 256px;
@@ -770,6 +791,15 @@ ul {
 
     .header-content {
         margin-left: 256px;
+    }
+
+    /* Custom */
+    .patient_content {
+        display: flex;
+    }
+
+    .panel-sidebar-menu {
+        border-right: 1px solid black;
     }
 }
 
@@ -786,4 +816,17 @@ ul {
     .panel-sidebar {
         display: none;
     }
+}
+
+.wt-datatable {
+    border: 1px solid #646464;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.wt-datatable tr,
+.wt-datatable th,
+.wt-datatable td {
+    padding: 8px;
+    border: 1px solid #646464;
 }

@@ -1,0 +1,61 @@
+{{> clinician_sidebar}}
+{{> header}}
+<div class="panel-content">
+    <div class="wt-grid-container">
+        <div class="wt-grid-item size-12@p size-9@t">
+            <a class="wt-color-primary wt-btn-with-icon" onclick="history.back()"><i
+                    class="material-icons">arrow_back</i>Back to dashboard</a>
+        </div>
+        <div class="wt-grid-item size-12@p size-12@t">
+            <div class="list-item">
+                <div class="list-item-avatar">
+                    <img class="wt-border-rounded" src="./assets/img/patient_img.png" width="60px" alt="">
+                </div>
+                <div class="list-item-text">
+                    <h1>Jape Cooper</h1>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="patient_content">
+        {{> clinician_patient_menu}}
+        <div class="wt-grid-container">
+            <div class="wt-grid-item size-12@p size-6@t">
+                clinician_patient_support_messages
+            </div>
+            <div class="wt-grid-item size-12@p size-6@t">
+                content
+            </div>
+        </div>
+    </div>
+    <div id="forgotModal" class="wt-modal">
+        <div class="wt-modal-content">
+            <span class="wt-modal-close">&times;</span>
+            <div class="wt-grid-container">
+                <div class="wt-grid-item size-12@p size-12@t">
+                    <h2>Add Patient</h2>
+                    <p>Please enter the following details</p>
+                </div>
+                <div class="wt-grid-item size-12@p size-6@t">
+                    <label>First Name</label>
+                    <input type="text" />
+                </div>
+                <div class="wt-grid-item size-12@p size-6@t">
+                    <label>Last Name</label>
+                    <input type="text" />
+                </div>
+                <div class="wt-grid-item size-12@p size-12@t">
+                    <label>Bio</label>
+                    <textarea rows="5"></textarea>
+                </div>
+                <div class="wt-grid-item size-12@p">
+                    <div class="wt-text-align-right">
+                        <button class="wt-btn wt-btn-secondary">ADD PATIENT</button>
+                    </div>
+                </div>
+                <div class="wt-grid-item size-12@p">
+                </div>
+            </div>
+        </div>
+    </div>

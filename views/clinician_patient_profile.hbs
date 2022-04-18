@@ -1,10 +1,10 @@
-{{> sidebar}}
+{{> clinician_sidebar}}
 {{> header}}
-<div class="panel-content ">
+<div class="panel-content">
     <div class="wt-grid-container">
         <div class="wt-grid-item size-12@p size-9@t">
             <a class="wt-color-primary wt-btn-with-icon" onclick="history.back()"><i
-                    class="material-icons">arrow_back</i>BACK TO dashboard</a>
+                    class="material-icons">arrow_back</i>Back to dashboard</a>
         </div>
         <div class="wt-grid-item size-12@p size-12@t">
             <div class="list-item">
@@ -17,11 +17,16 @@
             </div>
 
         </div>
-        <div class="wt-grid-item size-12@p size-3@t">
-            {{> patient_menu}}
-        </div>
-        <div class="wt-grid-item size-12@p size-9@t border-left">
-            content
+    </div>
+    <div class="patient_content">
+        {{> clinician_patient_menu}}
+        <div class="wt-grid-container">
+            <div class="wt-grid-item size-12@p size-6@t">
+                clinician_patient_profile
+            </div>
+            <div class="wt-grid-item size-12@p size-6@t">
+                content
+            </div>
         </div>
     </div>
     <div id="forgotModal" class="wt-modal">

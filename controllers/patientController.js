@@ -5,7 +5,7 @@ const getAllPatients = async (req, res, next) => {
         const patients = await Patient.find().lean()
         console.log("patients")
         console.log(patients)
-        return res.render('dashboard', { patients: patients })
+        return res.render('clinician_dashboard', { patients: patients })
     } catch (err) {
         return next(err)
     }
@@ -34,7 +34,7 @@ const insertPatient = async (req, res, next) => {
             lastName
         })
         console.log(newPatient)
-        res.redirect('/dashboard')
+        res.redirect('/clinician_dashboard')
     } catch (err) {
         return next(err)
     }
