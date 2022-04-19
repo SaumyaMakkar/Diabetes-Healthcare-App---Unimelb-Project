@@ -1,88 +1,109 @@
-{{> clnician_sidebar}}
+{{> clinician_sidebar}}
 <div class="panel-content">
     <div class="wt-grid-container">
 
         {{!-- Profile Picture --}}
-        <div class="wt-grid-item size-4@t">
-            <div class="wt-grid-item size-12@t">
-                <img class="wt-border-circle" src="/assets/img/doctor.jpg" width="180px" height="180px" style="cursor: pointer;" onclick="openModal('UpdateProfilePictureModal')">
+        <div class="wt-grid-item size-5@t" style="display: flex; align-items: center; justify-content: center;">
+            <div class="wt-grid-item size-12@t" style="display: flex; align-items: center; justify-content: center;">
+                <img class="wt-border-circle" src="/assets/img/doctor.jpg" id="clinician_img" width="180px" height="180px" style="cursor: pointer;" onclick="openModal('UpdateProfilePictureModal')">
             </div>
-            <div class="wt-grid-item size-12@t">
+            <div class="wt-grid-item size-12@t" style="">
                 <h3>Brooklyn Simmons</h3>
-                <p style="color: gray; font-size:small;">Accredited Practicing Dietician</p>
+                <p style="color: grey; font-size:small;">Accredited Practicing Dietician</p>
             </div>
         </div>
 
         {{!-- Bio Box --}}
-        <div class="wt-grid-item size-8@t">
-            <div class="wt-card">
-                <div class="wt-card-content">
-                    <div class="wt-grid-item size-12@t">
-                        <form>
-                            <div class="wt-grid-container">
-                                <div class="wt-grid-item size-11@t" style="padding: 2px;">
-                                    <strong>Your Bio</strong>
-                                </div>
-                                <div class="wt-grid-item size-1@t" style="padding: 2px; text-align: right;">
-                                    <i class="material-icons" style="font-size: large; color:gray; cursor: pointer">edit</i>
-                                </div>
-                                <div class="wt-grid-item size-12@t" style="padding: 5px;">
-                                    <textarea rows="5"></textarea>
-                                </div>
-                            </div>
-                        </form>
+        <div class="wt-grid-item size-7@t" style="display: flex; align-items: center; justify-content: center;">
+            <div class="wt-card" style="height: 90%; width: 90% ">
+                <div class="wt-grid-item size-12@t" style="height: 100%">
+                    <div class="wt-grid-container" style="padding: 5px;">
+                        <div class="wt-grid-item size-11@t" style="padding: 2px;">
+                            <strong>Your Bio</strong>
+                        </div>
+                        <div class="wt-grid-item size-1@t" style="padding: 2px; text-align: right;">
+                            <i class="material-icons" style="font-size: large; color:gray; cursor: pointer" onclick="openModal('UpdateBioModal')">edit</i>
+                        </div>
+                    </div>
+                    <div class="wt-grid-item size-12@t" style="padding: 5px;">
+                        <div class ="wt-card" id="vertical_scroll_card" style="height: 70px; padding:15px">
+                            Bio here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         {{!-- Details Box --}}
-        </div class="wt-grid-item size-12@t">
+        <div class="wt-grid-item size-12@t" style="width:97%;">
             <div class="wt-card">
-                <div class="wt-card-content">
-                    <div class="wt-grid-item size-12@t">
-                        <form>
-                            <div class="wt-grid-container">
-                                <div class="wt-grid-item size-10@t">
-                                    <strong>Your Details</strong>
-                                </div>
-                                <div class="wt-grid-item size-2@t" style="text-align: right;">
-                                    <i class="material-icons" style="font-size: large; color:gray; cursor: pointer">edit</i>
-                                </div>
-                                <div class="wt-grid-item size-6@t">
-                                    <label>Email</label>
-                                    <input name="email" type="email" />
-                                </div>
-                                <div class="wt-grid-item size-6@t">
-                                    <label>Contact Number</label>
-                                    <input name="contactNumber" type="tel" />
-                                </div>
-                                <div class="wt-grid-item size-6@t">
-                                    <label>Address</label>
-                                    <input name="address" type="text" />
-                                </div>
-                                <div class="wt-grid-item size-3@t">
-                                    <label>City/Suburb</label>
-                                    <input name="city/suburb" type="text" />
-                                </div>
-                                <div class="wt-grid-item size-3@t">
-                                    <label>State</label>
-                                    <input name="state" type="text" />
-                                </div>
-                                <div class="wt-grid-item size-6@t">
-                                    <label>Password</label>
-                                    <input name="password" type="password" />
-                                </div>
-                                <div class="wt-grid-item size-3@t">
-                                    <label>Country</label>
-                                    <input name="country" type="text" />
-                                </div>
-                                <div class="wt-grid-item size-3@t">
-                                    <label>Postcode</label>
-                                    <input name="postcode" type="text" />
-                                </div>
+                <div class="wt-grid-item size-12@t">
+                    <div class="wt-grid-container">
+                        <div class="wt-grid-item size-10@t">
+                            <strong>Your Details</strong>
+                        </div>
+                        <div class="wt-grid-item size-2@t" style="text-align: right;">
+                            <i class="material-icons" style="font-size: large; color:gray; cursor: pointer" onclick="openModal('UpdateDetailsModal')">edit</i>
+                        </div>
+                        <div class="wt-grid-item size-5@t">
+                            <label>Email</label>
+                            <div class="wt-card" id="horizontal_scroll_card">
+                                Text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                             </div>
-                        </form>
+                        </div>
+                        <div class="wt-grid-item size-half@t"></div>
+                        <div class="wt-grid-item size-6@t">
+                            <label>Address</label>
+                            <div class="wt-card" id="horizontal_scroll_card">
+                                Text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </div>
+                        </div>
+                        <div class="wt-grid-item size-5@t">
+                            <label>Contact Number</label>
+                            <div class="wt-card" id="horizontal_scroll_card">
+                                Text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </div>
+                        </div>
+                        <div class="wt-grid-item size-half@t"></div>
+                        <div class="wt-grid-item size-3@t">
+                            <label>City/Suburb</label>
+                            <div class="wt-card" id="horizontal_scroll_card">
+                                Text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </div>
+                        </div>
+                        <div class="wt-grid-item size-3@t">
+                            <label>State</label>
+                            <div class="wt-card" id="horizontal_scroll_card">
+                                Text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </div>
+                        </div>
+                        <div class="wt-grid-item size-half@t"></div>
+                        {{!-- <div class="wt-grid-item size-3@t">
+                            <label>Password</label>
+                            <div class="wt-card" id="horizontal_scroll_card">
+                                Text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </div>
+                        </div> --}}
+                        <div class="wt-grid-item size-5@t">
+                            <label>Year of Birth</label>
+                            <div class="wt-card" id="horizontal_scroll_card">
+                                Text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </div>
+                        </div>
+                        <div class="wt-grid-item size-half@t"></div>
+                        <div class="wt-grid-item size-3@t">
+                            <label>Country</label>
+                            <div class="wt-card" id="horizontal_scroll_card">
+                                Text here Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </div>
+                        </div>
+                        <div class="wt-grid-item size-3@t">
+                            <label>Postcode</label>
+                            <div class="wt-card" id="horizontal_scroll_card">
+                                Text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </div>
+                        </div>
+                        <div class="wt-grid-item size-half@t"></div>
                     </div>
                 </div>
             </div>
@@ -95,19 +116,28 @@
                 <form>
                     <div class="wt-grid-container">
                         <div class="wt-grid-item size-12@t">
-                            <h2>Edit Profile Picture</h2>
+                            <h2>Edit Profile Picture and </h2>
                         </div>
                         <div class="wt-grid-item size-5@t">
                             <input name = "profilePic" type="file" accept="image/*" />
                         </div>
                         <div class="wt-grid-item size-5@t"></div>
                         <div class="wt-grid-item size-6@t">
-                            <label>Full Name</label>
+                            <label>Given Name/s</label>
                             <input name = "fullName" type="text" />
                         </div>
                         <div class="wt-grid-item size-6@t">
+                            <label>Family Name</label>
+                            <input name = "fullName" type="text" />
+                        </div>
+                        <div class="wt-grid-item size-9@t">
                             <label>Headline</label>
                             <input name = "headline" type="text" />
+                        </div>
+                        <div class="wt-grid-item size-12@t">
+                            <div class="wt-text-align-right">
+                                <button type="submit" class="wt-btn wt-btn-secondary">SAVE</button>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -115,10 +145,82 @@
         </div>
 
         {{!-- Update Bio modal --}}
+        <div id="UpdateBioModal" class="wt-modal">
+            <div class="wt-modal-content">
+                <span class="wt-modal-close">&times;</span>
+                <form action="/clinician_profile/EditClinicianBio" method="POST">
+                    <div class="wt-grid-container">
+                        <div class="wt-grid-item size-12@t">
+                            <h2>Update Your Bio</h2>
+                        </div>
+                        <div class="wt-grid-item size-12@t">
+                            <textarea rows="5"></textarea>
+                        </div>
+                        <div class="wt-grid-item size-12@t">
+                            <div class="wt-text-align-right">
+                                <button type="submit" class="wt-btn wt-btn-secondary">SAVE</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
 
 
         {{!-- Update Details Modal --}}
-
+        <div id="UpdateDetailsModal" class="wt-modal">
+            <div class="wt-modal-content">
+                <span class="wt-modal-close">&times;</span>
+                <form action="/clinician_profile/EditClinicianProfile" method="POST">
+                    <div class="wt-grid-container">
+                        <div class="wt-grid-item size-12@t">
+                            <h2>Edit your Profile</h2>
+                        </div>
+                        <div class="wt-grid-item size-6@t">
+                            <label>Email</label>
+                            <input name="email" type="email" />
+                        </div>
+                        <div class="wt-grid-item size-6@t">
+                            <label>Address</label>
+                            <input name="address" type="tel" />
+                        </div>
+                        <div class="wt-grid-item size-6@t">
+                            <label>Contact Number</label>
+                            <input name="contactNumber" type="text" />
+                        </div>
+                        <div class="wt-grid-item size-3@t">
+                            <label>City/Suburb</label>
+                            <input name="city/suburb" type="text" />
+                        </div>
+                        <div class="wt-grid-item size-3@t">
+                            <label>State</label>
+                            <input name="state" type="text" />
+                        </div>
+                        <div class="wt-grid-item size-3@t">
+                            <label>Password</label>
+                            <input name="password" type="password" />
+                        </div>
+                        <div class="wt-grid-item size-3@t">
+                            <label>Year of Birth</label>
+                            <input name="yearOfBirth" type="text" pattern="\d*" placeholder="YYYY" maxlength="4" />
+                        </div>
+                        <div class="wt-grid-item size-3@t">
+                            <label>Country</label>
+                            <input name="country" type="text" />
+                        </div>
+                        <div class="wt-grid-item size-3@t">
+                            <label>Postcode</label>
+                            <input name="postcode" type="text" />
+                        </div>
+                        <div class="wt-grid-item size-12@t">
+                            <div class="wt-text-align-right">
+                                <button type="submit" class="wt-btn wt-btn-secondary">SAVE</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>    
 
     </div>
 </div>
