@@ -1,4 +1,124 @@
-{{> clinician_sidebar}}
+{{> sidebar}}
 <div class="panel-content">
-    profile
+    <div class="wt-grid-container">
+
+        {{!-- Profile Picture --}}
+        <div class="wt-grid-item size-4@t">
+            <div class="wt-grid-item size-12@t">
+                <img class="wt-border-circle" src="/assets/img/doctor.jpg" width="180px" height="180px" style="cursor: pointer;" onclick="openModal('UpdateProfilePictureModal')">
+            </div>
+            <div class="wt-grid-item size-12@t">
+                <h3>Brooklyn Simmons</h3>
+                <p style="color: gray; font-size:small;">Accredited Practicing Dietician</p>
+            </div>
+        </div>
+
+        {{!-- Bio Box --}}
+        <div class="wt-grid-item size-8@t">
+            <div class="wt-card">
+                <div class="wt-card-content">
+                    <div class="wt-grid-item size-12@t">
+                        <form>
+                            <div class="wt-grid-container">
+                                <div class="wt-grid-item size-11@t" style="padding: 2px;">
+                                    <strong>Your Bio</strong>
+                                </div>
+                                <div class="wt-grid-item size-1@t" style="padding: 2px; text-align: right;">
+                                    <i class="material-icons" style="font-size: large; color:gray; cursor: pointer">edit</i>
+                                </div>
+                                <div class="wt-grid-item size-12@t" style="padding: 5px;">
+                                    <textarea rows="5"></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{!-- Details Box --}}
+        </div class="wt-grid-item size-12@t">
+            <div class="wt-card">
+                <div class="wt-card-content">
+                    <div class="wt-grid-item size-12@t">
+                        <form>
+                            <div class="wt-grid-container">
+                                <div class="wt-grid-item size-10@t">
+                                    <strong>Your Details</strong>
+                                </div>
+                                <div class="wt-grid-item size-2@t" style="text-align: right;">
+                                    <i class="material-icons" style="font-size: large; color:gray; cursor: pointer">edit</i>
+                                </div>
+                                <div class="wt-grid-item size-6@t">
+                                    <label>Email</label>
+                                    <input name="email" type="email" />
+                                </div>
+                                <div class="wt-grid-item size-6@t">
+                                    <label>Contact Number</label>
+                                    <input name="contactNumber" type="tel" />
+                                </div>
+                                <div class="wt-grid-item size-6@t">
+                                    <label>Address</label>
+                                    <input name="address" type="text" />
+                                </div>
+                                <div class="wt-grid-item size-3@t">
+                                    <label>City/Suburb</label>
+                                    <input name="city/suburb" type="text" />
+                                </div>
+                                <div class="wt-grid-item size-3@t">
+                                    <label>State</label>
+                                    <input name="state" type="text" />
+                                </div>
+                                <div class="wt-grid-item size-6@t">
+                                    <label>Password</label>
+                                    <input name="password" type="password" />
+                                </div>
+                                <div class="wt-grid-item size-3@t">
+                                    <label>Country</label>
+                                    <input name="country" type="text" />
+                                </div>
+                                <div class="wt-grid-item size-3@t">
+                                    <label>Postcode</label>
+                                    <input name="postcode" type="text" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{!-- Update Profile Picture Modal --}}
+        <div id="UpdateProfilePictureModal" class="wt-modal">
+            <div class="wt-modal-content">
+                <span class="wt-modal-close">&times;</span>
+                <form>
+                    <div class="wt-grid-container">
+                        <div class="wt-grid-item size-12@t">
+                            <h2>Edit Profile Picture</h2>
+                        </div>
+                        <div class="wt-grid-item size-5@t">
+                            <input name = "profilePic" type="file" accept="image/*" />
+                        </div>
+                        <div class="wt-grid-item size-5@t"></div>
+                        <div class="wt-grid-item size-6@t">
+                            <label>Full Name</label>
+                            <input name = "fullName" type="text" />
+                        </div>
+                        <div class="wt-grid-item size-6@t">
+                            <label>Headline</label>
+                            <input name = "headline" type="text" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        {{!-- Update Bio modal --}}
+
+
+        {{!-- Update Details Modal --}}
+
+
+    </div>
 </div>
