@@ -81,18 +81,18 @@
     <div id="addPatientModal" class="wt-modal">
         <div class="wt-modal-content">
             <span class="wt-modal-close">&times;</span>
-            <form action="/dashboard/insertPatient" method="POST">
+            <form action="/clinician_dashboard/insertPatient" method="POST">
                 <div class="wt-grid-container">
                     <div class="wt-grid-item size-12@t">
                         <h2>Add Patient</h2>
                         <p>Please enter the following details</p>
                     </div>
                     <div class="wt-grid-item size-6@t">
-                        <label>First Name</label>
+                        <label>Given Name</label>
                         <input name="firstName" type="text" />
                     </div>
                     <div class="wt-grid-item size-6@t">
-                        <label>Last Name</label>
+                        <label>Family Name</label>
                         <input name="lastName" type="text" />
                     </div>
                     <div class="wt-grid-item size-6@t">
@@ -100,8 +100,8 @@
                         <input name="email" type="email" />
                     </div>
                     <div class="wt-grid-item size-6@t">
-                        <label>Date of Birth</label>
-                        <input name="lastName" type="date" />
+                        <label>Year of Birth</label>
+                        <input name="yearOfBirth" type="text" pattern="\d*" placeholder="YYYY" maxlength="4" />
                     </div>
                     <div class="wt-grid-item size-6@t">
                         <label>Screen Name</label>
@@ -125,13 +125,18 @@
     <div id="patientCommentModal" class="wt-modal">
         <div class="wt-modal-content">
             <span class="wt-modal-close">&times;</span>
-            <form>
+            <form action="/clinician_dashboard/PatientComment" method="POST">
                 <div class="wt-grid-container">
                     <div class="wt-grid-item size-12@t">
                         <h2>Patient Comment</h2>
                     </div>
                     <div class="wt-grid-item size-12@t">
                         <textarea rows="5"></textarea>
+                    </div>
+                </div>
+                <div class="wt-grid-item size-12@t">
+                    <div class="wt-text-align-right">
+                        <button type="submit" class="wt-btn wt-btn-secondary">SAVE</button>
                     </div>
                 </div>
             </form>
