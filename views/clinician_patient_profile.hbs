@@ -1,61 +1,109 @@
 {{> clinician_sidebar}}
 {{> header}}
+
 <div class="panel-content">
+
+    {{!-- Back to dashboard and Heading --}}
     <div class="wt-grid-container">
-        <div class="wt-grid-item size-12@p size-9@t">
-            <a class="wt-color-primary wt-btn-with-icon" onclick="history.back()"><i
-                    class="material-icons">arrow_back</i>Back to dashboard</a>
+
+        {{!-- Back to dashboard Button --}}
+        <div class="wt-grid-item size-12@p size-12@t">
+            <a class="wt-color-primary wt-btn-with-icon" onclick="history.back()">
+                <i class="material-icons">arrow_back</i>Back to dashboard</a>
         </div>
+
+        {{!-- Patient's Profile Picture and Name --}}
         <div class="wt-grid-item size-12@p size-12@t">
             <div class="list-item">
                 <div class="list-item-avatar">
                     <img class="wt-border-rounded" src="./assets/img/patient_img.png" width="60px" alt="">
                 </div>
                 <div class="list-item-text">
-                    <h1>Jape Cooper</h1>
+                    <h1>Jane Cooper</h1>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    {{!-- Individual Patient's Content --}}
+    <div class="patient_content">
+
+        {{!-- Mini Sidebar --}}
+        {{> clinician_patient_menu}}
+
+        {{!-- Profile --}}
+        <div class="wt-grid-container">
+
+            {{!-- Subheading: Profile --}}
+            <div class="wt-grid-item size-12@p size-12@t">
+                <h2>Profile</h2>
+            </div>
+
+            {{!-- Profile Card --}}
+            <div class="wt-grid-item size-12@p size-12@t">
+                <div class="wt-card">
+                    <div class="wt-card-content">
+                        <div class="wt-grid-container">
+
+                            <div class="wt-grid-item size-half@t"></div>
+                            <div class="wt-grid-item size-12@p size-5@t">
+                                <label>Given Name(s)</label>
+                                <div class="wt-card" id="horizontal_scroll_card">
+                                    Jane
+                                </div>
+                            </div>
+                            <div class="wt-grid-item size-1@t"></div>
+                            <div class="wt-grid-item size-12@p size-5@t">
+                                <label>Family Name</label>
+                                <div class="wt-card" id="horizontal_scroll_card">
+                                    Cooper
+                                </div>
+                            </div>
+                            <div class="wt-grid-item size-half@t"></div>
+
+                            <div class="wt-grid-item size-half@t"></div>
+                            <div class="wt-grid-item size-12@p size-5@t">
+                                <label>Screen Name</label>
+                                <div class="wt-card" id="horizontal_scroll_card">
+                                    Moondancer
+                                </div>
+                            </div>
+                            <div class="wt-grid-item size-1@t"></div>
+                            <div class="wt-grid-item size-12@p size-5@t">
+                                <label>Email</label>
+                                <div class="wt-card" id="horizontal_scroll_card">
+                                    janecooper135@gmail.com
+                                </div>
+                            </div>
+                            <div class="wt-grid-item size-half@t"></div>
+
+                            <div class="wt-grid-item size-half@t"></div>
+                            <div class="wt-grid-item size-12@p size-5@t">
+                                <label>Date of Birth</label>
+                                <div class="wt-card" id="horizontal_scroll_card">
+                                    05/12/2000
+                                </div>
+                            </div>
+                            <div class="wt-grid-item size-6@t"></div>
+                            <div class="wt-grid-item size-half@t"></div>
+
+                            <div class="wt-grid-item size-half@t"></div>
+                            <div class="wt-grid-item size-11@p size-11@t">
+                                <label>Bio</label>
+                                <div class="wt-card" id="vertical_scroll_card" style="height: 70px; padding: 15px">
+                                    Patient's bio. Have a history of ..., tends to ...
+                                </div>
+                            </div>
+
+                            <div class="wt-grid-item size-12@p"></div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
 
         </div>
     </div>
-    <div class="patient_content">
-        {{> clinician_patient_menu}}
-        <div class="wt-grid-container">
-            <div class="wt-grid-item size-12@p size-6@t">
-                clinician_patient_profile
-            </div>
-            <div class="wt-grid-item size-12@p size-6@t">
-                content
-            </div>
-        </div>
-    </div>
-    <div id="forgotModal" class="wt-modal">
-        <div class="wt-modal-content">
-            <span class="wt-modal-close">&times;</span>
-            <div class="wt-grid-container">
-                <div class="wt-grid-item size-12@p size-12@t">
-                    <h2>Add Patient</h2>
-                    <p>Please enter the following details</p>
-                </div>
-                <div class="wt-grid-item size-12@p size-6@t">
-                    <label>First Name</label>
-                    <input type="text" />
-                </div>
-                <div class="wt-grid-item size-12@p size-6@t">
-                    <label>Last Name</label>
-                    <input type="text" />
-                </div>
-                <div class="wt-grid-item size-12@p size-12@t">
-                    <label>Bio</label>
-                    <textarea rows="5"></textarea>
-                </div>
-                <div class="wt-grid-item size-12@p">
-                    <div class="wt-text-align-right">
-                        <button class="wt-btn wt-btn-secondary">ADD PATIENT</button>
-                    </div>
-                </div>
-                <div class="wt-grid-item size-12@p">
-                </div>
-            </div>
-        </div>
-    </div>
+
+</div>

@@ -78,6 +78,10 @@ a {
     width: 4.16%;
 }
 
+.size-threequarter\@p {
+    width: 6.25%;
+}
+
 .size-1\@p {
     width: 8.33%;
 }
@@ -155,6 +159,10 @@ a {
         width: 4.16%;
     }
 
+    .size-threequarter\@t {
+        width: 6.25%;
+    }
+
     .size-1\@t {
         width: 8.33%;
     }
@@ -220,6 +228,10 @@ a {
 
     .size-half\@d {
         width: 4.16%;
+    }
+
+    .size-threequarter\@d {
+        width: 6.25%;
     }
 
     .size-1\@d {
