@@ -26,17 +26,29 @@
                         <div class="wt-grid-item size-11@p size-11@t wt-color-white">
                             <h1>Notifications</h1>
                         </div>
-                        <div class="wt-grid-item size-1@p size-1@t">
-                            <button class="wt-btn-icon" onclick="openModal('addPatientModal')"><i
-                                    class="material-icons">chat</i></button>
+                    </div>
+                </div>
+                <div class="wt-notif-content">
+                    <div class="wt-grid-container">
+                        <span class="menu-icon-small"><i class="material-icons wt-color-secondary size-2@p size-2@t">warning</i></span>
+                        <div class="wt-grid-item size-9@p size-11@t wt-color-primary wt-text-align-center">
+                            <h1>Record Health Data</h1>
+                            <p>Remember to record your insulin doses before the end of the day</p>
                         </div>
-                        <div class="wt-grid-item size-12@p">
+                    </div>
+                </div>
+                <div class="wt-notif-content-bot">
+                    <div class="wt-grid-container">
+                        <span class="menu-icon-small"><i class="material-icons wt-color-secondary size-1@p size-1@t">sms</i></span>
+                        <div class="wt-grid-item size-9@p size-12@t wt-color-primary wt-text-align-center">
+                            <h1>Message from the doctor</h1>
+                            <p>Think of the goal ⛳️</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="wt-grid-item size-12@p size-12@t">
+        {{!<div class="wt-grid-item size-12@p size-12@t">
             <div class="wt-card">
                 <div class="wt-card-content">
                     <table class="wt-datatable">
@@ -58,8 +70,9 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </div>!}}
     </div>
+
     <div id="addPatientModal" class="wt-modal">
         <div class="wt-modal-content">
             <span class="wt-modal-close">&times;</span>
