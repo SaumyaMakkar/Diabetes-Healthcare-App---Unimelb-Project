@@ -838,6 +838,7 @@ ul {
     border: 1px solid #646464;
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
 }
 
 .wt-datatable tr,
@@ -845,6 +846,7 @@ ul {
 .wt-datatable td {
     padding: 8px;
     border: 1px solid #646464;
+    text-align: center;
 }
 
 #horizontal_scroll_card {
