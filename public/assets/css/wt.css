@@ -746,14 +746,15 @@ ul {
 .panel-sidebar-menu>li {
     cursor: pointer;
     align-items: center;
-    display: flex;
-    padding: 16px;
+    /* display: flex; */
+    
 }
 
 .panel-sidebar-menu>li a {
     color: var(--primary-color-text);
     text-decoration: none;
-    display: contents;
+    display: block;
+    padding: 16px;
 }
 
 .panel-sidebar-menu.primary-color>li a {

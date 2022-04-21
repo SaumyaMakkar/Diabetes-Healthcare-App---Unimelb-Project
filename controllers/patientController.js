@@ -27,11 +27,11 @@ const getPatientById = async (req, res, next) => {
 
 const insertPatient = async (req, res, next) => {
 
-    const { firstName, lastName } = req.body;
+    const { givenNames, familyName } = req.body;
     try {
         const newPatient = await Patient.create({
-            firstName,
-            lastName
+            givenNames,
+            familyName
         })
         console.log(newPatient)
         res.redirect('/clinician_dashboard')
