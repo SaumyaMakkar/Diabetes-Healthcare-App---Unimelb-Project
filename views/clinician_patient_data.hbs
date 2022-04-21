@@ -8,8 +8,8 @@
 
         {{!-- Back to dashboard Button --}}
         <div class="wt-grid-item size-12@p size-12@t">
-            <a class="wt-color-primary wt-btn-with-icon" onclick="history.back()"><i
-                    class="material-icons">arrow_back</i>Back to dashboard</a>
+            <a class="wt-color-primary wt-btn-with-icon" onclick="history.back()">
+                <i class="material-icons">arrow_back</i>Back to dashboard</a>
         </div>
 
         {{!-- Patient's Profile Picture and Name --}}
@@ -62,18 +62,18 @@
                     <tbody>
                         {{!-- {{#each patientDataRow}} --}}
                         <tr>
-                            <td>date</td>   {{!-- {{date}} --}}
-                            <td>val1</td>   {{!-- {{bloodGlucoseLevel}} --}}
-                            <td>val2</td>   {{!-- {{Weight}} --}}
-                            <td>val3</td>   {{!-- {{insulinDoses}} --}}
-                            <td>val4</td>   {{!-- {{exercise}} --}}
+                            <td>09/01/2022</td>   {{!-- {{date}} --}}
+                            <td>5.5</td>   {{!-- {{bloodGlucoseLevel}} --}}
+                            <td>67.7</td>   {{!-- {{Weight}} --}}
+                            <td>3</td>   {{!-- {{insulinDoses}} --}}
+                            <td>4,592</td>   {{!-- {{exercise}} --}}
                         </tr>
                         <tr>
-                            <td>date2</td>
-                            <td>val5</td>
-                            <td>val6</td>
-                            <td>val7</td>
-                            <td>val8
+                            <td>08/01/2022</td>
+                            <td>5.7</td>
+                            <td>67.7</td>
+                            <td>4</td>
+                            <td>2,048
                                 <div class="wt-text-align-right">
                                     <i class="material-icons" style="cursor: pointer;" onclick="openModal('patientCommentModal')">message</i>
                                 </div>
@@ -138,13 +138,13 @@
                         <p>Blood Glucose Level (mmol/L)</p>
                     </div>
                     <div class="wt-grid-item size-2@t">
-                        <input name="lowerThreshold" type="text" />
+                        <input name="lowerThreshold" type="text" placeholder="0"/>
                     </div>
                     <div class="wt-grid-item size-1@t wt-text-align-center">
                         <p>to</p>
                     </div>
                     <div class="wt-grid-item size-2@t">
-                        <input name="upperThreshold" type="text" />
+                        <input name="upperThreshold" type="text" placeholder="5.6"/>
                     </div>
 
                     <div class="wt-grid-item size-2@t">
@@ -154,13 +154,13 @@
                         <p>Weight (kg)</p>
                     </div>
                     <div class="wt-grid-item size-2@t">
-                        <input name="lowerThreshold" type="text" />
+                        <input name="lowerThreshold" type="text" placeholder="0"/>
                     </div>
                     <div class="wt-grid-item size-1@t wt-text-align-center">
                         <p>to</p>
                     </div>
                     <div class="wt-grid-item size-2@t">
-                        <input name="upperThreshold" type="text" />
+                        <input name="upperThreshold" type="text" placeholder="70"/>
                     </div>
 
                     <div class="wt-grid-item size-2@t">
@@ -170,13 +170,13 @@
                         <p>Insulin Doses (no.)</p>
                     </div>
                     <div class="wt-grid-item size-2@t">
-                        <input name="lowerThreshold" type="text" />
+                        <input name="lowerThreshold" type="text" placeholder="0"/>
                     </div>
                     <div class="wt-grid-item size-1@t wt-text-align-center">
                         <p>to</p>
                     </div>
                     <div class="wt-grid-item size-2@t">
-                        <input name="upperThreshold" type="text" />
+                        <input name="upperThreshold" type="text" placeholder="5"/>
                     </div>
 
                     <div class="wt-grid-item size-2@t">
@@ -186,13 +186,13 @@
                         <p>Exercise (step count)</p>
                     </div>
                     <div class="wt-grid-item size-2@t">
-                        <input name="lowerThreshold" type="text" />
+                        <input name="lowerThreshold" type="text" placeholder="-"/>
                     </div>
                     <div class="wt-grid-item size-1@t wt-text-align-center">
                         <p>to</p>
                     </div>
                     <div class="wt-grid-item size-2@t">
-                        <input name="upperThreshold" type="text" />
+                        <input name="upperThreshold" type="text" placeholder="-"/>
                     </div>
 
                     
