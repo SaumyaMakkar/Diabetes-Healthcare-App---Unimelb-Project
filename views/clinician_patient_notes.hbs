@@ -1,61 +1,101 @@
 {{> clinician_sidebar}}
 {{> header}}
+
 <div class="panel-content">
+
+    {{!-- Back to dashboard and Heading --}}
     <div class="wt-grid-container">
-        <div class="wt-grid-item size-12@p size-9@t">
+
+        {{!-- Back to dashboard Button --}}
+        <div class="wt-grid-item size-12@p size-12@t">
             <a class="wt-color-primary wt-btn-with-icon" onclick="history.back()"><i
                     class="material-icons">arrow_back</i>Back to dashboard</a>
         </div>
+
+        {{!-- Patient's Profile Picture and Name --}}
         <div class="wt-grid-item size-12@p size-12@t">
             <div class="list-item">
                 <div class="list-item-avatar">
                     <img class="wt-border-rounded" src="./assets/img/patient_img.png" width="60px" alt="">
                 </div>
                 <div class="list-item-text">
-                    <h1>Jape Cooper</h1>
+                    <h1>Jane Cooper</h1>
                 </div>
+            </div>
+        </div>
+
+    </div>
+
+    {{!-- Individual Patient's Content --}}
+    <div class="patient_content">
+
+        {{!-- Mini Sidebar --}}
+        {{> clinician_patient_menu}}
+
+        {{!-- Clinical Notes --}}
+        <div class="wt-grid-container">
+            
+            {{!-- Subheading: Clinical Notes --}}
+            <div class="wt-grid-item size-6@p size-8@t">
+                <h2>Clinical Notes</h2>
+            </div>
+
+            {{!-- Add Note Button --}}
+            <div class="wt-grid-item size-6@p size-4@t wt-text-align-right">
+                <button class="wt-btn wt-btn-secondary wt-btn-with-icon" onclick="openModal('addNoteModal')">
+                    <i class="material-icons">add</i> ADD NOTE</button>
+            </div>
+
+            {{!-- Fetch database data --}}
+            <div class="wt-grid-item size-12@p size-12@t">
+                <table class="wt-datatable">
+                    <th>Date</th>
+                    <th>Clinical Note</th>
+                    <tbody>
+                        {{!-- {{#each patientClinicalNoteRow}} --}}
+                        <tr>
+                            <td>09/01/2022</td>                             {{!-- {{date}} --}}
+                            <td>Glucose Levels shot up yesterday and the levels has been very volatile this past month, will need to monitor more closely.</td>  {{!-- {{note}} --}}
+                        </tr>
+                        <tr>
+                            <td>25/11/2021</td>
+                            <td>Patient has mentioned feeling depressed with their situation.</td>
+                        </tr>
+                        {{!-- {{/each}} --}}
+                    </tbody>
+                </table>
             </div>
 
         </div>
     </div>
-    <div class="patient_content">
-        {{> clinician_patient_menu}}
-        <div class="wt-grid-container">
-            <div class="wt-grid-item size-12@p size-6@t">
-                clinician_patient_notes
-            </div>
-            <div class="wt-grid-item size-12@p size-6@t">
-                content
-            </div>
-        </div>
-    </div>
-    <div id="forgotModal" class="wt-modal">
+
+    {{!-- Add Note Modal --}}
+    <div id="addNoteModal" class="wt-modal">
         <div class="wt-modal-content">
-            <span class="wt-modal-close">&times;</span>
-            <div class="wt-grid-container">
-                <div class="wt-grid-item size-12@p size-12@t">
-                    <h2>Add Patient</h2>
-                    <p>Please enter the following details</p>
-                </div>
-                <div class="wt-grid-item size-12@p size-6@t">
-                    <label>First Name</label>
-                    <input type="text" />
-                </div>
-                <div class="wt-grid-item size-12@p size-6@t">
-                    <label>Last Name</label>
-                    <input type="text" />
-                </div>
-                <div class="wt-grid-item size-12@p size-12@t">
-                    <label>Bio</label>
-                    <textarea rows="5"></textarea>
-                </div>
-                <div class="wt-grid-item size-12@p">
-                    <div class="wt-text-align-right">
-                        <button class="wt-btn wt-btn-secondary">ADD PATIENT</button>
+            <form action="/clinician_patient_notes/addNote" method="POST"></form>
+                <div class="wt-grid-container">
+
+                    {{!-- Heading --}}
+                    <div class="wt-grid-item size-6@p size-8@t">
+                        <h2>Add Clinical Note</h2>
                     </div>
+                    <div class="wt-grid-item size-6@p size-4@t wt-text-align-right">
+                        <span class="wt-modal-close">&times;</span>
+                    </div>
+
+                    {{!-- Text Area for Note --}}
+                    <div class="wt-grid-item size-12@t">
+                        <textarea placeholder="Enter messsage..." rows="5"></textarea>
+                    </div>
+                    
+                    {{!-- Save Button --}}
+                    <div class="wt-grid-item size-12@t wt-text-align-right">
+                        <button type="submit" class="wt-btn wt-btn-secondary">SAVE</button>
+                    </div>
+
                 </div>
-                <div class="wt-grid-item size-12@p">
-                </div>
-            </div>
+            </form>
         </div>
     </div>
+
+</div>
