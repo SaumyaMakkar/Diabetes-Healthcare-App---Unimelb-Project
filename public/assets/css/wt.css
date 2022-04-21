@@ -849,6 +849,14 @@ ul {
     text-align: center;
 }
 
+.wt-datatable th {
+    width: 100px;
+}
+
+.wt-datatable th+th {
+    width: auto;
+}
+
 #horizontal_scroll_card {
     box-shadow: none;
     border-radius: var(--border-radius);
