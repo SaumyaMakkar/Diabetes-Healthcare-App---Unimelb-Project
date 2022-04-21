@@ -869,7 +869,7 @@ ul {
     width: auto;
 }
 
-#horizontal_scroll_card {
+/* #horizontal_scroll_card {
     box-shadow: none;
     border-radius: var(--border-radius);
     margin-top: 5px;
@@ -881,9 +881,9 @@ ul {
     width: calc(100% - 20px);
     white-space: nowrap;
     overflow-x: scroll;
-}
+} */
 
-#vertical_scroll_card {
+/* #vertical_scroll_card {
     box-shadow: none;
     border-radius: var(--border-radius);
     margin-top: 5px;
@@ -895,13 +895,13 @@ ul {
     width: calc(100% - 30px);
     word-wrap: break-word;
     overflow-y: auto;
-}
+} */
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     display: none;
-}
+} */
 
-#display_flex_center {
+.display_flex_center {
     display: flex;
     align-items: center;
     justify-content: center;
