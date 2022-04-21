@@ -21,6 +21,10 @@ body {
     font-family: Roboto, sans-serif;
 }
 
+a {
+    text-decoration: none;
+}
+
 /* Grid system */
 
 /* * {
@@ -36,12 +40,14 @@ body {
     list-style: none;
 }
 
-.justify-content-center{
+.justify-content-center {
     justify-content: center;
 }
-.align-items-center{
+
+.align-items-center {
     align-items: center;
 }
+
 .wt-grid-item {
     margin: 0;
     padding: 0;
@@ -69,7 +75,7 @@ body {
     padding: 8px;
 } */
 
-.size-half\@p{
+.size-half\@p {
     width: 4.16%;
 }
 
@@ -146,7 +152,7 @@ body {
         display: flex !important;
     }
 
-    .size-half\@t{
+    .size-half\@t {
         width: 4.16%;
     }
 
@@ -213,7 +219,7 @@ body {
         display: flex !important;
     }
 
-    .size-half\@d{
+    .size-half\@d {
         width: 4.16%;
     }
 
@@ -283,6 +289,7 @@ body {
 .wt-text-align-left {
     text-align: left;
 }
+
 .wt-text-divider {
     background-color: var(--primary-color);
     height: 4px;
@@ -493,7 +500,7 @@ input:hover {
 
 .wt-modal-content {
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 5% auto;
     /* 15% from the top and centered */
     padding: 20px;
     box-shadow: 0 19px 38px rgb(0 0 0 / 30%), 0 15px 12px rgb(0 0 0 / 22%);
@@ -759,13 +766,13 @@ ul {
     cursor: pointer;
     align-items: center;
     /* display: flex; */
-    
+
 }
 
 .panel-sidebar-menu>li a {
     color: var(--primary-color-text);
     text-decoration: none;
-    display: block;
+    display: flex;
     padding: 16px;
 }
 
@@ -790,7 +797,7 @@ ul {
 .menu-icon-small {
     padding-left: 5px;
     text-align: left;
-    padding-right: 5px;
+    padding-right: 10px;
 }
 
 .menu-title {
@@ -850,8 +857,8 @@ ul {
     border: 1px solid #646464;
 }
 
-#horizontal_scroll_card{
-    box-shadow:none;
+#horizontal_scroll_card {
+    box-shadow: none;
     border-radius: var(--border-radius);
     margin-top: 5px;
     font-size: 15px;
@@ -861,11 +868,11 @@ ul {
     background-color: #f5f5f5;
     width: calc(100% - 20px);
     white-space: nowrap;
-    overflow-x:scroll;
+    overflow-x: scroll;
 }
 
-#vertical_scroll_card{
-    box-shadow:none;
+#vertical_scroll_card {
+    box-shadow: none;
     border-radius: var(--border-radius);
     margin-top: 5px;
     font-size: 15px;
@@ -874,8 +881,8 @@ ul {
     border: none;
     background-color: #f5f5f5;
     width: calc(100% - 30px);
-    word-wrap: break-word; 
-    overflow-y:auto;
+    word-wrap: break-word;
+    overflow-y: auto;
 }
 
 ::-webkit-scrollbar {

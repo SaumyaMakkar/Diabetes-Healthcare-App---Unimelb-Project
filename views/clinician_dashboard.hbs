@@ -52,7 +52,10 @@
                             <img class="wt-border-rounded" src="/assets/img/patient_img.png" width="40px">
                         </div>
                         <div class="wt-grid-item size-2@t">
-                            {{firstName}} {{lastName}}
+
+                            <a href="./clinician_patient_data">
+                                {{firstName}} {{lastName}}
+                            </a>
                         </div>
                         <div class="wt-grid-item size-2@t">
                             data
@@ -67,12 +70,13 @@
                             data
                         </div>
                         <div class="wt-grid-item size-1@t">
-                            <i class="material-icons" style="cursor: pointer;" onclick="openModal('patientCommentModal')">message</i>
+                            <i class="material-icons" style="cursor: pointer;"
+                                onclick="openModal('patientCommentModal')">message</i>
                         </div>
                     </div>
                 </div>
             </div>
-            <br/>
+            <br />
             {{/each}}
         </div>
     </div>
