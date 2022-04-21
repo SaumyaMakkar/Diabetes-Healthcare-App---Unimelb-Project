@@ -26,7 +26,6 @@ a {
 }
 
 /* Grid system */
-
 /* * {
     box-sizing: border-box;
 } */
@@ -377,7 +376,7 @@ a {
     padding: 10px;
 }
 
-.wt-btn-with-icon {}
+/* .wt-btn-with-icon {} */
 
 .wt-btn-with-icon>i.material-icons {
     vertical-align: -5px;
@@ -435,7 +434,6 @@ a {
     flex-direction: column;
 }
 
-
 .wt-card-narrower-overlay {
     margin-left: 4%;
     margin-right: 4%;
@@ -475,7 +473,6 @@ input:hover {
 }
 
 /* Modal */
-
 .wt-modal {
     display: none;
     /* Hidden by default */
@@ -497,7 +494,6 @@ input:hover {
     /* Black w/ opacity */
 }
 
-
 .wt-modal-content {
     background-color: #fefefe;
     margin: 5% auto;
@@ -509,7 +505,6 @@ input:hover {
     border-radius: var(--border-radius);
     /* Could be more or less, depending on screen size */
 }
-
 
 .wt-modal-close {
     position: relative;
@@ -554,7 +549,6 @@ a {
     display: block;
     max-width: 100px;
 }
-
 
 @media (min-width: 960px) {
     .wt-container {
@@ -612,8 +606,6 @@ a {
 }
 
 /* Website */
-
-
 .wt-banner {
     position: relative;
 }
@@ -680,7 +672,6 @@ a {
 }
 
 /* Login */
-
 .left-login {
     background-image: url("../img/login_background.png");
     background-size: cover;
@@ -804,7 +795,6 @@ ul {
     text-align: left;
     padding-right: 8px;
 }
-
 
 .patient_content {
     display: block;
