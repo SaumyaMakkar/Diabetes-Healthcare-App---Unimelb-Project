@@ -657,7 +657,12 @@ a {
 .wt-bg-white {
     background-color: #FFF;
 }
-
+.wt-bg-amber {
+    background-color: rgb(247, 255, 190);
+}
+.wt-bg-red {
+    background-color: rgb(255, 188, 188);
+}
 /* Website */
 .wt-banner {
     position: relative;

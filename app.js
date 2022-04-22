@@ -5,9 +5,13 @@ const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 
 /* Routes */
-const patientRouter = require('./routes/patientRouter')
+const clinicianCommentsRouter = require('./routes/clinicianCommentsRouter')
+const clinicianPatientRouter = require('./routes/clinicianPatientRouter')
+const clinicianRouter = require('./routes/clinicianRouter')
+const patientDashboardRouter = require('./routes/patientDashboardRouter')
 
 
+var format = require('date-fns/format')
 /* Express config */
 
 const app = express()
@@ -16,7 +20,12 @@ app.use(express.static("public"));
 
 app.engine('hbs', exphbs.engine({
     defaultlayout: "main",
-    extname: "hbs"
+    extname: "hbs",
+    helpers: {
+        dateFormat: x => {
+            return format(x, 'MM/dd/yyyy')
+        }
+    }
 }))
 
 app.set("view engine", "hbs")
@@ -44,37 +53,15 @@ app.get('/login', (req, res) => {
 })
 
 /* Clinician */
-app.use('/clinician_dashboard', patientRouter)
+app.use('/clinician_dashboard', clinicianPatientRouter)
 
-app.get('/clinician_patient_data', (req, res) => {
-    res.render("clinician_patient_data")
-})
+app.use('/clinician_profile', clinicianRouter)
 
-app.get('/clinician_patient_support_messages', (req, res) => {
-    res.render("clinician_patient_support_messages")
-})
-
-app.get('/clinician_patient_notes', (req, res) => {
-    res.render("clinician_patient_notes")
-})
-
-app.get('/clinician_patient_profile', (req, res) => {
-    res.render("clinician_patient_profile")
-})
-
-app.get('/clinician_profile', (req, res) => {
-    res.render("clinician_profile")
-})
-
-app.get('/clinician_patients_comments', (req, res) => {
-    res.render("clinician_patients_comments")
-})
+app.use('/clinician_patients_comments', clinicianCommentsRouter)
 
 /* Patient */
 
-app.get('/patient_home', (req, res) => {
-    res.render("patient_home")
-})
+app.use('/patient_home', patientDashboardRouter)
 
 app.get('/patient_records', (req, res) => {
     res.render("patient_records")
