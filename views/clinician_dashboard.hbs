@@ -6,7 +6,9 @@
         {{!-- Heading and Subheading --}}
         <div class="wt-grid-item size-9@t">
             <h1>Dashboard</h1>
-            <p>Today : date</p>
+            <p style="display: inline;">Today :
+            <p id="date" style="display: inline;"></p>
+            </p>
         </div>
 
         {{!-- Add Patient Button --}}
@@ -74,7 +76,7 @@
                         </div>
                         <div class="wt-grid-item size-2@t">
                             data
-                            <i class="material-icons"  style="font-size: smaller; cursor: pointer;"
+                            <i class="material-icons" style="font-size: smaller; cursor: pointer;"
                                 onclick="openModal('patientCommentModal')">message</i>
                         </div>
                         {{!-- <div class="wt-grid-item size-1@t">
@@ -155,3 +157,8 @@
         </div>
     </div>
 </div>
+<script>n = new Date();
+    y = n.getFullYear();
+    m = n.getMonth() + 1;
+    d = n.getDate();
+    document.getElementById("date").innerHTML = m + "/" + d + "/" + y;</script>
