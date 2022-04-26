@@ -22,9 +22,30 @@ const getPatientDashboard = async (req, res, next) => {
     /* Tristan */
 
     /* You can use use the function getPatientHealthDataById as a reference */
+    try {
+        const patient = await Patient.findById("624fc3977815c23276639393").lean()
+        if (!patient) {
+            // no patient found in database
+            return res.sendStatus(404)
+        }
 
-    console.log("getPatientDashboard")
-    return res.render('patient_home')
+        // Finding the records of the patient
+        const healthData = await Records.find({ patientId: "624fc3977815c23276639393" }).sort({date: -1}).lean() 
+        
+        let lastPosition = patient.requiredRecordsHistory.length - 1;
+        const healthDataSettings = patient.requiredRecordsHistory[lastPosition].records;
+
+        // found patient
+        return res.render('patient_home', {
+            patient: patient,
+            healthDataSettings: healthDataSettings,
+            healthData: healthData
+        })
+    } catch (err) {
+        return next(err)
+    }
+    //console.log("getPatientDashboard")
+    //return res.render('patient_home')
 }
 
 const getPatientHealthDataById = async (req, res, next) => {
