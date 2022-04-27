@@ -1,46 +1,62 @@
 {{> patient_sidebar}}
 {{> header}}
+
+{{!The whole page w/o patient_sidebar}}
 <div class="panel-content">
+
+    {{!grid format to layout "boxes" of items}}
     <div class="wt-grid-container">
+
+        {{!Welcome back box}}
         <div class="wt-grid-item size-12@p size-9@t wt-color-primary">
             <h1>Welcome back 👋</h1>
         </div>
+
+        {{!Name box, possibly need to integrate with database}}
         <div class="wt-grid-item size-6@p size-10@t wt-color-primary">
             <h1>Pat</h1>
         </div>
+
+        {{!Engagement rate box, must be same alignment with Name box}}
         <div class="wt.grid.item size.6@p size.2@t wt-text-align-right">
             <div class="wt-engagement">
                 <h3>🔥<u>85</u>% rate</h3>
             </div>
         </div>
 
+        {{!//Sample code}}
         {{!<div class="wt-grid-item size-12@p size-10@t">
             <h3>Title 3</h3>
             <p>Subtitle</p>
         </div>!}}
 
+        {{!Notification box}}
         <div class="wt-grid-item size-12@p size-12@t">
+
+            {{!Card to add Notification header}}
             <div class="wt-card">
-                <div class="wt-notif-top">
-                    <div class="wt-grid-container align-items-center">
-                        <div class="wt-grid-item size-11@p size-11@t wt-color-white">
+                <div class="wt-notif-top"> {{!Modified card for background color and edges}}
+                    <div class="wt-grid-container">
+                        <div class="wt-grid-item size-12@p size-12@t wt-color-white">
                             <h1>Notifications</h1>
                         </div>
                     </div>
                 </div>
-                <div class="wt-notif-content">
-                    <div class="wt-grid-container">
-                        <span class="menu-icon-small"><i class="material-icons wt-color-secondary size-2@p size-2@t">warning</i></span>
-                        <div class="wt-grid-item size-9@p size-11@t wt-color-primary wt-text-align-center">
+            
+                <div class="wt-notif-content"> {{!Modified card for edge color and sharp edge}}
+                    <div class="wt-grid-container"> 
+                        <span class="menu-icon-small size-1@p size-1@t"><i class="material-icons wt-color-red">warning</i></span>
+                        <div class="wt-grid-item size-11@p size-11@t wt-color-primary wt-text-align-center">
                             <h1>Record Health Data</h1>
                             <p>Remember to record your insulin doses before the end of the day</p>
                         </div>
                     </div>
                 </div>
-                <div class="wt-notif-content-bot">
+
+                <div class="wt-notif-content-bot"> {{!Modified card for edge color and sharp edge}}
                     <div class="wt-grid-container">
-                        <span class="menu-icon-small"><i class="material-icons wt-color-secondary size-1@p size-1@t">sms</i></span>
-                        <div class="wt-grid-item size-9@p size-12@t wt-color-primary wt-text-align-center">
+                        <span class="menu-icon-small size-1@p size-1@t"><i class="material-icons wt-color-secondary">sms</i></span>
+                        <div class="wt-grid-item size-11@p size-11@t wt-color-primary wt-text-align-center">
                             <h1>Message from the doctor</h1>
                             <p>Think of the goal ⛳️</p>
                         </div>
@@ -71,37 +87,47 @@
                 </div>
             </div>
         </div>!}}
-    </div>
 
-    <div id="addPatientModal" class="wt-modal">
-        <div class="wt-modal-content">
-            <span class="wt-modal-close">&times;</span>
-            <form action="/dashboard/insertPatient" method="POST">
-                <div class="wt-grid-container">
-                    <div class="wt-grid-item size-12@p size-12@t">
-                        <h2>Add Patient</h2>
-                        <p>Please enter the following details</p>
-                    </div>
-                    <div class="wt-grid-item size-12@p size-6@t">
-                        <label>First Name</label>
-                        <input name="firstName" type="text" />
-                    </div>
-                    <div class="wt-grid-item size-12@p size-6@t">
-                        <label>Last Name</label>
-                        <input name="lastName" type="text" />
-                    </div>
-                    <div class="wt-grid-item size-12@p size-12@t">
-                        <label>Bio</label>
-                        <textarea rows="5"></textarea>
-                    </div>
-                    <div class="wt-grid-item size-12@p">
-                        <div class="wt-text-align-right">
-                            <button type="submit" class="wt-btn wt-btn-secondary">ADD PATIENT</button>
-                        </div>
-                    </div>
-                    <div class="wt-grid-item size-12@p">
-                    </div>
-                </div>
-            </form>
+        {{!Health recorder header box}}
+        <div class="wt-grid-item size-12@p size-12@t wt-color-primary wt-margin-large-top">
+            <h1>Record Health Data</h1>
         </div>
+
+        {{!Date box}}
+        <div class="wt-grid-item size-12@p size-12@t wt-color-primary">
+            <h2>For the 10/1/2022</h2>
+        </div>
+
+    {{!NEED TO CREATE PULL AND PUSH TO DATABASE, PULL->CHECK IF HAVE->CHECK IF NEED}}
+    {{!CURRENT POST DOES NOT WORK PROPERLY, NEED TO REROUTE}}
+    {{!<div id="addPatientModal" class="wt-modal">}}
+    <form action="/dashboard/insert" method="POST">
+        <div class="wt-grid-container">
+            <div class="wt-card-item size-12@p size-12@t">
+                <label>Blood Glucose Level (Mmol/L)</label>
+                    <input class="wt-patient-input" name="glucoseLevel" type="text" />
+            </div>
+            <div class="wt-grid-item size-12@p size-12@t">
+                <label>Weight</label>
+                <input class="wt-patient-input" name="weight" type="text" />
+            </div>
+            <div class="wt-grid-item size-12@p size-12@t">
+                <label>Insulin Doses</label>
+                <input class="wt-patient-input" name="insulinDoses" type="text" />
+            </div>
+            <div class="wt-grid-item size-12@p size-12@t">
+                <label>Exercise (Step Count)</label>
+                <input class="wt-patient-input" name="exercise" type="text" />
+            </div>
+            <div class="wt-grid-item size-12@p">
+                <div class="wt-text-align-right">
+                    <button type="submit" class="wt-btn wt-btn-secondary">SAVE</button>
+                </div>
+            </div>
+            <div class="wt-grid-item size-12@p">
+            </div>
+        </div>
+    </form>
+    {{!</div>}}
     </div>
+</div>

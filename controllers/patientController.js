@@ -3,15 +3,25 @@ const Records = require('../models/records')
 const mongoose = require('mongoose')
 
 const getAllPatients = async (req, res, next) => {
-    /* Mia */
+    // Mia
 
     /* You can use use the function getPatientHealthDataById as a reference */
 
     console.log("getAllPatients")
     try {
-        const patients = await Patient.find().lean()
+        const patients = await Patient.find(req.params.patient).populate({ path: 'record_patient', model: 'records' }).lean();
+        // const healthData = await Records.find({ patientId: req.params.id }).sort({ date: -1 }).lean()
+
+        if (!patients) {
+            // no patient found in database
+            return res.sendStatus(404)
+        }
+
+
         console.log("patients")
         console.log(patients)
+        // return res.render('clinician_patients_comments', { patients: patients })
+        // console.log(patients[0].record_patient);
         return res.render('clinician_dashboard', { patients: patients })
     } catch (err) {
         return next(err)
@@ -32,11 +42,13 @@ const getPatientHealthDataById = async (req, res, next) => {
         const patient = await Patient.findById(req.params.id).lean()
         if (!patient) {
             // no patient found in database
+            // console.log("No patients");
             return res.sendStatus(404)
         }
-
+        console.log("Healthid");
+        console.log(patient);
         // Finding the records of the patient
-        const healthData = await Records.find({ patientId: req.params.id }).sort({date: -1}).lean()
+        const healthData = await Records.find({ patientId: req.params.id }).sort({ date: -1 }).lean()
 
         let lastPosition = patient.requiredRecordsHistory.length - 1;
         const healthDataSettings = patient.requiredRecordsHistory[lastPosition].records;

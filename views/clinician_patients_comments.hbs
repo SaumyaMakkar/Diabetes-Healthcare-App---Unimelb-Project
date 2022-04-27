@@ -26,7 +26,7 @@
                 </div>
             </div>   
 
-            {{!-- {{#each patients}} --}}
+            {{#each patients}}
             <div class="wt-card">
                 <div class="wt-card-content">
                     <div class="wt-grid-container">
@@ -42,8 +42,9 @@
                                     <img class="wt-border-rounded" src="/assets/img/patient_img.png" width="40px">
                                 </div>
                                 <div class="wt-grid-item size-9@t" style="padding: 0%; padding-top:2.5%">
-                                    Jean Vera
-                                    {{!-- {{firstName}} {{lastName}} --}}
+                                    <a href="./clinician_dashboard/{{_id}}/clinician_patient_data">
+                                        {{givenName}} {{familyName}}
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -62,7 +63,7 @@
                 </div>
             </div>
             <br/>
-            {{!-- {{/each}}  --}}
+            {{/each}} 
         </div>
 
 
