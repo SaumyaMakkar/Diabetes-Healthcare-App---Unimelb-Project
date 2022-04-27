@@ -4,7 +4,8 @@ const mongoose = require('mongoose')
 const schema = new mongoose.Schema({
     email: String,
     password: String,
-    givenNames: String,
+    urlImage: String,
+    givenName: String,
     familyName: String,
     contactNumber: String,
     yearOfBirth: String,
@@ -18,6 +19,6 @@ const schema = new mongoose.Schema({
     }
 });
 
-const Clinician = mongoose.model('patients', schema)
+const Clinician = mongoose.model('clinicians', schema)
 
 module.exports = Clinician

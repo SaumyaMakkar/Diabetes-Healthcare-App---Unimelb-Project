@@ -53,26 +53,34 @@
                         </div>
                         <div class="wt-grid-item size-2@t">
 
-                            <a href="./clinician_patient_data">
-                                {{firstName}} {{lastName}}
+                            <a href="./clinician_dashboard/{{_id}}/clinician_patient_data">
+                                {{givenName}} {{familyName}}
                             </a>
                         </div>
                         <div class="wt-grid-item size-2@t">
                             data
-                        </div>
-                        <div class="wt-grid-item size-2@t">
-                            data
-                        </div>
-                        <div class="wt-grid-item size-2@t">
-                            data
-                        </div>
-                        <div class="wt-grid-item size-2@t">
-                            data
-                        </div>
-                        <div class="wt-grid-item size-1@t">
-                            <i class="material-icons" style="cursor: pointer;"
+                            <i class="material-icons" style="font-size: smaller; cursor: pointer;"
                                 onclick="openModal('patientCommentModal')">message</i>
                         </div>
+                        <div class="wt-grid-item size-2@t">
+                            data
+                            <i class="material-icons" style="font-size: smaller; cursor: pointer;"
+                                onclick="openModal('patientCommentModal')">message</i>
+                        </div>
+                        <div class="wt-grid-item size-2@t">
+                            data
+                            <i class="material-icons" style="font-size: smaller; cursor: pointer;"
+                                onclick="openModal('patientCommentModal')">message</i>
+                        </div>
+                        <div class="wt-grid-item size-2@t">
+                            data
+                            <i class="material-icons"  style="font-size: smaller; cursor: pointer;"
+                                onclick="openModal('patientCommentModal')">message</i>
+                        </div>
+                        {{!-- <div class="wt-grid-item size-1@t">
+                            <i class="material-icons" style="cursor: pointer;"
+                                onclick="openModal('patientCommentModal')">message</i>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -93,11 +101,11 @@
                     </div>
                     <div class="wt-grid-item size-6@t">
                         <label>Given Name</label>
-                        <input name="firstName" type="text" />
+                        <input name="givenName" type="text" />
                     </div>
                     <div class="wt-grid-item size-6@t">
                         <label>Family Name</label>
-                        <input name="lastName" type="text" />
+                        <input name="familyName" type="text" />
                     </div>
                     <div class="wt-grid-item size-6@t">
                         <label>Email</label>
@@ -113,7 +121,7 @@
                     </div>
                     <div class="wt-grid-item size-12@t">
                         <label>Bio</label>
-                        <textarea rows="5"></textarea>
+                        <textarea rows="5" name="bio"></textarea>
                     </div>
                     <div class="wt-grid-item size-12@t">
                         <div class="wt-text-align-right">
