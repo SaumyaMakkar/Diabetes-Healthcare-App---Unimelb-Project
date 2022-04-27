@@ -300,6 +300,12 @@ a {
     text-align: center;
 }
 
+.wt-icon-align-center {
+    padding-top: 45px;
+    padding-left: 0px;
+    text-align: center;
+}
+
 .wt-text-align-right {
     text-align: right;
 }

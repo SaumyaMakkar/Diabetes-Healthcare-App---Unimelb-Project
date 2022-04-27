@@ -98,31 +98,88 @@
             <h2>For the 10/1/2022</h2>
         </div>
 
-    {{!NEED TO CREATE PULL AND PUSH TO DATABASE, PULL->CHECK IF HAVE->CHECK IF NEED}}
-    {{!CURRENT POST DOES NOT WORK PROPERLY, NEED TO REROUTE}}
-    {{!<div id="addPatientModal" class="wt-modal">}}
-        
-        <form action="/dashboard/insert" method="POST">
+    {{!NEED TO CREATE PULL AND PUSH TO DATABASE, PULL->CHECK IF HAVE ->CHECK IF NEED}}
+    {{!CURRENT POST MAY NOT WORK PROPERLY, NEED TO UNDERSTAND ACTION MORE}}
+
+    {{!INITIAL PUSH IF FIRST TIME ADDING DATA}}
+    {{!#if currentDate does not have data}}
+        <form action="/insertRecord" method="POST"> {{!?????}}
             <div class="wt-grid-container">
-                <div class="wt-grid-item wt-color-grey size-12@p size-12@t">
-                    <label>Blood Glucose Level (Mmol/L)</label>
-                        <input class="wt-patient-nonmandatory" name="glucoseLevel" type="text" />
-                </div>
-                <div class="wt-grid-item size-12@p size-12@t">
-                    <label>Weight</label>
-                    <input class="wt-patient-input" name="weight" type="text" />
-                </div>
-                <div class="wt-grid-item size-12@p size-12@t">
-                    <label>Insulin Doses</label>
-                    <input class="wt-patient-input" name="insulinDoses" type="text" />
-                </div>
-                <div class="wt-grid-item size-12@p size-12@t">
-                    <label>Exercise (Step Count)</label>
-                    <input class="wt-patient-input" name="exercise" type="text" />
-                </div>
+                {{!#if glucoseLevel is mandatory}}
+                    <div class="wt-grid-item size-11@p size-11@t">
+                        <label>Blood Glucose Level (Mmol/L)</label>
+                            <input class="wt-patient-input" name="glucoseLevel" type="text" />
+                    </div>
+                    <span class="wt-icon-align-center">
+                        <i class="material-icons" style="cursor: pointer;">message</i>
+                    </span>
+                {{!else}}
+                    <div class="wt-grid-item wt-color-grey size-11@p size-11@t">
+                        <label>Blood Glucose Level (Mmol/L)</label>
+                            <input class="wt-patient-nonmandatory" name="glucoseLevel" type="text" />
+                    </div>
+                    <span class="wt-icon-align-center">
+                        <i class="material-icons wt-color-grey">message</i>
+                    </span>    
+                {{!/if}}
+
+                {{!#if weight is mandatory}}
+                    <div class="wt-grid-item size-11@p size-11@t">
+                        <label>Weight</label>
+                        <input class="wt-patient-input" name="weight" type="text" />
+                    </div>
+                    <span class="wt-icon-align-center">
+                        <i class="material-icons" style="cursor: pointer;">message</i>
+                    </span>
+                {{!else}}
+                    <div class="wt-grid-item wt-color-grey size-11@p size-11@t">
+                        <label>Weight</label>
+                            <input class="wt-patient-nonmandatory" name="weight" type="text" />
+                    </div>
+                    <span class="wt-icon-align-center">
+                        <i class="material-icons wt-color-grey">message</i>
+                    </span> 
+                {{!/if}}
+
+                {{!#if insulinDoses is mandatory}}
+                    <div class="wt-grid-item size-11@p size-11@t">
+                        <label>Insulin Doses</label>
+                        <input class="wt-patient-input" name="insulinDoses" type="text" />
+                    </div>
+                    <span class="wt-icon-align-center">
+                        <i class="material-icons" style="cursor: pointer;">message</i>
+                    </span>
+                {{!else}}
+                    <div class="wt-grid-item wt-color-grey size-11@p size-11@t">
+                        <label>Insulin Doses</label>
+                            <input class="wt-patient-nonmandatory" name="insulinDoses" type="text" />
+                    </div>
+                    <span class="wt-icon-align-center">
+                        <i class="material-icons wt-color-grey">message</i>
+                    </span>
+                {{!/if}}
+
+                {{!#if exercise is mandatory}}
+                    <div class="wt-grid-item size-11@p size-11@t">
+                        <label>Exercise (Step Count)</label>
+                        <input class="wt-patient-input" name="exercise" type="text" />
+                    </div>
+                    <span class="wt-icon-align-center">
+                        <i class="material-icons" style="cursor: pointer;">message</i>
+                    </span>
+                {{!else}}
+                    <div class="wt-grid-item wt-color-grey size-11@p size-11@t">
+                        <label>Exercise (Step Count)</label>
+                            <input class="wt-patient-nonmandatory" name="exercise" type="text" />
+                    </div>
+                    <span class="wt-icon-align-center">
+                        <i class="material-icons wt-color-grey">message</i>
+                    </span>
+                {{!/if}}
+    
                 {{!Completed Legend, need to fix icon padding}}
                 <span class="patient-icon size-1@p size-1@t"><i class="material-icons wt-color-secondary">check</i></span>
-                <div class="wt-grid-item size-7@p size-9@t wt-color-grey wt-text-align-left">
+                <div class="wt-grid-item size-7@p size-8@t wt-color-grey wt-text-align-left">
                     <p>Completed</p>
                 </div>
                 {{!Missing Legend, need to fix icon padding}}
@@ -132,7 +189,7 @@
                 </div>
 
                 {{!Save button}}
-                <div class="wt-grid-item size-12@p">
+                <div class="wt-grid-item size-12@p size-11@t">
                     <div class="wt-text-align-right">
                         <button type="submit" class="wt-btn wt-btn-secondary">SAVE</button>
                     </div>
@@ -141,7 +198,119 @@
                 </div>
             </div>
         </form>
-    {{!</div>}}
+
+    {{!UPDATE CURRENT DATA SINCE IT EXIST}}
+    {{!else}}
+        <form action="/insertRecord" method="UPDATE"> {{!?????}}
+            <div class="wt-grid-container">
+                {{!#if glucoseLevel is mandatory}}
+                    <div class="wt-grid-item size-11@p size-11@t">
+                        <label>Blood Glucose Level (Mmol/L)</label>
+                            {{!#if glcoseLevel is empty}}
+                                <input class="wt-patient-input" name="glucoseLevel" type="text" />
+                                {{!WARNING IS NOT IN THE TEXT BOX}}
+                                <span class="patient-icon size-1@p size-1@t"><i class="material-icons wt-color-red">warning</i></span>
+                            {{!else}}
+                                <input class="wt-patient-input" name="glucoseLevel" type="text" />
+                                {{!CHECK IS NOT IN THE TEXT BOX}}
+                                {{!NEED TO PULL glucoseLevel INTO TEXT BOX}}
+                                <span class="patient-icon size-1@p size-1@t"><i class="material-icons wt-color-secondary">check</i></span>
+                            {{!/if}}
+                    </div>
+                    <span class="wt-icon-align-center">
+                        <i class="material-icons" style="cursor: pointer;">message</i>
+                    </span>
+                {{!else}}
+                    <div class="wt-grid-item wt-color-grey size-11@p size-11@t">
+                        <label>Blood Glucose Level (Mmol/L)</label>
+                            <input class="wt-patient-nonmandatory" name="glucoseLevel" type="text" />
+                    </div>
+                    <span class="wt-icon-align-center">
+                        <i class="material-icons wt-color-grey">message</i>
+                    </span>    
+                {{!/if}}
+
+                {{!#if weight is mandatory}}
+                    <div class="wt-grid-item size-11@p size-11@t">
+                        <label>Weight</label>
+                        <input class="wt-patient-input" name="weight" type="text" />
+                    </div>
+                    <span class="wt-icon-align-center">
+                        <i class="material-icons" style="cursor: pointer;">message</i>
+                    </span>
+                {{!else}}
+                    <div class="wt-grid-item wt-color-grey size-11@p size-11@t">
+                        <label>Weight</label>
+                            <input class="wt-patient-nonmandatory" name="weight" type="text" />
+                    </div>
+                    <span class="wt-icon-align-center">
+                        <i class="material-icons wt-color-grey">message</i>
+                    </span> 
+                {{!/if}}
+
+                {{!#if insulinDoses is mandatory}}
+                    <div class="wt-grid-item size-11@p size-11@t">
+                        <label>Insulin Doses</label>
+                        <input class="wt-patient-input" name="insulinDoses" type="text" />
+                    </div>
+                    <span class="wt-icon-align-center">
+                        <i class="material-icons" style="cursor: pointer;">message</i>
+                    </span>
+                {{!else}}
+                    <div class="wt-grid-item wt-color-grey size-11@p size-11@t">
+                        <label>Insulin Doses</label>
+                            <input class="wt-patient-nonmandatory" name="insulinDoses" type="text" />
+                    </div>
+                    <span class="wt-icon-align-center">
+                        <i class="material-icons wt-color-grey">message</i>
+                    </span>
+                {{!/if}}
+
+                {{!#if exercise is mandatory}}
+                    <div class="wt-grid-item size-11@p size-11@t">
+                        <label>Exercise (Step Count)</label>
+                        <input class="wt-patient-input" name="exercise" type="text" />
+                    </div>
+                    <span class="wt-icon-align-center">
+                        <i class="material-icons" style="cursor: pointer;">message</i>
+                    </span>
+                {{!else}}
+                    <div class="wt-grid-item wt-color-grey size-11@p size-11@t">
+                        <label>Exercise (Step Count)</label>
+                            <input class="wt-patient-nonmandatory" name="exercise" type="text" />
+                    </div>
+                    <span class="wt-icon-align-center">
+                        <i class="material-icons wt-color-grey">message</i>
+                    </span>
+                {{!/if}}
+    
+                {{!Completed Legend, need to fix icon padding}}
+                <span class="patient-icon size-1@p size-1@t"><i class="material-icons wt-color-secondary">check</i></span>
+                <div class="wt-grid-item size-7@p size-8@t wt-color-grey wt-text-align-left">
+                    <p>Completed</p>
+                </div>
+                {{!Missing Legend, need to fix icon padding}}
+                <span class="patient-icon size-1@p size-1@t"><i class="material-icons wt-color-red">warning</i></span>
+                <div class="wt-grid-item size-3@p size-1@t wt-color-grey wt-text-align-left">
+                    <p>Missing</p>
+                </div>
+
+                {{!Save button}}
+                <div class="wt-grid-item size-12@p size-11@t">
+                    <div class="wt-text-align-right">
+                        <button type="submit" class="wt-btn wt-btn-secondary">SAVE</button>
+                    </div>
+                </div>
+                <div class="wt-grid-item size-12@p">
+                </div>
+            </div>
+        </form>
+
+
+
+
+
+
 
         <div class="wt-grid-container"> 
 
