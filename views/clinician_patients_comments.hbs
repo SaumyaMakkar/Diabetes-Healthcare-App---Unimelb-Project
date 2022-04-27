@@ -26,7 +26,7 @@
                 </div>
             </div>   
 
-            {{!-- {{#each patients}} --}}
+            {{#each patients}}
             <div class="wt-card">
                 <div class="wt-card-content">
                     <div class="wt-grid-container">
@@ -42,8 +42,9 @@
                                     <img class="wt-border-rounded" src="/assets/img/patient_img.png" width="40px">
                                 </div>
                                 <div class="wt-grid-item size-9@t" style="padding: 0%; padding-top:2.5%">
-                                    Jean Vera
-                                    {{!-- {{firstName}} {{lastName}} --}}
+                                    <a href="./clinician_dashboard/{{_id}}/clinician_patient_data">
+                                        {{givenName}} {{familyName}}
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -52,16 +53,17 @@
                         </div>
                         <div class="wt-grid-item size-4@t" style="padding: 0%;">
                             <div class="wt-grid-item size-12@t">
-                                <div class ="wt-card" id="vertical_scroll_card" style="height: 70px; padding:15px">
+                                <textarea readonly rows="5">Comments here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+                                {{!-- <div class ="wt-card" id="vertical_scroll_card" style="height: 70px; padding:15px">
                                     Comments here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <br/>
-            {{!-- {{/each}}  --}}
+            {{/each}} 
         </div>
 
 

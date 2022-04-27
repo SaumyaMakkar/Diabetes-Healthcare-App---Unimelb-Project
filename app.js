@@ -9,7 +9,10 @@ const clinicianCommentsRouter = require('./routes/clinicianCommentsRouter')
 const clinicianPatientRouter = require('./routes/clinicianPatientRouter')
 const clinicianRouter = require('./routes/clinicianRouter')
 const patientDashboardRouter = require('./routes/patientDashboardRouter')
+// "use strict";
 
+// var hbs = require('hbs');
+// var express = require('express');
 
 var format = require('date-fns/format')
 /* Express config */
@@ -24,7 +27,36 @@ app.engine('hbs', exphbs.engine({
     helpers: {
         dateFormat: x => {
             return format(x, 'MM/dd/yyyy')
-        }
+        },
+        get: x => {
+            return x[0];
+        },
+        isNull: (v1) => {
+            if (v1 == false) return true;
+            return false;
+        },
+        isfill: (v1) => {
+            if (v1 == false) return false;
+            return true;
+        },
+        checkOutOfThreshold: (v1) => {
+            if (v1 === true) return 'red';
+            return '';
+        },
+        checkMandatoryAndNull: (isMandatory, value) => {
+            console.log(isMandatory, value);
+            if (isMandatory && value === null) {
+                return 'yellow';
+            }
+            return ' ';
+        }, checkLength: (v1) => {
+            if (v1 === "") {
+                return false;
+            }
+            return true;
+        },
+        getCurrentDate: () => Date.now(),
+
     }
 }))
 
@@ -99,6 +131,7 @@ db.once('open', async () => {
 app.listen(3000, () => {
     console.log('Demo app is listening on port 3000!')
 })
+
 
 
 /* process.on('SIGINT', function() {

@@ -976,12 +976,18 @@ ul {
     overflow-y: auto;
 } */
 
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
     display: none;
-} */
+}
 
 .display_flex_center {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+#red{
+    color:red;
+}
+#yellow{
+    color:yellow;
 }

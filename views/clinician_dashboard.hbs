@@ -6,7 +6,9 @@
         {{!-- Heading and Subheading --}}
         <div class="wt-grid-item size-9@t">
             <h1>Dashboard</h1>
-            <p>Today : date</p>
+            <p style="display: inline;">Today :
+            <p id="date" style="display: inline;"></p>
+            </p>
         </div>
 
         {{!-- Add Patient Button --}}
@@ -57,25 +59,107 @@
                                 {{givenName}} {{familyName}}
                             </a>
                         </div>
-                        <div class="wt-grid-item size-2@t">
-                            data
+
+
+                        <div class="wt-grid-item size-2@t"
+                            id="{{#checkOutOfThreshold record_patient.0.glucoseLevel.outOfTheThreshold}} {{/checkOutOfThreshold}}">
+                            {{#if record_patient.0.glucoseLevel.value}}
+                            {{{record_patient.0.glucoseLevel.value}}}
+                            {{!-- {{record_patient.0.glucoseLevel.mandatory}} --}}
+                            {{else}}
+
+                            {{#if (isfill record_patient.0.glucoseLevel.mandatory)}}
+                            {{!-- <div>Hii</div> --}}
+                            <span style="color: rgb(165, 165, 58);">
+                                Not available
+                            </span>
+                            {{else}}
+                            ---
+                            {{/if}}
+
+                            {{!-- {{/else}} --}}
+                            {{/if}}
+                            {{#if (checkLength record_patient.0.glucoseLevel.comment)}}
                             <i class="material-icons" style="font-size: smaller; cursor: pointer;"
-                                onclick="openModal('patientCommentModal')">message</i>
+                                onclick="openModal('patientCommentModal1')">message</i>
+                            {{/if }}
                         </div>
-                        <div class="wt-grid-item size-2@t">
-                            data
+
+
+                        <div class="wt-grid-item size-2@t"
+                            id="{{#checkOutOfThreshold record_patient.0.weight.outOfTheThreshold}} {{/checkOutOfThreshold}}">
+
+                            {{#if record_patient.0.weight.value}}
+                            {{{record_patient.0.weight.value}}}
+                            {{else}}
+
+                            {{#if (isfill record_patient.0.weight.mandatory)}}
+                            {{!-- <div>Hii</div> --}}
+                            <span style="color: rgb(165, 165, 58);">
+                                Not available
+                            </span>
+                            {{else}}
+                            ---
+                            {{/if}}
+
+                            {{!-- {{/else}} --}}
+                            {{/if}}
+                            {{#if (checkLength record_patient.0.weight.comment 0) }}
                             <i class="material-icons" style="font-size: smaller; cursor: pointer;"
-                                onclick="openModal('patientCommentModal')">message</i>
+                                onclick="openModal('patientCommentModal2')">message</i>
+                            {{/if}}
+
                         </div>
-                        <div class="wt-grid-item size-2@t">
-                            data
+
+
+                        <div class="wt-grid-item size-2@t"
+                            id="{{#checkOutOfThreshold record_patient.0.insulineDoses.outOfTheThreshold}} {{/checkOutOfThreshold}} ">
+                            {{#if record_patient.0.insulineDoses.value}}
+                            {{record_patient.0.insulineDoses.value}}
+
+                            {{else}}
+
+                            {{#if (isfill record_patient.0.insulinDoses.mandatory)}}
+                            {{!-- <div>Hii</div> --}}
+                            <span style="color: rgb(165, 165, 58);">
+                                Not available
+                            </span>
+                            {{else}}
+                            ---
+                            {{/if}}
+
+                            {{/if}}
+
+                            {{#if (checkLength record_patient.0.insulineDoses.comment 0) }}
                             <i class="material-icons" style="font-size: smaller; cursor: pointer;"
-                                onclick="openModal('patientCommentModal')">message</i>
+                                onclick="openModal('patientCommentModal3')">message</i>
+                            {{/if}}
                         </div>
-                        <div class="wt-grid-item size-2@t">
-                            data
-                            <i class="material-icons"  style="font-size: smaller; cursor: pointer;"
-                                onclick="openModal('patientCommentModal')">message</i>
+
+
+                        <div class="wt-grid-item size-2@t"
+                            id="{{#checkOutOfThreshold record_patient.0.exercise.outOfTheThreshold}} {{/checkOutOfThreshold}} {{#checkMandatoryAndNull exercise.mandatory exercise.value }} {{/checkMandatoryAndNull}}">
+                            {{#if record_patient.0.exercise.value}}
+                            {{record_patient.0.exercise.value}}
+
+                            {{else}}
+
+                            {{#if (isfill record_patient.0.exercise.mandatory)}}
+                            {{!-- <div>Hii</div> --}}
+                            <span style="color: rgb(165, 165, 58);">
+                                Not available
+                            </span>
+                            {{else}}
+                            ---
+                            {{/if}}
+
+                            {{/if}}
+
+
+                            {{#if (checkLength record_patient.0.exercise.comment 0) }}
+                            <i class="material-icons" style="font-size: smaller; cursor: pointer;"
+                                onclick="openModal('patientCommentModal4')">message</i>
+                            {{/if}}
                         </div>
                         {{!-- <div class="wt-grid-item size-1@t">
                             <i class="material-icons" style="cursor: pointer;"
@@ -133,8 +217,11 @@
         </div>
     </div>
 
+
+
+
     {{!-- Patient Comment Modal --}}
-    <div id="patientCommentModal" class="wt-modal">
+    <div id="patientCommentModal1" class="wt-modal">
         <div class="wt-modal-content">
             <span class="wt-modal-close">&times;</span>
             <form action="/clinician_dashboard/PatientComment" method="POST">
@@ -143,7 +230,80 @@
                         <h2>Patient Comment</h2>
                     </div>
                     <div class="wt-grid-item size-12@t">
-                        <textarea rows="5"></textarea>
+                        <textarea readonly rows="5" style="color: black;">
+                            {{!-- Not printing these ! --}}
+                            {{!-- {{ record_patient.0.glucoseLevel.comment}}  --}}
+                            {{!-- {{{record_patient.0.glucoseLevel.value}}} --}}
+                            {{!-- Hi --}}
+                        </textarea>
+                    </div>
+                </div>
+                <div class="wt-grid-item size-12@t">
+                    <div class="wt-text-align-right">
+                        <button type="submit" class="wt-btn wt-btn-secondary">SAVE</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="patientCommentModal2" class="wt-modal">
+        <div class="wt-modal-content">
+            <span class="wt-modal-close">&times;</span>
+            <form action="/clinician_dashboard/PatientComment" method="POST">
+                <div class="wt-grid-container">
+                    <div class="wt-grid-item size-12@t">
+                        <h2>Patient Comment</h2>
+                    </div>
+                    <div class="wt-grid-item size-12@t">
+                        <textarea readonly rows="5">
+                             {{record_patient.0.weight.comment}}
+                        </textarea>
+                    </div>
+                </div>
+                <div class="wt-grid-item size-12@t">
+                    <div class="wt-text-align-right">
+                        <button type="submit" class="wt-btn wt-btn-secondary">SAVE</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="patientCommentModal3" class="wt-modal">
+        <div class="wt-modal-content">
+            <span class="wt-modal-close">&times;</span>
+            <form action="/clinician_dashboard/PatientComment" method="POST">
+                <div class="wt-grid-container">
+                    <div class="wt-grid-item size-12@t">
+                        <h2>Patient Comment</h2>
+                    </div>
+                    <div class="wt-grid-item size-12@t">
+                        <textarea readonly rows="5">
+                             {{record_patient.0.insulineDoses.comment}}
+
+                        </textarea>
+                    </div>
+                </div>
+                <div class="wt-grid-item size-12@t">
+                    <div class="wt-text-align-right">
+                        <button type="submit" class="wt-btn wt-btn-secondary">SAVE</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="patientCommentModal4" class="wt-modal">
+        <div class="wt-modal-content">
+            <span class="wt-modal-close">&times;</span>
+            <form action="/clinician_dashboard/PatientComment" method="POST">
+                <div class="wt-grid-container">
+                    <div class="wt-grid-item size-12@t">
+                        <h2>Patient Comment</h2>
+                    </div>
+                    <div class="wt-grid-item size-12@t">
+                        <textarea readonly rows="5">
+                             {{record_patient.0.exercise.comment}}
+
+                        </textarea>
                     </div>
                 </div>
                 <div class="wt-grid-item size-12@t">
@@ -155,3 +315,8 @@
         </div>
     </div>
 </div>
+<script>n = new Date();
+    y = n.getFullYear();
+    m = n.getMonth() + 1;
+    d = n.getDate();
+    document.getElementById("date").innerHTML = m + "/" + d + "/" + y;</script>

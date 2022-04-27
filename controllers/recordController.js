@@ -1,3 +1,4 @@
+const Patient = require('../models/patients')
 const Record = require('../models/records')
 
 const insertRecord = async (req, res, next) => {
@@ -8,12 +9,12 @@ const insertRecord = async (req, res, next) => {
 
     /* Example of insertRecord (hardcoded) */
     const newPatient = await Record.create({
-        patientId: "624fc3977815c23276639393",
+        patientId: "6266b28279efed36161bf58a",
         glucoseLevel: {
             mandatory: true,
             outOfTheThreshold: false,
             value: "7.4",
-            comment: "",
+            comment: "Hello",
         },
         weight: {
             mandatory: true,
@@ -24,7 +25,7 @@ const insertRecord = async (req, res, next) => {
         insulineDoses: {
             mandatory: true,
             outOfTheThreshold: false,
-            value: "",
+            value: "7.9",
             comment: "",
         },
         exercise: {
@@ -35,6 +36,11 @@ const insertRecord = async (req, res, next) => {
         }
 
     })
+    const patient = await Patient.findById("6266b28279efed36161bf58a");
+    console.log(patient);
+
+    await patient.record_patient.push(newPatient);
+    await patient.save();
     res.redirect('/patient_home')
 }
 
