@@ -142,7 +142,7 @@ const insertPatient = async (req, res, next) => {
             ],
             supportMessages: [],
             notes: [],
-            urlImage: "https://image"
+            urlImage: "https://cdn-icons-png.flaticon.com/512/410/410494.png?w=1380"
         })
         console.log(newPatient)
         res.redirect('/clinician_dashboard')
@@ -207,7 +207,7 @@ const updateSettings = async (req, res, next) => {
             }
         }
 
-        // in this line we are appeding the newRecordsHistory to the actual list of requiredRecordsHistory
+        // in this line we are appending the newRecordsHistory to the actual list of requiredRecordsHistory
         patient.requiredRecordsHistory = [...patient.requiredRecordsHistory, newRecordsHistory];
         await patient.save();
         res.redirect('/clinician_dashboard/' + req.params.id + '/clinician_patient_data')

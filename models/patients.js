@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const recordSchema = new mongoose.Schema({
+const requiredRecordSchema = new mongoose.Schema({
     fromDate: {
         type: Date,
         default: () => Date.now()
@@ -47,7 +47,7 @@ const schema = new mongoose.Schema({
         type: mongoose.SchemaTypes.ObjectId,
         ref: "clinicians"
     },
-    requiredRecordsHistory: [recordSchema],
+    requiredRecordsHistory: [requiredRecordSchema],
     supportMessages: [textSchema],
     notes: [textSchema]
 });
