@@ -110,7 +110,7 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
 }
 
-mongoose.connect(process.env.MONGO_URL, {
+mongoose.connect('mongodb+srv://diabetes_user:diabetes_user@ausdev.iom05.mongodb.net/diabetes_at_home', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
