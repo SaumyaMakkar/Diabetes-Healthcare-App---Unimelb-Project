@@ -3,14 +3,12 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
-const dotenv = require('dotenv')
 
 /* Routes */
 const clinicianCommentsRouter = require('./routes/clinicianCommentsRouter')
 const clinicianPatientRouter = require('./routes/clinicianPatientRouter')
 const clinicianRouter = require('./routes/clinicianRouter')
 const patientDashboardRouter = require('./routes/patientDashboardRouter')
-dotenv.config()
 // "use strict";
 
 // var hbs = require('hbs');
@@ -107,6 +105,10 @@ app.get('/patient_profile', (req, res) => {
 })
 
 /* MongoDB config */
+
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config()
+}
 
 mongoose.connect('mongodb+srv://diabetes_user:diabetes_user@ausdev.iom05.mongodb.net/diabetes_at_home', {
     useNewUrlParser: true,
