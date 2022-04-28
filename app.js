@@ -110,7 +110,7 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
 }
 
-mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost', {
+mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
