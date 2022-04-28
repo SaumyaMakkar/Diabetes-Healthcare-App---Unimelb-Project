@@ -3,13 +3,14 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
+const dotenv = require('dotenv')
 
 /* Routes */
 const clinicianCommentsRouter = require('./routes/clinicianCommentsRouter')
 const clinicianPatientRouter = require('./routes/clinicianPatientRouter')
 const clinicianRouter = require('./routes/clinicianRouter')
 const patientDashboardRouter = require('./routes/patientDashboardRouter')
-require('dotenv').config()
+dotenv.config()
 // "use strict";
 
 // var hbs = require('hbs');
