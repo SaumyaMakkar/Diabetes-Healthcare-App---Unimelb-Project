@@ -124,8 +124,10 @@ db.once('open', async () => {
     console.log(`Mongo connection started on ${db.host}:${db.port}`)
 })
 
+const port = process.env.PORT || 3000;
+
 // Tells the app to listen on port 3000 and logs tha tinformation to the console.
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log('Demo app is listening on port 3000!')
 })
 
