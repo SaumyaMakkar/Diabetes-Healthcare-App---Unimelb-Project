@@ -18,6 +18,7 @@ var format = require('date-fns/format')
 /* Express config */
 
 const app = express()
+app.use(express.json());
 
 app.use(express.static("public"));
 
@@ -26,7 +27,10 @@ app.engine('hbs', exphbs.engine({
     extname: "hbs",
     helpers: {
         dateFormat: x => {
-            return format(x, 'MM/dd/yyyy')
+            return format(x, 'dd/MM/yyyy')
+        },
+        dateHourFormat: x => {
+            return format(x, 'dd/MM/yyyy hh:mm aaa')
         },
         get: x => {
             return x[0];
@@ -40,22 +44,15 @@ app.engine('hbs', exphbs.engine({
             return true;
         },
         checkOutOfThreshold: (v1) => {
-            if (v1 === true) return 'red';
+            if (v1 === true) return 'wt-color-red';
             return '';
         },
-        checkMandatoryAndNull: (isMandatory, value) => {
-            console.log(isMandatory, value);
-            if (isMandatory && value === null) {
-                return 'yellow';
-            }
-            return ' ';
-        }, checkLength: (v1) => {
+        checkLength: (v1) => {
             if (v1 === "") {
                 return false;
             }
             return true;
         },
-        getCurrentDate: () => Date.now(),
 
     }
 }))

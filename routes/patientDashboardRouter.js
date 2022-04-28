@@ -11,7 +11,11 @@ const recordController = require('../controllers/recordController')
 patientDashboardRouter.get('/', patientController.getPatientDashboard)
 
 // add a new JSON object to the database
-patientDashboardRouter.post('/insertRecord', recordController.insertRecord)
+patientDashboardRouter.post('/insertRecord', (req, res) => {
+    console.log("patientDashboardRouter")
+    console.log(req.body)
+    recordController.insertRecord(req, res)
+})
 
 
 // export the router

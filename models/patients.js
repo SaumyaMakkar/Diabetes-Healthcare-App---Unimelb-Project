@@ -16,7 +16,7 @@ const recordSchema = new mongoose.Schema({
             lowerThreshold: Number,
             mandatory: Boolean
         },
-        insulineDoses: {
+        insulinDoses: {
             upperThreshold: Number,
             lowerThreshold: Number,
             mandatory: Boolean

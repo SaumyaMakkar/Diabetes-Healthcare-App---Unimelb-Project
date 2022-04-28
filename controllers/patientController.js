@@ -1,61 +1,107 @@
 const Patient = require('../models/patients')
 const Records = require('../models/records')
 const mongoose = require('mongoose')
+var format = require('date-fns/format')
 
 const getAllPatients = async (req, res, next) => {
-    // Mia
-
-    /* You can use use the function getPatientHealthDataById as a reference */
 
     console.log("getAllPatients")
     try {
-        const patients = await Patient.find(req.params.patient).populate({ path: 'record_patient', model: 'records' }).lean();
-        // const healthData = await Records.find({ patientId: req.params.id }).sort({ date: -1 }).lean()
+        const patients = await Patient.find({ clinicianId: "6261e9d38bc788f1c0aaa43e" }).lean();
+        const newPatientsArray = [];
 
-        if (!patients) {
-            // no patient found in database
-            return res.sendStatus(404)
+        for (let index = 0; index < patients.length; index++) {
+            const patient = patients[index];
+
+            console.log("patient")
+            console.log(patient)
+            const today = format(new Date(), 'dd/MM/yyyy');
+            console.log("today", today)
+            const records = await Records.findOne({ patientId: patient._id, date: today }).sort({ date: -1 }).lean()
+
+            console.log("records")
+            console.log(records)
+            let lastPosition = patient.requiredRecordsHistory.length - 1;
+            const healthDataSettings = patient.requiredRecordsHistory[lastPosition].records;
+
+            newPatientsArray.push({
+                patientData: patient,
+                healthData: records,
+                healthDataSettings: healthDataSettings
+            })
         }
 
-
-        console.log("patients")
-        console.log(patients)
-        // return res.render('clinician_patients_comments', { patients: patients })
-        // console.log(patients[0].record_patient);
-        return res.render('clinician_dashboard', { patients: patients })
+        return res.render('clinician_dashboard', {
+            todayDate: new Date(),
+            patients: newPatientsArray
+        })
     } catch (err) {
         return next(err)
     }
 }
 
 const getPatientDashboard = async (req, res, next) => {
-    /* Tristan */
+    console.log("getPatientDashboard")
 
-    /* You can use use the function getPatientHealthDataById as a reference */
+    const today = format(new Date(), 'dd/MM/yyyy');
+    const patientId = "6266b28279efed36161bf58a";
     try {
-        const patient = await Patient.findById("624fc3977815c23276639393").lean()
+        const patient = await Patient.findById(patientId).lean()
+        console.log(patient);
         if (!patient) {
             // no patient found in database
             return res.sendStatus(404)
         }
 
-        // Finding the records of the patient
-        const healthData = await Records.find({ patientId: "624fc3977815c23276639393" }).sort({date: -1}).lean() 
-        
         let lastPosition = patient.requiredRecordsHistory.length - 1;
         const healthDataSettings = patient.requiredRecordsHistory[lastPosition].records;
+        // Finding the last record
+        let lastRecord = await Records.findOne({ patientId: patientId, date: today }).sort({ date: -1 }).lean()
 
+        console.log("lastRecord");
+        console.log(lastRecord);
+        if (!lastRecord) {
+            await Records.create({
+                patientId: patientId,
+                date: today,
+                glucoseLevel: {
+                    value: 0,
+                    comment: "",
+                    outOfTheThreshold: false,
+                    mandatory: healthDataSettings.glucoseLevel.mandatory
+                },
+                weight: {
+                    value: 0,
+                    comment: "",
+                    outOfTheThreshold: false,
+                    mandatory: healthDataSettings.weight.mandatory
+                },
+                insulinDoses: {
+                    value: 0,
+                    comment: "",
+                    outOfTheThreshold: false,
+                    mandatory: healthDataSettings.insulinDoses.mandatory
+                },
+                exercise: {
+                    value: 0,
+                    comment: "",
+                    outOfTheThreshold: false,
+                    mandatory: healthDataSettings.exercise.mandatory
+                }
+            })
+        }
+        lastRecord = await Records.findOne({ patientId: patientId, date: today }).sort({ date: -1 }).lean()
+        console.log("lastRecord")
+        console.log(lastRecord)
         // found patient
         return res.render('patient_home', {
             patient: patient,
             healthDataSettings: healthDataSettings,
-            healthData: healthData
+            lastRecord: lastRecord
         })
     } catch (err) {
         return next(err)
     }
-    //console.log("getPatientDashboard")
-    //return res.render('patient_home')
 }
 
 const getPatientHealthDataById = async (req, res, next) => {
@@ -125,33 +171,28 @@ const insertPatient = async (req, res, next) => {
             yearOfBirth: yearOfBirth,
             bio: bio,
             clinicianId: "6261e9d38bc788f1c0aaa43e",
-            requiredRecordsHistory: [
-                {
-                    fromDate: new Date(),
-                    records: {
-                        glucoseLevel: {
-                            upperThreshold: 0,
-                            lowerThreshold: 0,
-                            mandatory: false
-                        },
-                        weight: {
-                            upperThreshold: 0,
-                            lowerThreshold: 0,
-                            mandatory: false
-                        },
-                        insulineDoses: {
-                            upperThreshold: 0,
-                            lowerThreshold: 0,
-                            mandatory: false
-                        },
-                        exercise: {
-                            upperThreshold: 0,
-                            lowerThreshold: 0,
-                            mandatory: false
-                        }
-                    }
+            requiredRecords: {
+                glucoseLevel: {
+                    upperThreshold: 0,
+                    lowerThreshold: 0,
+                    mandatory: false
+                },
+                weight: {
+                    upperThreshold: 0,
+                    lowerThreshold: 0,
+                    mandatory: false
+                },
+                insulinDoses: {
+                    upperThreshold: 0,
+                    lowerThreshold: 0,
+                    mandatory: false
+                },
+                exercise: {
+                    upperThreshold: 0,
+                    lowerThreshold: 0,
+                    mandatory: false
                 }
-            ],
+            },
             supportMessages: [],
             notes: [],
             urlImage: "https://image"
@@ -165,18 +206,25 @@ const insertPatient = async (req, res, next) => {
 
 const updateSettings = async (req, res, next) => {
 
+    const today = format(new Date(), 'dd/MM/yyyy');
+    const clientId = req.params.id
     try {
-        const patient = await Patient.findById(req.params.id);
+        const patient = await Patient.findById(clientId);
         if (!patient) {
             // no patient found in database
             return res.sendStatus(404)
         }
+
         const { glucoseLevel_check, glucoseLevel_lowerThreshold, glucoseLevel_upperThreshold } = req.body;
         const { weight_check, weight_lowerThreshold, weight_upperThreshold } = req.body;
-        const { insulineDoses_check, insulineDoses_lowerThreshold, insulineDoses_upperThreshold } = req.body;
+        const { insulinDoses_check, insulinDoses_lowerThreshold, insulinDoses_upperThreshold } = req.body;
         const { exercise_check, exercise_lowerThreshold, exercise_upperThreshold } = req.body;
 
-        console.log(req.body)
+
+        const todayRecord = await Records.findOne({ patientId: clientId, date: today }).sort({ date: -1 })
+
+        console.log("todayRecord")
+        console.log(todayRecord)
         let mandatory_glucoseLevel = false;
         if (glucoseLevel_check == "on") {
             mandatory_glucoseLevel = true;
@@ -185,14 +233,17 @@ const updateSettings = async (req, res, next) => {
         if (weight_check == "on") {
             mandatory_weight = true;
         }
-        let mandatory_insulineDoses = false;
-        if (insulineDoses_check == "on") {
-            mandatory_insulineDoses = true;
+        let mandatory_insulinDoses = false;
+        if (insulinDoses_check == "on") {
+            mandatory_insulinDoses = true;
         }
         let mandatory_exercise = false;
         if (exercise_check == "on") {
             mandatory_exercise = true;
         }
+
+        
+
         const newRecordsHistory = {
             fromDate: new Date(),
             records: {
@@ -206,10 +257,10 @@ const updateSettings = async (req, res, next) => {
                     lowerThreshold: weight_lowerThreshold,
                     mandatory: mandatory_weight
                 },
-                insulineDoses: {
-                    upperThreshold: insulineDoses_upperThreshold,
-                    lowerThreshold: insulineDoses_lowerThreshold,
-                    mandatory: mandatory_insulineDoses
+                insulinDoses: {
+                    upperThreshold: insulinDoses_upperThreshold,
+                    lowerThreshold: insulinDoses_lowerThreshold,
+                    mandatory: mandatory_insulinDoses
                 },
                 exercise: {
                     upperThreshold: exercise_upperThreshold,
@@ -222,6 +273,40 @@ const updateSettings = async (req, res, next) => {
         // in this line we are appeding the newRecordsHistory to the actual list of requiredRecordsHistory
         patient.requiredRecordsHistory = [...patient.requiredRecordsHistory, newRecordsHistory];
         await patient.save();
+
+        // updating the current values
+        let lastPosition = patient.requiredRecordsHistory.length - 1;
+        const healthDataSettings = patient.requiredRecordsHistory[lastPosition].records;
+        if (todayRecord) {
+
+            todayRecord.glucoseLevel.mandatory = mandatory_glucoseLevel;
+            todayRecord.weight.mandatory = mandatory_weight;
+            todayRecord.insulinDoses.mandatory = mandatory_insulinDoses;
+            todayRecord.exercise.mandatory = mandatory_exercise;
+
+
+            const healthDataTypes = ["glucoseLevel", "weight", "insulinDoses", "exercise",]
+            for (let index = 0; index < healthDataTypes.length; index++) {
+                const healthType = healthDataTypes[index];
+                if (parseInt(todayRecord[healthType].value) != 0) {
+                    console.log("todayRecord[healthType].value")
+                    console.log(todayRecord[healthType].value, "< ", healthDataSettings[healthType].lowerThreshold," ",healthDataSettings[healthType].upperThreshold)
+                    if ((parseInt(todayRecord[healthType].value) < healthDataSettings[healthType].lowerThreshold) || (todayRecord[healthType].value > healthDataSettings[healthType].upperThreshold)) {
+                        todayRecord[healthType].outOfTheThreshold = true;
+                        console.log("yes")
+                    } else {
+                        todayRecord[healthType].outOfTheThreshold = false;
+                    }
+                }
+
+
+            }
+
+            /* console.log("todayRecord")
+            console.log(todayRecord) */
+
+            await todayRecord.save();
+        }
         res.redirect('/clinician_dashboard/' + req.params.id + '/clinician_patient_data')
     } catch (err) {
         return next(err)

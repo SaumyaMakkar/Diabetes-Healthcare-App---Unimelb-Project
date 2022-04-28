@@ -12,23 +12,15 @@ const recordSchema = new mongoose.Schema({
     },
 }, { _id: false });
 
-recordSchema.pre("save", async function (next) {
-    this.timestamp = new Date();
-    next();
-})
-
 const schema = new mongoose.Schema({
     patientId: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: "patients"
     },
-    date: {
-        type: Date,
-        default: () => Date.now()
-    },
+    date: String,
     glucoseLevel: recordSchema,
     weight: recordSchema,
-    insulineDoses: recordSchema,
+    insulinDoses: recordSchema,
     exercise: recordSchema
 });
 

@@ -42,3 +42,22 @@ function openModal(modalId) {
         }
     }
 }
+
+function enableEditMode(healthDataName, enable) {
+    console.log("enableEditMode")
+    console.log(healthDataName)
+    var showBlock = document.getElementById(healthDataName+"_ShowBlock");
+    var editBlock = document.getElementById(healthDataName+"_EditBlock");
+
+    console.log("showBlock")
+    console.log(showBlock)
+    console.log("editBlock")
+    console.log(editBlock)
+    if (enable) {
+        editBlock.style.display = "block";
+        showBlock.style.display = "none";
+    } else {
+        showBlock.style.display = "block";
+        editBlock.style.display = "none";
+    }
+}

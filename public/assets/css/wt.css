@@ -51,6 +51,7 @@ a {
     margin: 0;
     padding: 0;
 }
+
 .wt-data-input-item {
     margin: 0;
     padding: 0;
@@ -473,6 +474,7 @@ a {
     outline-width: 0.5mm;
     outline-color: var(--primary-color);
 }
+
 .wt-patient-nonmandatory {
     background-color: #F5F5F8;
     border-radius: var(--border-radius);
@@ -516,6 +518,7 @@ a {
     outline-width: 0.5mm;
     outline-color: var(--primary-color);
 }
+
 .wt-notif-content {
     border-radius: 0%;
     padding: 8px;
@@ -525,7 +528,7 @@ a {
 }
 
 .wt-notif-content-bot {
-    border-radius: 0px 0px 7px 7px; 
+    border-radius: 0px 0px 7px 7px;
     padding: 8px;
     outline-style: solid;
     outline-width: 0.5mm;
@@ -621,6 +624,10 @@ a {
     padding: 8px;
 }
 
+.wt-padding {
+    padding: 16px;
+}
+
 .wt-padding-large {
     padding: 30px;
 }
@@ -697,15 +704,22 @@ a {
     color: #C10000;
 }
 
+.wt-color-green {
+    color: #027c0c;
+}
+
 .wt-bg-white {
     background-color: #FFF;
 }
+
 .wt-bg-amber {
     background-color: rgb(247, 255, 190);
 }
+
 .wt-bg-red {
     background-color: rgb(255, 188, 188);
 }
+
 /* Website */
 .wt-banner {
     position: relative;
@@ -999,9 +1013,51 @@ ul {
     align-items: center;
     justify-content: center;
 }
-#red{
-    color:red;
+
+.wt-color-amber {
+    color: rgb(165, 165, 58);
 }
-#yellow{
-    color:yellow;
+
+.wt-notification {
+    width: 200px;
+    height: 100px;
+    background: #70c48f;
+    color: white;
+    border-radius: 3px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 20px;
+    right: -200px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+@keyframes movein {
+    from {
+        right: -200px;
+    }
+
+    to {
+        right: 10px;
+    }
+}
+
+@keyframes moveout {
+    from {
+        right: 10px;
+    }
+
+    to {
+        right: -200px;
+    }
+}
+
+.wt-notification.visible {
+    animation: movein 0.5s ease forwards, moveout 0.5s 3s ease forwards;
+}
+
+.pointer {
+    cursor: pointer;
 }

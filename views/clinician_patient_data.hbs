@@ -63,75 +63,107 @@
 
                         {{#each healthData}}
                         <tr>
-                            <td>{{dateFormat date}}</td> {{!-- {{date}} --}}
-                            {{#if glucoseLevel.mandatory}}
-                            <td class="{{#if glucoseLevel.outOfTheThreshold}}wt-bg-red{{else}}{{/if}}">
-                                <span>
-                                    {{glucoseLevel.value}}
+                            <td>{{date}}</td> {{!-- {{date}} --}}
+                            <td>
+                                {{#if (isfill glucoseLevel.mandatory)}}
+                                {{#if glucoseLevel.value}}
+                                <span
+                                    class="{{#checkOutOfThreshold glucoseLevel.outOfTheThreshold}} {{/checkOutOfThreshold}}">
+                                    {{{glucoseLevel.value}}}
                                 </span>
-                                {{#if glucoseLevel.comment}}
-                                <span class="wt-text-align-right">
-                                    <i class="material-icons" style="cursor: pointer;"
-                                        onclick="openModal('patientCommentModal_{{dateFormat date}}_glucoseLevel')">message</i>
+                                {{else}}
+                                <span class="wt-color-amber">
+                                    Pending
                                 </span>
-                                {{> modal_patient_comment recordDate=date type="glucoseLevel"
+                                {{/if}}
+                                {{#if (checkLength glucoseLevel.comment)}}
+                                <i class="material-icons" style="font-size: smaller; cursor: pointer;"
+                                    onclick="openModal('patientCommentModal_{{date}}_glucoseLevel')">message</i>
+                                {{> modal_patient_comment name=patient.givenName identifier=date
+                                type="glucoseLevel"
                                 comment=glucoseLevel.comment }}
+                                {{/if }}
+                                {{else}}
+                                <span class="wt-color-grey">
+                                    -
+                                </span>
                                 {{/if}}
                             </td>
-                            {{else}}
-                            <td>-</td>
-                            {{/if}}
-
-                            {{#if weight.mandatory}}
-                            <td class="{{#if weight.outOfTheThreshold}}wt-bg-red{{else}}{{/if}}">
-                                <span>
-                                    {{weight.value}}
+                            <td>
+                                {{#if (isfill weight.mandatory)}}
+                                {{#if weight.value}}
+                                <span
+                                    class="{{#checkOutOfThreshold weight.outOfTheThreshold}} {{/checkOutOfThreshold}}">
+                                    {{{weight.value}}}
                                 </span>
-                                {{#if weight.comment}}
-                                <span class="wt-text-align-right">
-                                    <i class="material-icons" style="cursor: pointer;"
-                                        onclick="openModal('patientCommentModal_{{dateFormat date}}_weight')">message</i>
+                                {{else}}
+                                <span class="wt-color-amber">
+                                    Pending
                                 </span>
-                                {{> modal_patient_comment recordDate=date type="weight" comment=weight.comment }}
+                                {{/if}}
+                                {{#if (checkLength weight.comment)}}
+                                <i class="material-icons" style="font-size: smaller; cursor: pointer;"
+                                    onclick="openModal('patientCommentModal_{{date}}_weight')">message</i>
+                                {{> modal_patient_comment name=patient.givenName identifier=date
+                                type="weight"
+                                comment=weight.comment }}
+                                {{/if }}
+                                {{else}}
+                                <span class="wt-color-grey">
+                                    -
+                                </span>
                                 {{/if}}
                             </td>
-                            {{else}}
-                            <td>-</td>
-                            {{/if}}
-
-                            {{#if insulineDoses.mandatory}}
-                            <td class="{{#if insulineDoses.outOfTheThreshold}}wt-bg-red{{else}}{{/if}}">
-                                <span>
-                                    {{insulineDoses.value}}
+                            <td>
+                                {{#if (isfill insulinDoses.mandatory)}}
+                                {{#if insulinDoses.value}}
+                                <span
+                                    class="{{#checkOutOfThreshold insulinDoses.outOfTheThreshold}} {{/checkOutOfThreshold}}">
+                                    {{{insulinDoses.value}}}
                                 </span>
-                                {{#if insulineDoses.comment}}
-                                <span class="wt-text-align-right">
-                                    <i class="material-icons" style="cursor: pointer;"
-                                        onclick="openModal('patientCommentModal_{{dateFormat date}}_insulineDoses')">message</i>
+                                {{else}}
+                                <span class="wt-color-amber">
+                                    Pending
                                 </span>
-                                {{> modal_patient_comment recordDate=date type="insulineDoses" comment=insulineDoses.comment }}
+                                {{/if}}
+                                {{#if (checkLength insulinDoses.comment)}}
+                                <i class="material-icons" style="font-size: smaller; cursor: pointer;"
+                                    onclick="openModal('patientCommentModal_{{date}}_insulinDoses')">message</i>
+                                {{> modal_patient_comment name=patient.givenName identifier=date
+                                type="insulinDoses"
+                                comment=insulinDoses.comment }}
+                                {{/if }}
+                                {{else}}
+                                <span class="wt-color-grey">
+                                    -
+                                </span>
                                 {{/if}}
                             </td>
-                            {{else}}
-                            <td>-</td>
-                            {{/if}}
-
-                            {{#if exercise.mandatory}}
-                            <td class="{{#if exercise.outOfTheThreshold}}wt-bg-red{{else}}{{/if}}">
-                                <span>
-                                    {{exercise.value}}
+                            <td>
+                                {{#if (isfill exercise.mandatory)}}
+                                {{#if exercise.value}}
+                                <span
+                                    class="{{#checkOutOfThreshold exercise.outOfTheThreshold}} {{/checkOutOfThreshold}}">
+                                    {{{exercise.value}}}
                                 </span>
-                                {{#if exercise.comment}}
-                                <span class="wt-text-align-right">
-                                    <i class="material-icons" style="cursor: pointer;"
-                                        onclick="openModal('patientCommentModal_{{dateFormat date}}_exercise')">message</i>
+                                {{else}}
+                                <span class="wt-color-amber">
+                                    Pending
                                 </span>
-                                {{> modal_patient_comment recordDate=date type="exercise" comment=exercise.comment }}
+                                {{/if}}
+                                {{#if (checkLength exercise.comment)}}
+                                <i class="material-icons" style="font-size: smaller; cursor: pointer;"
+                                    onclick="openModal('patientCommentModal_{{date}}_exercise')">message</i>
+                                {{> modal_patient_comment name=patient.givenName identifier=date
+                                type="exercise"
+                                comment=exercise.comment }}
+                                {{/if }}
+                                {{else}}
+                                <span class="wt-color-grey">
+                                    -
+                                </span>
                                 {{/if}}
                             </td>
-                            {{else}}
-                            <td>-</td>
-                            {{/if}}
                         </tr>
                         {{/each}}
                         {{!-- <tr>
@@ -241,25 +273,25 @@
                     </div>
 
                     <div class="wt-grid-item size-2@t">
-                        {{#if healthDataSettings.insulineDoses.mandatory}}
-                        <input name="insulineDoses_check" type="checkbox" checked>
+                        {{#if healthDataSettings.insulinDoses.mandatory}}
+                        <input name="insulinDoses_check" type="checkbox" checked>
                         {{else}}
-                        <input name="insulineDoses_check" type="checkbox">
+                        <input name="insulinDoses_check" type="checkbox">
                         {{/if}}
                     </div>
                     <div class="wt-grid-item size-5@t">
                         <p>Insulin Doses (no.)</p>
                     </div>
                     <div class="wt-grid-item size-2@t">
-                        <input name="insulineDoses_lowerThreshold" type="number" placeholder="-"
-                            value={{healthDataSettings.insulineDoses.lowerThreshold}} />
+                        <input name="insulinDoses_lowerThreshold" type="number" placeholder="-"
+                            value={{healthDataSettings.insulinDoses.lowerThreshold}} />
                     </div>
                     <div class="wt-grid-item size-1@t wt-text-align-center">
                         <p>to</p>
                     </div>
                     <div class="wt-grid-item size-2@t">
-                        <input name="insulineDoses_upperThreshold" type="number" placeholder="-"
-                            value={{healthDataSettings.insulineDoses.upperThreshold}} />
+                        <input name="insulinDoses_upperThreshold" type="number" placeholder="-"
+                            value={{healthDataSettings.insulinDoses.upperThreshold}} />
                     </div>
 
                     <div class="wt-grid-item size-2@t">
