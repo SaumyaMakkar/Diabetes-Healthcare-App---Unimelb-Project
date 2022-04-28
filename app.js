@@ -9,6 +9,7 @@ const clinicianCommentsRouter = require('./routes/clinicianCommentsRouter')
 const clinicianPatientRouter = require('./routes/clinicianPatientRouter')
 const clinicianRouter = require('./routes/clinicianRouter')
 const patientDashboardRouter = require('./routes/patientDashboardRouter')
+require('dotenv').config()
 // "use strict";
 
 // var hbs = require('hbs');
@@ -105,10 +106,6 @@ app.get('/patient_profile', (req, res) => {
 })
 
 /* MongoDB config */
-
-if (process.env.NODE_ENV !== 'production') {
-    require('dotenv').config()
-}
 
 mongoose.connect('mongodb+srv://diabetes_user:diabetes_user@ausdev.iom05.mongodb.net/diabetes_at_home', {
     useNewUrlParser: true,
