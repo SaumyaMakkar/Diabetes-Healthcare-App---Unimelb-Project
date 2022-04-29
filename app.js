@@ -9,10 +9,7 @@ const clinicianCommentsRouter = require('./routes/clinicianCommentsRouter')
 const clinicianPatientRouter = require('./routes/clinicianPatientRouter')
 const clinicianRouter = require('./routes/clinicianRouter')
 const patientDashboardRouter = require('./routes/patientDashboardRouter')
-// "use strict";
 
-// var hbs = require('hbs');
-// var express = require('express');
 
 var format = require('date-fns/format')
 /* Express config */
