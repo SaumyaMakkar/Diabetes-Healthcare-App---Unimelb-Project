@@ -137,12 +137,11 @@ const getPatientHealthDataById = async (req, res, next) => {
     try {
         const patient = await Patient.findById(req.params.id).lean()
         if (!patient) {
-            // no patient found in database
-            // console.log("No patients");
             return res.sendStatus(404)
         }
         console.log("Healthid");
         console.log(patient);
+        
         // Finding the records of the patient
         const healthData = await Records.find({ patientId: req.params.id }).sort({ date: -1 }).lean()
 
