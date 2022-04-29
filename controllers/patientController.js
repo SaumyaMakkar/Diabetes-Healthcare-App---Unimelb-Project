@@ -17,16 +17,45 @@ const getAllPatients = async (req, res, next) => {
             console.log(patient)
             const today = format(new Date(), 'dd/MM/yyyy');
             console.log("today", today)
-            const records = await Records.findOne({ patientId: patient._id, date: today }).sort({ date: -1 }).lean()
+            let lastRecord = await Records.findOne({ patientId: patient._id, date: today }).sort({ date: -1 }).lean()
 
-            console.log("records")
-            console.log(records)
             let lastPosition = patient.requiredRecordsHistory.length - 1;
             const healthDataSettings = patient.requiredRecordsHistory[lastPosition].records;
 
+            if (!lastRecord) {
+                lastRecord = {
+                    patientId: patient._id,
+                    date: today,
+                    glucoseLevel: {
+                        value: 0,
+                        comment: "",
+                        outOfTheThreshold: false,
+                        mandatory: healthDataSettings.glucoseLevel.mandatory
+                    },
+                    weight: {
+                        value: 0,
+                        comment: "",
+                        outOfTheThreshold: false,
+                        mandatory: healthDataSettings.weight.mandatory
+                    },
+                    insulinDoses: {
+                        value: 0,
+                        comment: "",
+                        outOfTheThreshold: false,
+                        mandatory: healthDataSettings.insulinDoses.mandatory
+                    },
+                    exercise: {
+                        value: 0,
+                        comment: "",
+                        outOfTheThreshold: false,
+                        mandatory: healthDataSettings.exercise.mandatory
+                    }
+                }
+            }
+
             newPatientsArray.push({
                 patientData: patient,
-                healthData: records,
+                healthData: lastRecord,
                 healthDataSettings: healthDataSettings
             })
         }
@@ -170,29 +199,35 @@ const insertPatient = async (req, res, next) => {
             screenName: screenName,
             yearOfBirth: yearOfBirth,
             bio: bio,
+            urlImage: "https://cdn-icons-png.flaticon.com/512/3048/3048122.png",
             clinicianId: "6261e9d38bc788f1c0aaa43e",
-            requiredRecords: {
-                glucoseLevel: {
-                    upperThreshold: 0,
-                    lowerThreshold: 0,
-                    mandatory: false
-                },
-                weight: {
-                    upperThreshold: 0,
-                    lowerThreshold: 0,
-                    mandatory: false
-                },
-                insulinDoses: {
-                    upperThreshold: 0,
-                    lowerThreshold: 0,
-                    mandatory: false
-                },
-                exercise: {
-                    upperThreshold: 0,
-                    lowerThreshold: 0,
-                    mandatory: false
+            requiredRecordsHistory: [
+                {
+                    fromDate: new Date(),
+                    records: {
+                        glucoseLevel: {
+                            upperThreshold: 0,
+                            lowerThreshold: 0,
+                            mandatory: false
+                        },
+                        weight: {
+                            upperThreshold: 0,
+                            lowerThreshold: 0,
+                            mandatory: false
+                        },
+                        insulinDoses: {
+                            upperThreshold: 0,
+                            lowerThreshold: 0,
+                            mandatory: false
+                        },
+                        exercise: {
+                            upperThreshold: 0,
+                            lowerThreshold: 0,
+                            mandatory: false
+                        }
+                    }
                 }
-            },
+            ],
             supportMessages: [],
             notes: [],
             urlImage: "https://image"
@@ -242,7 +277,7 @@ const updateSettings = async (req, res, next) => {
             mandatory_exercise = true;
         }
 
-        
+
 
         const newRecordsHistory = {
             fromDate: new Date(),
@@ -290,7 +325,7 @@ const updateSettings = async (req, res, next) => {
                 const healthType = healthDataTypes[index];
                 if (parseInt(todayRecord[healthType].value) != 0) {
                     console.log("todayRecord[healthType].value")
-                    console.log(todayRecord[healthType].value, "< ", healthDataSettings[healthType].lowerThreshold," ",healthDataSettings[healthType].upperThreshold)
+                    console.log(todayRecord[healthType].value, "< ", healthDataSettings[healthType].lowerThreshold, " ", healthDataSettings[healthType].upperThreshold)
                     if ((parseInt(todayRecord[healthType].value) < healthDataSettings[healthType].lowerThreshold) || (todayRecord[healthType].value > healthDataSettings[healthType].upperThreshold)) {
                         todayRecord[healthType].outOfTheThreshold = true;
                         console.log("yes")
