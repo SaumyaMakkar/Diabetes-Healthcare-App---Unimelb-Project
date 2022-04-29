@@ -1,8 +1,12 @@
 function insertRecord(healthType) {
     //console.log(data)
 
-    const value = document.querySelector('[name="'+healthType+'Value"]').value;
-    const comment = document.querySelector('[name="'+healthType+'Comment"]').value;
+    const value = document.querySelector('[name="' + healthType + 'Value"]').value;
+    if (value == 0) {
+        alert("Invalid value");
+        return;
+    }
+    const comment = document.querySelector('[name="' + healthType + 'Comment"]').value;
     const body = {
         healthType: healthType,
         value: value,
@@ -20,12 +24,5 @@ function insertRecord(healthType) {
     }).then(response => {
         window.location.reload();
     })
-    /*  .then(data => {
-         console.log(data)
-         var slideout = document.getElementById('notification_object');
-         slideout.innerHTML = data.msg;
-         slideout.classList.toggle('visible');
-         enableEditMode('glucose',false);
-     }); */
 
 }
