@@ -1,30 +1,10 @@
-{{> clinician_sidebar this}}
+{{> clinician_sidebar}}
 {{> header}}
 
 <div class="panel-content">
-
+    
     {{!-- Back to dashboard and Heading --}}
-    <div class="wt-grid-container">
-
-        {{!-- Back to dashboard Button --}}
-        <div class="wt-grid-item size-12@p size-12@t">
-            <a class="wt-color-primary wt-btn-with-icon" href="/clinician_dashboard">
-                <i class="material-icons">arrow_back</i>Back to dashboard</a>
-        </div>
-
-        {{!-- Patient's Profile Picture and Name --}}
-        <div class="wt-grid-item size-12@p size-12@t">
-            <div class="list-item">
-                <div class="list-item-avatar">
-                    <img class="wt-border-rounded" src={{patient.urlImage}} width="60px" alt="">
-                </div>
-                <div class="list-item-text">
-                    <h1>{{patient.givenName}} {{patient.familyName}}</h1>
-                </div>
-            </div>
-        </div>
-
-    </div>
+    {{> clinician_patient_header this}}
 
     {{!-- Individual Patient's Content --}}
     <div class="patient_content">
@@ -166,17 +146,6 @@
                             </td>
                         </tr>
                         {{/each}}
-                        {{!-- <tr>
-                            <td>08/01/2022</td>
-                            <td>5.7</td>
-                            <td>67.7</td>
-                            <td>4</td>
-                            <td>2,048
-                                <div class="wt-text-align-right">
-                                    <i class="material-icons" style="cursor: pointer;"
-                                        onclick="openModal('patientCommentModal')">message</i>
-                                </div>
-                            </td> --}}
                         </tr>
                     </tbody>
                 </table>

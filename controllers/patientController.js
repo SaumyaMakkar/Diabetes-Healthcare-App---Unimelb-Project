@@ -150,6 +150,7 @@ const getPatientHealthDataById = async (req, res, next) => {
 
         console.log("healthData");
         console.log(healthData);
+
         // found patient
         return res.render('clinician_patient_data', {
             patient: patient,
@@ -162,26 +163,62 @@ const getPatientHealthDataById = async (req, res, next) => {
 }
 
 const getPatientSupportMessagesById = async (req, res, next) => {
-    return res.render('clinician_patient_support_messages');
+    try {
+        const patient = await Patient.findById(req.params.id).lean()
+        if (!patient) {
+            return res.sendStatus(404)
+        }
+        console.log("Healthid");
+        console.log(patient);
+        
+        console.log("supportMessages");
+        console.log(patient.supportMessages);
+
+        // found patient
+        return res.render('clinician_patient_support_messages', { patient: patient })
+    } catch (err) {
+        return next(err)
+    }
 }
 
 const getPatientClinicalNotesById = async (req, res, next) => {
-    return res.render('clinician_patient_notes');
+    try {
+        const patient = await Patient.findById(req.params.id).lean()
+        if (!patient) {
+            return res.sendStatus(404)
+        }
+        console.log("Healthid");
+        console.log(patient);
+        
+        console.log("clinicianNotes");
+        console.log(patient.notes);
+
+        // found patient
+        return res.render('clinician_patient_notes', { patient: patient })
+    } catch (err) {
+        return next(err)
+    }
 }
 
 const getPatientProfileById = async (req, res, next) => {
     try {
         const patient = await Patient.findById(req.params.id).lean()
         if (!patient) {
-            // no author found in database
             return res.sendStatus(404)
         }
-        // found person
+        console.log("Healthid");
+        console.log(patient);
+        
+        console.log("clinicianNotes");
+        console.log(patient.notes);
+
+        // found patient
         return res.render('clinician_patient_profile', { patient: patient })
     } catch (err) {
         return next(err)
     }
 }
+
 const getAllPatientsComments = async (req, res, next) => {
     return res.render('clinician_patients_comments');
 }
