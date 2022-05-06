@@ -189,7 +189,7 @@ const getAllPatientsComments = async (req, res, next) => {
 
 const insertPatient = async (req, res, next) => {
 
-    const { givenName, familyName, email, screenName, yearOfBirth, bio } = req.body;
+    const { givenName, familyName, email, urlImage, screenName, yearOfBirth, bio } = req.body;
     try {
         const newPatient = await Patient.create({
             email: email,
@@ -198,7 +198,7 @@ const insertPatient = async (req, res, next) => {
             screenName: screenName,
             yearOfBirth: yearOfBirth,
             bio: bio,
-            urlImage: "https://cdn-icons-png.flaticon.com/512/3048/3048122.png",
+            urlImage: urlImage,
             clinicianId: "6261e9d38bc788f1c0aaa43e",
             requiredRecordsHistory: [
                 {
@@ -228,8 +228,7 @@ const insertPatient = async (req, res, next) => {
                 }
             ],
             supportMessages: [],
-            notes: [],
-            urlImage: "https://image"
+            notes: []
         })
         console.log(newPatient)
         res.redirect('/clinician_dashboard')
