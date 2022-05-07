@@ -32,16 +32,12 @@
                     <th>Date</th>
                     <th>Message</th>
                     <tbody>
-                        {{!-- {{#each patientSuppMessRow}} --}}
+                        {{#each patient.supportMessages}}
                         <tr>
-                            <td>09/01/2022</td>                             {{!-- {{date}} --}}
-                            <td>You've made it so far, don't give up!</td>  {{!-- {{message}} --}}
+                            <td>{{supportMessages.date}}</td>
+                            <td>{{supportMessages.message}}</td>
                         </tr>
-                        <tr>
-                            <td>06/01/2022</td>
-                            <td>Think of the goal</td>
-                        </tr>
-                        {{!-- {{/each}} --}}
+                        {{/each}}
                     </tbody>
                 </table>
             </div>
