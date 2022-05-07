@@ -1,5 +1,5 @@
 const Patient = require('../models/patients')
-const Record = require('../models/records')
+const Records = require('../models/records')
 var format = require('date-fns/format')
 
 const insertRecord = async (req, res) => {
@@ -19,13 +19,14 @@ const insertRecord = async (req, res) => {
 
         if (healthDataSettings[healthType].mandatory) {
             if ((parseInt(value) < healthDataSettings[healthType].lowerThreshold) || (value > healthDataSettings[healthType].upperThreshold)) {
-                console.log("out of insulinDoses.mandatory")
+                console.log(healthType, ": ", healthDataSettings[healthType].lowerThreshold, "-", healthDataSettings[healthType].upperThreshold)
+                console.log("value entered is out of threshold")
                 outOfTheThreshold = true;
             }
         }
 
 
-        const record = await Record.findOne({ patientId: clientId, date: today });
+        const record = await Records.findOne({ patientId: clientId, date: today });
 
         record[healthType].value = value;
         record[healthType].comment = comment;

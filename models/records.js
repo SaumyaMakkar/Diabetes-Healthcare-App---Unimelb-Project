@@ -2,10 +2,9 @@ const mongoose = require('mongoose')
 
 const recordSchema = new mongoose.Schema({
     mandatory: Boolean,
-    comment: String,
-    outOfTheThreshold: Boolean,
     value: Number,
     comment: String,
+    outOfTheThreshold: Boolean,
     timestamp: {
         type: Date,
         default: () => Date.now()
