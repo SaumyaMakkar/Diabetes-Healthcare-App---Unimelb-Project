@@ -4,27 +4,7 @@
 <div class="panel-content">
 
     {{!-- Back to dashboard and Heading --}}
-    <div class="wt-grid-container">
-
-        {{!-- Back to dashboard Button --}}
-        <div class="wt-grid-item size-12@p size-12@t">
-            <a class="wt-color-primary wt-btn-with-icon" onclick="history.back()">
-                <i class="material-icons">arrow_back</i>Back to dashboard</a>
-        </div>
-
-        {{!-- Patient's Profile Picture and Name --}}
-        <div class="wt-grid-item size-12@p size-12@t">
-            <div class="list-item">
-                <div class="list-item-avatar">
-                    <img class="wt-border-rounded" src="./assets/img/patient_img.png" width="60px" alt="">
-                </div>
-                <div class="list-item-text">
-                    <h1>Jane Cooper</h1>
-                </div>
-            </div>
-        </div>
-
-    </div>
+    {{> clinician_patient_header this}}
 
     {{!-- Individual Patient's Content --}}
     <div class="patient_content">

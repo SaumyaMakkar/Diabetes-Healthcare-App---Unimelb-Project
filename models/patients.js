@@ -30,7 +30,10 @@ const recordSchema = new mongoose.Schema({
 }, { _id: false });
 
 const textSchema = new mongoose.Schema({
-    date: Date,
+    date: {
+        type: Date,
+        default: () => Date.now()
+    },
     message: String
 });
 
