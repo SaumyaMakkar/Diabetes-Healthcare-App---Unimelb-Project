@@ -17,9 +17,8 @@ clinicianPatientRouter.get('/:id/clinician_patient_profile/', patientController.
 
 // add a new JSON object to the database
 clinicianPatientRouter.post('/insertPatient', patientController.insertPatient)
-
-// add a new JSON object to the database
 clinicianPatientRouter.post('/updateSettings/:id', patientController.updateSettings)
+clinicianPatientRouter.post('/insertSupportMessage/:id', patientController.insertSupportMessage)
 
 
 // export the router

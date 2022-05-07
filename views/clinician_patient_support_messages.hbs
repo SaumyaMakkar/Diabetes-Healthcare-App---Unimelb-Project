@@ -1,6 +1,7 @@
 {{> clinician_sidebar}}
 {{> header}}
 
+
 <div class="panel-content">
 
     {{!-- Back to dashboard and Heading --}}
@@ -34,8 +35,10 @@
                     <tbody>
                         {{#each patient.supportMessages}}
                         <tr>
-                            <td>{{supportMessages.date}}</td>
-                            <td>{{supportMessages.message}}</td>
+                            <td>
+                                {{#dateHourFormat date}} {{/dateHourFormat}}
+                            </td>
+                            <td>{{message}}</td>
                         </tr>
                         {{/each}}
                     </tbody>
@@ -48,9 +51,8 @@
     {{!-- Add Message Modal --}}
     <div id="addMessageModal" class="wt-modal">
         <div class="wt-modal-content">
-            <form action="/clinician_patient_support_messages/addMessage" method="POST"></form>
+            <form action="/clinician_dashboard/insertSupportMessage/{{patient._id}}" method="POST">
                 <div class="wt-grid-container">
-
                     {{!-- Heading --}}
                     <div class="wt-grid-item size-6@p size-8@t">
                         <h2>Add Support Message</h2>
@@ -61,7 +63,7 @@
 
                     {{!-- Text Area for Message --}}
                     <div class="wt-grid-item size-12@t">
-                        <textarea placeholder="Enter messsage..." rows="5"></textarea>
+                        <textarea placeholder="Enter messsage..." rows="5" name="message"></textarea>
                     </div>
                     
                     {{!-- Send Button --}}

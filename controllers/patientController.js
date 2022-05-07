@@ -168,8 +168,6 @@ const getPatientSupportMessagesById = async (req, res, next) => {
         if (!patient) {
             return res.sendStatus(404)
         }
-        console.log("Healthid");
-        console.log(patient);
         
         console.log("supportMessages");
         console.log(patient.supportMessages);
@@ -376,6 +374,33 @@ const updateSettings = async (req, res, next) => {
     }
 }
 
+const insertSupportMessage = async (req, res, next) => {
+    console.log("insertSupportMessage")
+
+    try {
+        const patient = await Patient.findById(req.params.id);
+        if(!patient) {
+            // no patient found in database
+            return res.sendStatus(404)
+        }
+
+        const { message } = req.body;
+        
+        const newSupportMessage = {
+            message: message
+        }
+
+        // in this line we are appending newSupportMessage to the actual list of supportMessages
+        patient.supportMessages = [...patient.supportMessages, newSupportMessage];
+        await patient.save();
+
+        res.redirect('/clinician_dashboard/' + req.params.id + '/clinician_patient_support_messages')
+    } catch (err) {
+        return next(err)
+    }
+}
+    
+
 module.exports = {
     getPatientDashboard,
     getAllPatients,
@@ -385,5 +410,6 @@ module.exports = {
     getPatientProfileById,
     getAllPatientsComments,
     insertPatient,
-    updateSettings
+    updateSettings,
+    insertSupportMessage
 }

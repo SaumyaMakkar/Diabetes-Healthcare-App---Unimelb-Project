@@ -35,7 +35,7 @@ const textSchema = new mongoose.Schema({
         default: () => Date.now()
     },
     message: String
-});
+}, { _id: false });
 
 const schema = new mongoose.Schema({
     email: String,
