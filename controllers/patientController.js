@@ -133,6 +133,36 @@ const getAllPatients = async (req, res, next) => {
     }
 }
 
+//waiting for login passport
+const getPatientHealthDataByManualId = async (req, res, next) => {
+    const PatId = "6266b28279efed36161bf58a";
+    try {
+        const patient = await Patient.findById(PatId).lean()
+        if (!patient) {
+            return res.sendStatus(404)
+        }
+        console.log("Healthid");
+        console.log(patient);
+
+        // Finding the records of the patient
+        const healthData = await Records.find({ patientId: PatId }).sort({ date: -1 }).lean()
+
+        let lastPosition = patient.requiredRecordsHistory.length - 1;
+        const healthDataSettings = patient.requiredRecordsHistory[lastPosition].records;
+
+        console.log("healthData");
+        console.log(healthData);
+        // found patient
+        return res.render('patient_records', {
+            patient: patient,
+            healthDataSettings: healthDataSettings,
+            healthData: healthData
+        })
+    } catch (err) {
+        return next(err)
+    }
+}
+
 const getPatientHealthDataById = async (req, res, next) => {
     try {
         const patient = await Patient.findById(req.params.id).lean()
@@ -168,12 +198,18 @@ const getPatientSupportMessagesById = async (req, res, next) => {
         if (!patient) {
             return res.sendStatus(404)
         }
-        
+
+        // Finding the support messages of the patient
+        const supportMessage = (patient.supportMessages).reverse()
+
         console.log("supportMessages");
-        console.log(patient.supportMessages);
+        console.log(supportMessage);
 
         // found patient
-        return res.render('clinician_patient_support_messages', { patient: patient })
+        return res.render('clinician_patient_support_messages', {
+            patient: patient,
+            supportMessage: supportMessage
+        })
     } catch (err) {
         return next(err)
     }
@@ -404,6 +440,7 @@ const insertSupportMessage = async (req, res, next) => {
 module.exports = {
     getPatientDashboard,
     getAllPatients,
+    getPatientHealthDataByManualId,
     getPatientHealthDataById,
     getPatientSupportMessagesById,
     getPatientClinicalNotesById,
