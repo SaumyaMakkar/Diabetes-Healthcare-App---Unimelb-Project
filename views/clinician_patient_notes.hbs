@@ -50,7 +50,7 @@
     {{!-- Add Note Modal --}}
     <div id="addNoteModal" class="wt-modal">
         <div class="wt-modal-content">
-            <form action="/clinician_dashboard/insertClinicalNote/{{patient._id}}" method="POST"></form>
+            <form action="/clinician_dashboard/insertClinicalNote/{{patient._id}}" method="POST">
                 <div class="wt-grid-container">
 
                     {{!-- Heading --}}
@@ -63,7 +63,7 @@
 
                     {{!-- Text Area for Note --}}
                     <div class="wt-grid-item size-12@t">
-                        <textarea placeholder="Enter messsage..." rows="5"></textarea>
+                        <textarea placeholder="Enter clinical note..." rows="5" name="message"></textarea>
                     </div>
                     
                     {{!-- Save Button --}}

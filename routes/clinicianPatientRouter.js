@@ -19,6 +19,7 @@ clinicianPatientRouter.get('/:id/clinician_patient_profile/', patientController.
 clinicianPatientRouter.post('/insertPatient', patientController.insertPatient)
 clinicianPatientRouter.post('/updateSettings/:id', patientController.updateSettings)
 clinicianPatientRouter.post('/insertSupportMessage/:id', patientController.insertSupportMessage)
+clinicianPatientRouter.post('/insertClinicalNote/:id', patientController.insertClinicalNote)
 
 
 // export the router
