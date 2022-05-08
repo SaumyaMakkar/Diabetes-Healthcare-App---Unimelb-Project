@@ -24,9 +24,9 @@
             <div class="wt-grid-item size-12@p size-12@t">
                 <div class="wt-card">
                     <div class="wt-grid-item size-12@t">
-                        <div class="wt-grid-container">
 
-                            {{!-- Row 1 --}}
+                        {{!-- Row 1 --}}
+                        <div class="wt-grid-container">
                             <div class="wt-grid-item size-half@t"></div>
                             <div class="wt-grid-item size-12@p size-5@t">
                                 <label>Given Name(s)</label>
@@ -37,8 +37,10 @@
                                 <label>Family Name</label>
                                 <input readonly type="text" value={{patient.familyName}} />
                             </div>
+                        </div>
 
-                            {{!-- Row 2 --}}
+                        {{!-- Row 2 --}}
+                        <div class="wt-grid-container">
                             <div class="wt-grid-item size-half@t"></div>
                             <div class="wt-grid-item size-12@p size-5@t">
                                 <label>Screen Name</label>
@@ -49,18 +51,19 @@
                                 <label>Email</label>
                                 <input readonly type="text" value={{patient.email}} />
                             </div>
+                        </div>
 
-                            {{!-- Row 3 --}}
+                        {{!-- Row 3 --}}
+                        <div class="wt-grid-container">
                             <div class="wt-grid-item size-half@t"></div>
                             <div class="wt-grid-item size-12@p size-5@t">
                                 <label>Year of Birth</label>
                                 <input readonly type="text" value={{patient.yearOfBirth}} />
                             </div>
-
                         </div>    
+
+                        {{!-- Row 4 + 5 --}}
                         <div class="wt-grid-container">
-                            
-                            {{!-- Row 4 --}}
                             <div class="wt-grid-item size-half@t"></div>
                             <div class="wt-grid-item size-11@p size-11@t">
                                 <label>Bio</label>
@@ -69,8 +72,8 @@
 
                             {{!-- Spacing --}}
                             <div class="wt-grid-item size-12@p"></div>
-
                         </div>
+                        
                     </div>
                 </div>
             </div>
