@@ -1,7 +1,6 @@
 {{> clinician_sidebar}}
 {{> header}}
 
-
 <div class="panel-content">
 
     {{!-- Back to dashboard and Heading --}}
@@ -53,6 +52,7 @@
         <div class="wt-modal-content">
             <form action="/clinician_dashboard/insertSupportMessage/{{patient._id}}" method="POST">
                 <div class="wt-grid-container">
+                    
                     {{!-- Heading --}}
                     <div class="wt-grid-item size-6@p size-8@t">
                         <h2>Add Support Message</h2>

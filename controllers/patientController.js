@@ -221,14 +221,18 @@ const getPatientClinicalNotesById = async (req, res, next) => {
         if (!patient) {
             return res.sendStatus(404)
         }
-        console.log("Healthid");
-        console.log(patient);
-        
-        console.log("clinicianNotes");
-        console.log(patient.notes);
+
+        // Finding the clinical notes of the patient
+        const clinicalNote = (patient.notes).reverse()
+
+        console.log("clinicalNotes");
+        console.log(clinicalNote);
 
         // found patient
-        return res.render('clinician_patient_notes', { patient: patient })
+        return res.render('clinician_patient_notes', { 
+            patient: patient,
+            clinicalNote: clinicalNote
+         })
     } catch (err) {
         return next(err)
     }

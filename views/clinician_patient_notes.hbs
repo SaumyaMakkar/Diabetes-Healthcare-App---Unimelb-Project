@@ -32,16 +32,14 @@
                     <th>Date</th>
                     <th>Clinical Note</th>
                     <tbody>
-                        {{!-- {{#each patientClinicalNoteRow}} --}}
+                        {{#each clinicalNote}}
                         <tr>
-                            <td>09/01/2022</td>                             {{!-- {{date}} --}}
-                            <td>Glucose Levels shot up yesterday and the levels has been very volatile this past month, will need to monitor more closely.</td>  {{!-- {{note}} --}}
+                            <td>
+                                {{#dateHourFormat date}} {{/dateHourFormat}}
+                            </td>
+                            <td>{{message}}</td>
                         </tr>
-                        <tr>
-                            <td>25/11/2021</td>
-                            <td>Patient has mentioned feeling depressed with their situation.</td>
-                        </tr>
-                        {{!-- {{/each}} --}}
+                        {{/each}}
                     </tbody>
                 </table>
             </div>
@@ -52,7 +50,7 @@
     {{!-- Add Note Modal --}}
     <div id="addNoteModal" class="wt-modal">
         <div class="wt-modal-content">
-            <form action="/clinician_patient_notes/addNote" method="POST"></form>
+            <form action="/clinician_dashboard/insertClinicalNote/{{patient._id}}" method="POST"></form>
                 <div class="wt-grid-container">
 
                     {{!-- Heading --}}
