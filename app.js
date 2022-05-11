@@ -15,6 +15,8 @@ const clinicianPatientRouter = require('./routes/clinicianPatientRouter')
 const clinicianRouter = require('./routes/clinicianRouter')
 const patientDashboardRouter = require('./routes/patientDashboardRouter')
 const patientProfileRouter = require('./routes/patientProfileRouter')
+const patientRecordsRouter = require('./routes/patientRecordsRouter')
+
 
 var format = require('date-fns/format')
 
@@ -149,9 +151,7 @@ app.use('/clinician_patients_comments', clinicianCommentsRouter)
 /* Patient */
 app.use('/patient_home', patientDashboardRouter)
 
-app.get('/patient_records', (req, res) => {
-    res.render("patient_records")
-})
+app.use('/patient_records', patientRecordsRouter)   
 
 app.get('/patient_leaderboard', (req, res) => {
     res.render("patient_leaderboard")

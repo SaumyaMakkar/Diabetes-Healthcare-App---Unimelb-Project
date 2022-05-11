@@ -3,25 +3,93 @@ const Records = require('../models/records')
 const mongoose = require('mongoose')
 var format = require('date-fns/format')
 
-const getAllPatients = async (req, res, next) => {
+const getPatientDashboard = async (req, res, next) => {
+    console.log("getPatientDashboard");
 
-    console.log("getAllPatients")
+    // Patient Pat's ID
+    const patientId = "6266b28279efed36161bf58a";
+
+    try {
+        const patient = await Patient.findById(patientId).lean()
+        if (!patient) {
+            // no patient found in database
+            return res.sendStatus(404)
+        }
+        // found patient
+        console.log("patient");
+        console.log(patient);
+
+        const today = format(new Date(), 'dd/MM/yyyy');
+
+        // find latest healthDataSettings
+        let lastPosition = patient.requiredRecordsHistory.length - 1;
+        const healthDataSettings = patient.requiredRecordsHistory[lastPosition].records;
+
+        // find the last record for today if not create one
+        let lastRecord = await Records.findOne({ patientId: patientId, date: today }).sort({ date: -1 }).lean()
+        if (!lastRecord) {
+            await Records.create({
+                patientId: patientId,
+                date: today,
+                glucoseLevel: {
+                    value: 0,
+                    comment: "",
+                    outOfTheThreshold: false,
+                    mandatory: healthDataSettings.glucoseLevel.mandatory
+                },
+                weight: {
+                    value: 0,
+                    comment: "",
+                    outOfTheThreshold: false,
+                    mandatory: healthDataSettings.weight.mandatory
+                },
+                insulinDoses: {
+                    value: 0,
+                    comment: "",
+                    outOfTheThreshold: false,
+                    mandatory: healthDataSettings.insulinDoses.mandatory
+                },
+                exercise: {
+                    value: 0,
+                    comment: "",
+                    outOfTheThreshold: false,
+                    mandatory: healthDataSettings.exercise.mandatory
+                }
+            })
+        }
+        lastRecord = await Records.findOne({ patientId: patientId, date: today }).sort({ date: -1 }).lean()
+        console.log("lastRecord");
+        console.log(lastRecord);
+
+        return res.render('patient_home', {
+            patient: patient,
+            healthDataSettings: healthDataSettings,
+            lastRecord: lastRecord
+        })
+    } catch (err) {
+        return next(err)
+    }
+}
+
+const getAllPatients = async (req, res, next) => {
+    console.log("getAllPatients");
     try {
         const patients = await Patient.find({ clinicianId: "6261e9d38bc788f1c0aaa43e" }).lean();
         const newPatientsArray = [];
 
         for (let index = 0; index < patients.length; index++) {
             const patient = patients[index];
+            console.log("patient");
+            console.log(patient);
 
-            //console.log("patient")
-            //console.log(patient)
             const today = format(new Date(), 'dd/MM/yyyy');
-            //console.log("today", today)
-            let lastRecord = await Records.findOne({ patientId: patient._id, date: today }).sort({ date: -1 }).lean()
 
+            // find latest healthDataSettings
             let lastPosition = patient.requiredRecordsHistory.length - 1;
             const healthDataSettings = patient.requiredRecordsHistory[lastPosition].records;
 
+            // find the last record for today if not create one
+            let lastRecord = await Records.findOne({ patientId: patient._id, date: today }).sort({ date: -1 }).lean()
             if (!lastRecord) {
                 lastRecord = {
                     patientId: patient._id,
@@ -69,64 +137,36 @@ const getAllPatients = async (req, res, next) => {
     }
 }
 
-const getPatientDashboard = async (req, res, next) => {
-    const today = format(new Date(), 'dd/MM/yyyy');
-    const patientId = req.user.referenceId;
+//waiting for login passport
+const getPatientHealthDataByManualId = async (req, res, next) => {
+    console.log("getPatientHealthDataByManualId");
+    
+    // Patient Pat's ID
+    const patientId = "6266b28279efed36161bf58a";
+
     try {
         const patient = await Patient.findById(patientId).lean()
-        //console.log(patient);
         if (!patient) {
             // no patient found in database
             return res.sendStatus(404)
         }
+        // found patient
+        console.log("patient");
+        console.log(patient);
 
+        // find all the records of the patient
+        const healthData = await Records.find({ patientId: patientId }).sort({ date: -1 }).lean()
+        console.log("healthData");
+        console.log(healthData);
+
+        // find latest healthDataSettings
         let lastPosition = patient.requiredRecordsHistory.length - 1;
         const healthDataSettings = patient.requiredRecordsHistory[lastPosition].records;
-        // Finding the last record
-        let lastRecord = await Records.findOne({ patientId: patientId, date: today }).sort({ date: -1 }).lean()
 
-        //console.log("lastRecord");
-        // console.log(lastRecord);
-        if (!lastRecord) {
-            await Records.create({
-                patientId: patientId,
-                date: today,
-                glucoseLevel: {
-                    value: 0,
-                    comment: "",
-                    outOfTheThreshold: false,
-                    mandatory: healthDataSettings.glucoseLevel.mandatory
-                },
-                weight: {
-                    value: 0,
-                    comment: "",
-                    outOfTheThreshold: false,
-                    mandatory: healthDataSettings.weight.mandatory
-                },
-                insulinDoses: {
-                    value: 0,
-                    comment: "",
-                    outOfTheThreshold: false,
-                    mandatory: healthDataSettings.insulinDoses.mandatory
-                },
-                exercise: {
-                    value: 0,
-                    comment: "",
-                    outOfTheThreshold: false,
-                    mandatory: healthDataSettings.exercise.mandatory
-                }
-            })
-        }
-        lastRecord = await Records.findOne({ patientId: patientId, date: today }).sort({ date: -1 }).lean()
-
-        // found patient
-
-        console.log(req.user.colors)
-        return res.render('patient_home', {
+        return res.render('patient_records', {
             patient: patient,
             healthDataSettings: healthDataSettings,
-            lastRecord: lastRecord,
-            colors: req.user.colors
+            healthData: healthData
         })
     } catch (err) {
         return next(err)
@@ -134,23 +174,26 @@ const getPatientDashboard = async (req, res, next) => {
 }
 
 const getPatientHealthDataById = async (req, res, next) => {
+    console.log("getPatientHealthDataById");
     try {
         const patient = await Patient.findById(req.params.id).lean()
         if (!patient) {
+            // no patient found in database
             return res.sendStatus(404)
         }
-        console.log("Healthid");
+        // found patient
+        console.log("patient");
         console.log(patient);
-
-        // Finding the records of the patient
+        
+        // find all the records of the patient
         const healthData = await Records.find({ patientId: req.params.id }).sort({ date: -1 }).lean()
+        console.log("healthData");
+        console.log(healthData);
 
+        // find latest healthDataSettings
         let lastPosition = patient.requiredRecordsHistory.length - 1;
         const healthDataSettings = patient.requiredRecordsHistory[lastPosition].records;
 
-        console.log("healthData");
-        console.log(healthData);
-        // found patient
         return res.render('clinician_patient_data', {
             patient: patient,
             healthDataSettings: healthDataSettings,
@@ -162,22 +205,46 @@ const getPatientHealthDataById = async (req, res, next) => {
 }
 
 const getPatientSupportMessagesById = async (req, res, next) => {
-    return res.render('clinician_patient_support_messages');
-}
-
-const getPatientClinicalNotesById = async (req, res, next) => {
-    return res.render('clinician_patient_notes');
-}
-
-const getPatientProfileById = async (req, res, next) => {
+    console.log("getPatientSupportMessagesById");
     try {
         const patient = await Patient.findById(req.params.id).lean()
         if (!patient) {
-            // no author found in database
+            // no patient found in database
             return res.sendStatus(404)
         }
-        // found person
-        return res.render('clinician_patient_profile', { patient: patient })
+
+        // find all the support messages of the patient
+        const supportMessage = (patient.supportMessages).reverse()
+        console.log("supportMessages");
+        console.log(supportMessage);
+
+        return res.render('clinician_patient_support_messages', {
+            patient: patient,
+            supportMessage: supportMessage
+        })
+    } catch (err) {
+        return next(err)
+    }
+}
+
+const getPatientClinicalNotesById = async (req, res, next) => {
+    console.log("getPatientClinicalNotesById");
+    try {
+        const patient = await Patient.findById(req.params.id).lean()
+        if (!patient) {
+            // no patient found in database
+            return res.sendStatus(404)
+        }
+
+        // find all the clinical notes of the patient
+        const clinicalNote = (patient.notes).reverse()
+        console.log("clinicalNotes");
+        console.log(clinicalNote);
+
+        return res.render('clinician_patient_notes', { 
+            patient: patient,
+            clinicalNote: clinicalNote
+         })
     } catch (err) {
         return next(err)
     }
@@ -204,90 +271,101 @@ const getPatientProfile = async (req, res, next) => {
     }
 }
 
+const getPatientProfileById = async (req, res, next) => {
+    console.log("getPatientProfileById");
+    try {
+        const patient = await Patient.findById(req.params.id).lean()
+        if (!patient) {
+            // no patient found in database
+            return res.sendStatus(404)
+        }
+
+        return res.render('clinician_patient_profile', { patient: patient })
+    } catch (err) {
+        return next(err)
+    }
+}
+
 const getAllPatientsComments = async (req, res, next) => {
+    console.log("getAllPatientsComments");
     return res.render('clinician_patients_comments');
 }
 
 
 const insertPatient = async (req, res, next) => {
-
-    const { givenName, familyName, email, screenName, yearOfBirth, bio } = req.body;
+    console.log("insertPatient");
     try {
+        // get details from form
+        const { email, urlImage, givenName, familyName, screenName, yearOfBirth, bio } = req.body;
+
+        // create new patient
         const newPatient = await Patient.create({
             email: email,
+            urlImage: urlImage,
             givenName: givenName,
             familyName: familyName,
             screenName: screenName,
             yearOfBirth: yearOfBirth,
             bio: bio,
-            urlImage: "https://cdn-icons-png.flaticon.com/512/3048/3048122.png",
-            clinicianId: "6261e9d38bc788f1c0aaa43e",
-            requiredRecordsHistory: [
-                {
-                    fromDate: new Date(),
-                    records: {
-                        glucoseLevel: {
-                            upperThreshold: 0,
-                            lowerThreshold: 0,
-                            mandatory: false
-                        },
-                        weight: {
-                            upperThreshold: 0,
-                            lowerThreshold: 0,
-                            mandatory: false
-                        },
-                        insulinDoses: {
-                            upperThreshold: 0,
-                            lowerThreshold: 0,
-                            mandatory: false
-                        },
-                        exercise: {
-                            upperThreshold: 0,
-                            lowerThreshold: 0,
-                            mandatory: false
-                        }
+            clinicianId: "6261e9d38bc788f1c0aaa43e",    // hard-coded clinician ID for now
+            requiredRecordsHistory: [{
+                fromDate: new Date(),
+                records: {
+                    glucoseLevel: {
+                        upperThreshold: 0,
+                        lowerThreshold: 0,
+                        mandatory: false
+                    },
+                    weight: {
+                        upperThreshold: 0,
+                        lowerThreshold: 0,
+                        mandatory: false
+                    },
+                    insulinDoses: {
+                        upperThreshold: 0,
+                        lowerThreshold: 0,
+                        mandatory: false
+                    },
+                    exercise: {
+                        upperThreshold: 0,
+                        lowerThreshold: 0,
+                        mandatory: false
                     }
                 }
-            ],
+            }],
             supportMessages: [],
-            notes: [],
-            urlImage: "https://image"
+            notes: []
         })
-        console.log(newPatient)
+        console.log(newPatient);
+
         res.redirect('/clinician_dashboard')
     } catch (err) {
         return next(err)
     }
 }
 
-const updateProfile = () => {
-
-}
-const updatePassword = () => {
-
-}
-
 const updateSettings = async (req, res, next) => {
-
-    const today = format(new Date(), 'dd/MM/yyyy');
-    const clientId = req.params.id
+    console.log("updateSettings");
     try {
-        const patient = await Patient.findById(clientId);
+        const patient = await Patient.findById(req.params.id);
         if (!patient) {
             // no patient found in database
             return res.sendStatus(404)
         }
 
+        // get details from form
         const { glucoseLevel_check, glucoseLevel_lowerThreshold, glucoseLevel_upperThreshold } = req.body;
         const { weight_check, weight_lowerThreshold, weight_upperThreshold } = req.body;
         const { insulinDoses_check, insulinDoses_lowerThreshold, insulinDoses_upperThreshold } = req.body;
         const { exercise_check, exercise_lowerThreshold, exercise_upperThreshold } = req.body;
 
-
-        const todayRecord = await Records.findOne({ patientId: clientId, date: today }).sort({ date: -1 })
-
+        // find the record for today
+        const today = format(new Date(), 'dd/MM/yyyy');
+        const todayRecord = await Records.findOne({ patientId: req.params.id, date: today }).sort({ date: -1 })
         console.log("todayRecord")
         console.log(todayRecord)
+
+        // update the checker for each health data
         let mandatory_glucoseLevel = false;
         if (glucoseLevel_check == "on") {
             mandatory_glucoseLevel = true;
@@ -305,8 +383,7 @@ const updateSettings = async (req, res, next) => {
             mandatory_exercise = true;
         }
 
-
-
+        // create newRecordsHistory record
         const newRecordsHistory = {
             fromDate: new Date(),
             records: {
@@ -333,20 +410,21 @@ const updateSettings = async (req, res, next) => {
             }
         }
 
-        // in this line we are appeding the newRecordsHistory to the actual list of requiredRecordsHistory
+        // append the newRecordsHistory to the actual list of requiredRecordsHistory
         patient.requiredRecordsHistory = [...patient.requiredRecordsHistory, newRecordsHistory];
         await patient.save();
 
-        // updating the current values
+        // find latest healthDataSettings
         let lastPosition = patient.requiredRecordsHistory.length - 1;
         const healthDataSettings = patient.requiredRecordsHistory[lastPosition].records;
+        
+        // update the current values
         if (todayRecord) {
 
             todayRecord.glucoseLevel.mandatory = mandatory_glucoseLevel;
             todayRecord.weight.mandatory = mandatory_weight;
             todayRecord.insulinDoses.mandatory = mandatory_insulinDoses;
             todayRecord.exercise.mandatory = mandatory_exercise;
-
 
             const healthDataTypes = ["glucoseLevel", "weight", "insulinDoses", "exercise",]
             for (let index = 0; index < healthDataTypes.length; index++) {
@@ -361,24 +439,72 @@ const updateSettings = async (req, res, next) => {
                         todayRecord[healthType].outOfTheThreshold = false;
                     }
                 }
-
-
             }
-
-            /* console.log("todayRecord")
-            console.log(todayRecord) */
 
             await todayRecord.save();
         }
+
         res.redirect('/clinician_dashboard/' + req.params.id + '/clinician_patient_data')
     } catch (err) {
         return next(err)
     }
 }
 
+const insertSupportMessage = async (req, res, next) => {
+    console.log("insertSupportMessage");
+    try {
+        const patient = await Patient.findById(req.params.id);
+        if(!patient) {
+            // no patient found in database
+            return res.sendStatus(404)
+        }
+
+        // get details from form
+        const { message } = req.body;
+        
+        // create new support message record
+        const newSupportMessage = { message: message }
+
+        // append newSupportMessage to the actual list of supportMessages
+        patient.supportMessages = [...patient.supportMessages, newSupportMessage];
+        await patient.save();
+
+        res.redirect('/clinician_dashboard/' + req.params.id + '/clinician_patient_support_messages')
+    } catch (err) {
+        return next(err)
+    }
+}
+
+const insertClinicalNote = async (req, res, next) => {
+    console.log("insertClinicalNote");
+    try {
+        const patient = await Patient.findById(req.params.id);
+        if(!patient) {
+            // no patient found in database
+            return res.sendStatus(404)
+        }
+
+        // get details from form 
+        const { message } = req.body;
+        
+        // create new clinical note record
+        const newClinicalNote = { message: message }
+
+        // append newClinicalNote to the actual list of notes
+        patient.notes = [...patient.notes, newClinicalNote];
+        await patient.save();
+
+        res.redirect('/clinician_dashboard/' + req.params.id + '/clinician_patient_notes')
+    } catch (err) {
+        return next(err)
+    }
+}
+    
+
 module.exports = {
-    getAllPatients,
     getPatientDashboard,
+    getAllPatients,
+    getPatientHealthDataByManualId,
     getPatientHealthDataById,
     getPatientSupportMessagesById,
     getPatientClinicalNotesById,
@@ -386,7 +512,7 @@ module.exports = {
     getPatientProfileById,
     getAllPatientsComments,
     insertPatient,
-    updateProfile,
     updateSettings,
-    updatePassword
+    insertSupportMessage,
+    insertClinicalNote
 }

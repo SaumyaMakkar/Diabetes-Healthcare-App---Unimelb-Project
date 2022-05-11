@@ -4,27 +4,7 @@
 <div class="panel-content">
 
     {{!-- Back to dashboard and Heading --}}
-    <div class="wt-grid-container">
-
-        {{!-- Back to dashboard Button --}}
-        <div class="wt-grid-item size-12@p size-12@t">
-            <a class="wt-color-primary wt-btn-with-icon" onclick="history.back()">
-                <i class="material-icons">arrow_back</i>Back to dashboard</a>
-        </div>
-
-        {{!-- Patient's Profile Picture and Name --}}
-        <div class="wt-grid-item size-12@p size-12@t">
-            <div class="list-item">
-                <div class="list-item-avatar">
-                    <img class="wt-border-rounded" src="./assets/img/patient_img.png" width="60px" alt="">
-                </div>
-                <div class="list-item-text">
-                    <h1>Jane Cooper</h1>
-                </div>
-            </div>
-        </div>
-
-    </div>
+    {{> clinician_patient_header this}}
 
     {{!-- Individual Patient's Content --}}
     <div class="patient_content">
@@ -43,63 +23,56 @@
             {{!-- Profile Card --}}
             <div class="wt-grid-item size-12@p size-12@t">
                 <div class="wt-card">
-                    <div class="wt-card-content">
+                    <div class="wt-grid-item size-12@t">
 
+                        {{!-- Row 1 --}}
                         <div class="wt-grid-container">
                             <div class="wt-grid-item size-half@t"></div>
                             <div class="wt-grid-item size-12@p size-5@t">
                                 <label>Given Name(s)</label>
-                                <div class="wt-card" id="horizontal_scroll_card">
-                                    Jane
-                                </div>
+                                <input readonly type="text" value={{patient.givenName}} />
                             </div>
                             <div class="wt-grid-item size-1@t"></div>
                             <div class="wt-grid-item size-12@p size-5@t">
                                 <label>Family Name</label>
-                                <div class="wt-card" id="horizontal_scroll_card">
-                                    Cooper
-                                </div>
+                                <input readonly type="text" value={{patient.familyName}} />
                             </div>
                         </div>
 
+                        {{!-- Row 2 --}}
                         <div class="wt-grid-container">
                             <div class="wt-grid-item size-half@t"></div>
                             <div class="wt-grid-item size-12@p size-5@t">
                                 <label>Screen Name</label>
-                                <div class="wt-card" id="horizontal_scroll_card">
-                                    Moondancer
-                                </div>
+                                <input readonly type="text" value={{patient.screenName}} />
                             </div>
                             <div class="wt-grid-item size-1@t"></div>
                             <div class="wt-grid-item size-12@p size-5@t">
                                 <label>Email</label>
-                                <div class="wt-card" id="horizontal_scroll_card">
-                                    janecooper135@gmail.com
-                                </div>
+                                <input readonly type="text" value={{patient.email}} />
                             </div>
                         </div>
 
+                        {{!-- Row 3 --}}
                         <div class="wt-grid-container">
                             <div class="wt-grid-item size-half@t"></div>
                             <div class="wt-grid-item size-12@p size-5@t">
-                                <label>Date of Birth</label>
-                                <div class="wt-card" id="horizontal_scroll_card">
-                                    05/12/2000
-                                </div>
+                                <label>Year of Birth</label>
+                                <input readonly type="text" value={{patient.yearOfBirth}} />
                             </div>
-                        </div>
+                        </div>    
 
+                        {{!-- Row 4 + 5 --}}
                         <div class="wt-grid-container">
                             <div class="wt-grid-item size-half@t"></div>
                             <div class="wt-grid-item size-11@p size-11@t">
                                 <label>Bio</label>
-                                <div class="wt-card" id="vertical_scroll_card" style="height: 70px; padding: 15px">
-                                    Patient's bio. Have a history of ..., tends to ...
-                                </div>
+                                <textarea readonly rows="5">{{patient.bio}}</textarea>
                             </div>
-                        </div>
 
-                        <div class="wt-grid-item size-12@p"></div>
+                            {{!-- Spacing --}}
+                            <div class="wt-grid-item size-12@p"></div>
+                        </div>
                         
                     </div>
                 </div>

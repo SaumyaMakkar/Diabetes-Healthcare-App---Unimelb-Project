@@ -30,9 +30,12 @@ const recordSchema = new mongoose.Schema({
 }, { _id: false });
 
 const textSchema = new mongoose.Schema({
-    date: Date,
+    date: {
+        type: Date,
+        default: () => Date.now()
+    },
     message: String
-});
+}, { _id: false });
 
 const schema = new mongoose.Schema({
     email: String,
@@ -50,7 +53,10 @@ const schema = new mongoose.Schema({
     requiredRecordsHistory: [recordSchema],
     supportMessages: [textSchema],
     notes: [textSchema],
-    record_patient: [{ type: mongoose.Schema.Types.ObjectId, ref: 'records' }],
+    record_patient: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'records' 
+    },
 });
 
 const Patient = mongoose.model('patients', schema)

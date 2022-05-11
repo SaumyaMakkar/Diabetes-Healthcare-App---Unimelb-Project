@@ -4,27 +4,7 @@
 <div class="panel-content">
 
     {{!-- Back to dashboard and Heading --}}
-    <div class="wt-grid-container">
-
-        {{!-- Back to dashboard Button --}}
-        <div class="wt-grid-item size-12@p size-12@t">
-            <a class="wt-color-primary wt-btn-with-icon" onclick="history.back()">
-                <i class="material-icons">arrow_back</i>Back to dashboard</a>
-        </div>
-
-        {{!-- Patient's Profile Picture and Name --}}
-        <div class="wt-grid-item size-12@p size-12@t">
-            <div class="list-item">
-                <div class="list-item-avatar">
-                    <img class="wt-border-rounded" src="./assets/img/patient_img.png" width="60px" alt="">
-                </div>
-                <div class="list-item-text">
-                    <h1>Jane Cooper</h1>
-                </div>
-            </div>
-        </div>
-
-    </div>
+    {{> clinician_patient_header this}}
 
     {{!-- Individual Patient's Content --}}
     <div class="patient_content">
@@ -52,16 +32,14 @@
                     <th>Date</th>
                     <th>Message</th>
                     <tbody>
-                        {{!-- {{#each patientSuppMessRow}} --}}
+                        {{#each supportMessage}}
                         <tr>
-                            <td>09/01/2022</td>                             {{!-- {{date}} --}}
-                            <td>You've made it so far, don't give up!</td>  {{!-- {{message}} --}}
+                            <td>
+                                {{#dateHourFormat date}} {{/dateHourFormat}}
+                            </td>
+                            <td>{{message}}</td>
                         </tr>
-                        <tr>
-                            <td>06/01/2022</td>
-                            <td>Think of the goal</td>
-                        </tr>
-                        {{!-- {{/each}} --}}
+                        {{/each}}
                     </tbody>
                 </table>
             </div>
@@ -72,9 +50,9 @@
     {{!-- Add Message Modal --}}
     <div id="addMessageModal" class="wt-modal">
         <div class="wt-modal-content">
-            <form action="/clinician_patient_support_messages/addMessage" method="POST"></form>
+            <form action="/clinician_dashboard/insertSupportMessage/{{patient._id}}" method="POST">
                 <div class="wt-grid-container">
-
+                    
                     {{!-- Heading --}}
                     <div class="wt-grid-item size-6@p size-8@t">
                         <h2>Add Support Message</h2>
@@ -85,7 +63,7 @@
 
                     {{!-- Text Area for Message --}}
                     <div class="wt-grid-item size-12@t">
-                        <textarea placeholder="Enter messsage..." rows="5"></textarea>
+                        <textarea placeholder="Enter messsage..." rows="5" name="message"></textarea>
                     </div>
                     
                     {{!-- Send Button --}}

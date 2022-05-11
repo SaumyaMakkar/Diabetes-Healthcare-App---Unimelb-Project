@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 
-
 const schema = new mongoose.Schema({
     email: String,
     password: String,
@@ -13,7 +12,7 @@ const schema = new mongoose.Schema({
     address: {
         address: String,
         citySuburb: String,
-        state:String,
+        state: String,
         postcode: String,
         country: String
     }

@@ -17,10 +17,15 @@ clinicianPatientRouter.get('/:id/clinician_patient_notes/', isAuthenticated, has
 clinicianPatientRouter.get('/:id/clinician_patient_profile/', isAuthenticated, hasRole('clinician'), patientController.getPatientProfileById)
 
 // add a new JSON object to the database
+
 clinicianPatientRouter.post('/insertPatient', isAuthenticated, hasRole('clinician'), patientController.insertPatient)
 
 // add a new JSON object to the database
 clinicianPatientRouter.post('/updateSettings/:id', isAuthenticated, hasRole('clinician'), patientController.updateSettings)
+
+clinicianPatientRouter.post('/insertSupportMessage/:id', patientController.insertSupportMessage)
+clinicianPatientRouter.post('/insertClinicalNote/:id', patientController.insertClinicalNote)
+
 
 
 // export the router
