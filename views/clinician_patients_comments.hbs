@@ -24,7 +24,7 @@
                         <strong>Comments</strong>
                     </div>
                 </div>
-            </div>   
+            </div>
 
             {{#each patients}}
             <div class="wt-card">
@@ -33,40 +33,97 @@
                         {{!-- <div class="wt-grid-item size-1@t">
                             <img class="wt-border-rounded" src="/assets/img/patient_img.png" width="40px">
                         </div> --}}
-                        <div class="wt-grid-item size-2@t" style="padding-left: 5%;" >
-                            data
+                        <div class="wt-grid-item size-2@t" style="padding-left: 5%;">
+                            {{record_patient.0.date}}
                         </div>
                         <div class="wt-grid-item size-3@t">
                             <div class="wt-grid-container">
                                 <div class="wt-grid-item size-3@t" style="padding: 0%;">
-                                    <img class="wt-border-rounded" src="/assets/img/patient_img.png" width="40px">
+                                    {{!-- <img class="wt-border-rounded" src="/assets/img/patient_img.png" width="40px">
+                                    --}}
                                 </div>
-                                <div class="wt-grid-item size-9@t" style="padding: 0%; padding-top:2.5%">
+                                <div class="wt-grid-item size-9@t" style="padding: 0% ;">
+                                    {{!-- Jean Vera --}}
+                                    {{!-- {{!-- {{firstName}} {{lastName}} --}}
                                     <a href="./clinician_dashboard/{{_id}}/clinician_patient_data">
                                         {{givenName}} {{familyName}}
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="wt-grid-item size-3@t" style="text-align:center; padding-right: 5%;">
-                            data
+
+                        {{#if (checkLength record_patient.0.glucoseLevel.comment)}}
+
+                        <div class="wt-grid-item size-3@t"
+                            style="text-align:center; padding-right: 5%; margin-left:40%; margin-top:-2%;">
+                            Glucose level
                         </div>
-                        <div class="wt-grid-item size-4@t" style="padding: 0%;">
-                            <div class="wt-grid-item size-12@t">
-                                <textarea readonly rows="5">Comments here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
-                                {{!-- <div class ="wt-card" id="vertical_scroll_card" style="height: 70px; padding:15px">
-                                    Comments here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                </div> --}}
+                        <div class="wt-grid-item size-4@t" style="padding: 0%; margin-top:-2%;">
+                            <div class="wt-grid-item size-12@t" style="align-items: center;margin-top:-5%;">
+                                <div class="wt-card" id="vertical_scroll_card"
+                                    style="height: 50px; padding: 4% 10% 4% 30%; box-sizing: border-box;">
+                                    {{record_patient.0.glucoseLevel.comment}}
+                                </div>
                             </div>
                         </div>
+                        {{/if}}
+
+                        {{#if (checkLength record_patient.0.weight.comment)}}
+
+                        <div class="wt-grid-item size-3@t"
+                            style="text-align:center; padding-right: 5%; margin-left:40%; margin-top:-1%;">
+                            Weight
+                        </div>
+                        <div class="wt-grid-item size-4@t" style="padding: 0%;margin-top:-2%;">
+                            <div class="wt-grid-item size-12@t" style="align-items: center;">
+                                <div class="wt-card" id="vertical_scroll_card"
+                                    style="height: 50px; padding: 4% 10% 4% 30%; box-sizing: border-box;">
+                                    {{record_patient.0.weight.comment}}
+                                </div>
+                            </div>
+                        </div>
+                        {{/if}}
+                        {{#if (checkLength record_patient.0.insulinDoses.comment 0) }}
+
+
+                        <div class="wt-grid-item size-3@t"
+                            style="text-align:center; padding-right: 5%; margin-left:40%; margin-top:-1%;">
+                            Insulin Doses
+                        </div>
+                        <div class="wt-grid-item size-4@t" style="padding: 0%; margin-top:-2%;">
+                            <div class="wt-grid-item size-12@t" style="align-items: center;">
+                                <div class="wt-card" id="vertical_scroll_card"
+                                    style="height: 50px; padding: 4% 10% 4% 30%; box-sizing: border-box;">
+                                    {{record_patient.0.insulinDoses.comment}}
+                                </div>
+                            </div>
+                        </div>
+                        {{/if}}
+                        {{#if (checkLength record_patient.0.exercise.comment)}}
+
+
+
+                        <div class="wt-grid-item size-3@t"
+                            style="text-align:center; padding-right: 5%; margin-left:40%;margin-top:-1%;">
+                            Exercise
+                        </div>
+                        <div class="wt-grid-item size-4@t" style="padding: 0%;margin-top:-2%;">
+                            <div class="wt-grid-item size-12@t" style="align-items: center;">
+                                <div class="wt-card" id="vertical_scroll_card"
+                                    style="height: 50px; padding: 4% 10% 4% 30%; box-sizing: border-box;">
+                                    {{record_patient.0.exercise.comment}}
+                                </div>
+                            </div>
+                        </div>
+
+                        {{/if}}
                     </div>
                 </div>
             </div>
-            <br/>
-            {{/each}} 
+            <br />
+            {{/each}}
         </div>
 
 
     </div>
 </div>
-   

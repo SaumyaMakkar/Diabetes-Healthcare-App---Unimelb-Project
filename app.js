@@ -45,6 +45,13 @@ app.engine('hbs', exphbs.engine({
             if (v1 === true) return 'wt-color-red';
             return '';
         },
+        checkMandatoryAndNull: (isMandatory, value) => {
+            console.log(isMandatory, value);
+            if (isMandatory && value === null) {
+                return 'yellow';
+            }
+            return ' ';
+        },
         checkLength: (v1) => {
             if (v1 === "") {
                 return false;

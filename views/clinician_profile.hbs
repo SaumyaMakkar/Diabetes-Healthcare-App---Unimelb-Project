@@ -5,13 +5,15 @@
         {{!-- Profile Picture --}}
         <div class="wt-grid-item size-5@t display_flex_center">
             <div class="wt-grid-item size-12@t display_flex_center">
-                <img class="wt-border-circle" src="/assets/img/doctor.jpg" id="clinician_img" width="180px" height="180px" style="cursor: pointer;" onclick="openModal('UpdateProfilePictureModal')">
+                <img class="wt-border-circle" src="/assets/img/Doctor.jpg" id="clinician_img" width="180px"
+                    height="180px" style="cursor: pointer;" onclick="openModal('UpdateProfilePictureModal')">
             </div>
             <div class="wt-grid-item size-12@t" style="">
-                <h3>Brooklyn Simmons</h3>
+                <h3>{{clinician.givenName}} {{clinician.familyName}}</h3>
                 <p style="color: grey; font-size:small;">Accredited Practicing Dietician</p>
             </div>
         </div>
+
 
         {{!-- Bio Box --}}
         <div class="wt-grid-item size-7@t display_flex_center">
@@ -22,13 +24,22 @@
                             <strong>Your Bio</strong>
                         </div>
                         <div class="wt-grid-item size-1@t" style="padding: 2px; text-align: right;">
-                            <i class="material-icons" style="font-size: large; color:gray; cursor: pointer" onclick="openModal('UpdateBioModal')">edit</i>
+                            <i class="material-icons" style="font-size: large; color:gray; cursor: pointer"
+                                onclick="openModal('UpdateBioModal')">edit</i>
                         </div>
                     </div>
                     <div class="wt-grid-item size-12@t" style="padding: 5px;">
-                        <textarea readonly rows="5">Bio here</textarea>
-                        {{!-- <div class ="wt-card" id="vertical_scroll_card" style="height: 70px; padding:15px">
-                            Bio here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        {{!-- <input readonly type="text" /> --}}
+                        <textarea name="text" cols="20" rows="1" id="biodata" readonly>{{clinician.bio}}</textarea>
+
+                        {{!-- <div id="biodata"></div> --}}
+                        {{!-- <div class="wt-card" id="vertical_scroll_card" style="height: 70px; padding:15px">
+                            Bio here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                            in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                            sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                            laborum.
                         </div> --}}
                     </div>
                 </div>
@@ -44,72 +55,82 @@
                             <strong>Your Details</strong>
                         </div>
                         <div class="wt-grid-item size-2@t" style="text-align: right;">
-                            <i class="material-icons" style="font-size: large; color:gray; cursor: pointer" onclick="openModal('UpdateDetailsModal')">edit</i>
+                            <i class="material-icons" style="font-size: large; color:gray; cursor: pointer"
+                                onclick="openModal('UpdateDetailsModal')">edit</i>
                         </div>
                         <div class="wt-grid-item size-5@t">
                             <label>Email</label>
-                            <input readonly type="text" value="text here"/>
+                            <input readonly type="text" value="{{clinician.email}}" />
                             {{!-- <div class="wt-card" id="horizontal_scroll_card">
-                                Text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                Text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua.
                             </div> --}}
                         </div>
                         <div class="wt-grid-item size-half@t"></div>
                         <div class="wt-grid-item size-6@t">
                             <label>Address</label>
-                            <input readonly type="text" value="text here"/>
+                            <input readonly type="text" value="{{clinician.addressInfo.address}}" />
                             {{!-- <div class="wt-card" id="horizontal_scroll_card">
-                                Text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                Text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua.
                             </div> --}}
                         </div>
                         <div class="wt-grid-item size-5@t">
                             <label>Contact Number</label>
-                            <input readonly type="text" value="text here"/>
+                            <input readonly type="text" value="{{clinician.contactNumber}}" />
                             {{!-- <div class="wt-card" id="horizontal_scroll_card">
-                                Text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                Text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua.
                             </div> --}}
                         </div>
                         <div class="wt-grid-item size-half@t"></div>
                         <div class="wt-grid-item size-3@t">
                             <label>City/Suburb</label>
-                            <input readonly type="text" value="text here"/>
+                            <input readonly type="text" value="{{clinician.addressInfo.citySuburb}}" />
                             {{!-- <div class="wt-card" id="horizontal_scroll_card">
-                                Text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                Text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua.
                             </div> --}}
                         </div>
                         <div class="wt-grid-item size-3@t">
                             <label>State</label>
-                            <input readonly type="text" value="text here"/>
+                            <input readonly type="text" value="{{clinician.addressInfo.state}}" />
                             {{!-- <div class="wt-card" id="horizontal_scroll_card">
-                                Text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                Text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua.
                             </div> --}}
                         </div>
                         <div class="wt-grid-item size-half@t"></div>
                         {{!-- <div class="wt-grid-item size-3@t">
                             <label>Password</label>
                             <div class="wt-card" id="horizontal_scroll_card">
-                                Text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                Text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua.
                             </div>
                         </div> --}}
                         <div class="wt-grid-item size-5@t">
                             <label>Year of Birth</label>
-                            <input readonly type="text" value="text here"/>
+                            <input readonly type="text" value="{{clinician.yearOfBirth}}" />
                             {{!-- <div class="wt-card" id="horizontal_scroll_card">
-                                Text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                Text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua.
                             </div> --}}
                         </div>
                         <div class="wt-grid-item size-half@t"></div>
                         <div class="wt-grid-item size-3@t">
                             <label>Country</label>
-                            <input readonly type="text" value="text here"/>
+                            <input readonly type="text" value="{{clinician.addressInfo.country}}" />
                             {{!-- <div class="wt-card" id="horizontal_scroll_card">
-                                Text here Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                Text here Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua.
                             </div> --}}
                         </div>
                         <div class="wt-grid-item size-3@t">
                             <label>Postcode</label>
-                            <input readonly type="text" value="text here"/>
+                            <input readonly type="text" value="{{clinician.addressInfo.postcode}}" />
                             {{!-- <div class="wt-card" id="horizontal_scroll_card">
-                                Text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                Text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua.
                             </div> --}}
                         </div>
                         <div class="wt-grid-item size-half@t"></div>
@@ -122,26 +143,26 @@
         <div id="UpdateProfilePictureModal" class="wt-modal">
             <div class="wt-modal-content">
                 <span class="wt-modal-close">&times;</span>
-                <form>
+                <form action="/clinician_profile/EditClinicianProfile?_method=PUT" method="POST">
                     <div class="wt-grid-container">
                         <div class="wt-grid-item size-12@t">
                             <h2>Edit Profile Picture and </h2>
                         </div>
                         <div class="wt-grid-item size-5@t">
-                            <input name = "profilePic" type="file" accept="image/*" />
+                            <input name="profilePic" type="file" accept="image/*" />
                         </div>
                         <div class="wt-grid-item size-5@t"></div>
                         <div class="wt-grid-item size-6@t">
                             <label>Given Name/s</label>
-                            <input name = "givenName" type="text" />
+                            <input name="givenName" type="text" />
                         </div>
                         <div class="wt-grid-item size-6@t">
                             <label>Family Name</label>
-                            <input name = "familyName" type="text" />
+                            <input name="familyName" type="text" />
                         </div>
                         <div class="wt-grid-item size-9@t">
                             <label>Headline</label>
-                            <input name = "headline" type="text" />
+                            <input name="headline" type="text" />
                         </div>
                         <div class="wt-grid-item size-12@t">
                             <div class="wt-text-align-right">
@@ -157,17 +178,19 @@
         <div id="UpdateBioModal" class="wt-modal">
             <div class="wt-modal-content">
                 <span class="wt-modal-close">&times;</span>
-                <form action="/clinician_profile/EditClinicianBio" method="POST">
+                <form action="/clinician_profile/EditClinicianProfile?_method=PUT" method="POST">
                     <div class="wt-grid-container">
                         <div class="wt-grid-item size-12@t">
                             <h2>Update Your Bio</h2>
                         </div>
                         <div class="wt-grid-item size-12@t">
-                            <textarea rows="5"></textarea>
+                            {{!-- <textarea rows="5"></textarea> --}}
+                            <input type="text" id="box_bio" name="bio" value="{{clinician.bio}}">
                         </div>
                         <div class="wt-grid-item size-12@t">
                             <div class="wt-text-align-right">
-                                <button type="submit" class="wt-btn wt-btn-secondary">SAVE</button>
+                                {{!-- <button id='but_bio'>Submit</button> --}}
+                                <button type="submit" class="wt-btn wt-btn-secondary" id="but_bio">SAVE</button>
                             </div>
                         </div>
                     </div>
@@ -180,56 +203,69 @@
         <div id="UpdateDetailsModal" class="wt-modal">
             <div class="wt-modal-content">
                 <span class="wt-modal-close">&times;</span>
-                <form action="/clinician_profile/EditClinicianProfile" method="POST">
+                <form action="/clinician_profile/EditClinicianProfile?_method=PUT" method="POST">
                     <div class="wt-grid-container">
                         <div class="wt-grid-item size-12@t">
                             <h2>Edit your Profile</h2>
                         </div>
-                        <div class="wt-grid-item size-6@t">
-                            <label>Email</label>
-                            <input name="email" type="email" />
-                        </div>
-                        <div class="wt-grid-item size-6@t">
-                            <label>Address</label>
-                            <input name="address" type="tel" />
-                        </div>
-                        <div class="wt-grid-item size-6@t">
-                            <label>Contact Number</label>
-                            <input name="contactNumber" type="text" />
-                        </div>
-                        <div class="wt-grid-item size-3@t">
-                            <label>City/Suburb</label>
-                            <input name="city/suburb" type="text" />
-                        </div>
-                        <div class="wt-grid-item size-3@t">
-                            <label>State</label>
-                            <input name="state" type="text" />
-                        </div>
-                        <div class="wt-grid-item size-3@t">
-                            <label>Password</label>
-                            <input name="password" type="password" />
-                        </div>
-                        <div class="wt-grid-item size-3@t">
-                            <label>Year of Birth</label>
-                            <input name="yearOfBirth" type="text" pattern="\d*" placeholder="YYYY" maxlength="4" />
-                        </div>
-                        <div class="wt-grid-item size-3@t">
-                            <label>Country</label>
-                            <input name="country" type="text" />
-                        </div>
-                        <div class="wt-grid-item size-3@t">
-                            <label>Postcode</label>
-                            <input name="postcode" type="text" />
-                        </div>
-                        <div class="wt-grid-item size-12@t">
-                            <div class="wt-text-align-right">
-                                <button type="submit" class="wt-btn wt-btn-secondary">SAVE</button>
+                            <div class="wt-grid-item size-6@t">
+                                <label>Email</label>
+                                <input name="email" type="email" value="{{clinician.email}}" />
                             </div>
+                            <div class="wt-grid-item size-6@t">
+                                <label>Address</label>
+                                <input name="addressInfo[address]" type="tel" value="{{clinician.addressInfo.address}}"/>
+                            </div>
+                            <div class="wt-grid-item size-6@t">
+                                <label>Contact Number</label>
+                                <input name="contactNumber" type="text" value="{{clinician.contactNumber}}"/>
+                            </div>
+                            <div class="wt-grid-item size-3@t">
+                                <label>City/Suburb</label>
+                                <input name="addressInfo[citySuburb]" type="text" value="{{clinician.addressInfo.citySuburb}}"/>
+                            </div>
+                            <div class="wt-grid-item size-3@t">
+                                <label>State</label>
+                                <input name="addressInfo[state]" type="text" value="{{clinician.addressInfo.state}}"/>
+                            </div>
+                            <div class="wt-grid-item size-3@t">
+                                <label>Password</label>
+                                <input name="password" type="password" value="{{clinician.password}}"/>
+                            </div>
+                            <div class="wt-grid-item size-3@t">
+                                <label>Year of Birth</label>
+                                <input name="yearOfBirth" type="text" pattern="\d*" placeholder="YYYY" maxlength="4" value="{{clinician.yearOfBirth}}"/>
+                            </div>
+                            <div class="wt-grid-item size-3@t">
+                                <label>Country</label>
+                                <input name="addressInfo[country]" type="text" value="{{clinician.addressInfo.country}}"/>
+                            </div>
+                            <div class="wt-grid-item size-3@t">
+                                <label>Postcode</label>
+                                <input name="addressInfo[postcode]" type="text" value="{{clinician.addressInfo.postcode}}"/>
+                            </div>
+                            <div class="wt-grid-item size-12@t">
+                                <div class="wt-text-align-right">
+                                    <button type="submit" class="wt-btn wt-btn-secondary">SAVE</button>
+                                </div>
+
                         </div>
                     </div>
                 </form>
             </div>
-        </div>    
+        </div>
 
     </div>
 </div>
+<script>
+    box_bio = document.getElementById('box_bio');
+    but_bio = document.getElementById('but_bio');
+    biodata = document.getElementById('biodata');
+
+
+    function bios() {
+        biodata.innerHTML = box_bio.value;
+    }
+
+    but_bio.addEventListener('click', bios);
+</script>
