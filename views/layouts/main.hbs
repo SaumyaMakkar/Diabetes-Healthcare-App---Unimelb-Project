@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,11 +12,38 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
+        <script src="https://cdn.socket.io/4.5.0/socket.io.min.js" integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/assets/css/wt.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/assets/js/fetchFunctions.js"></script>
+    <script src="/assets/js/socketFunctions.js"></script>
+    <script src="/assets/js/chartFunctions.js"></script>
 </head>
+
 <body>
     {{{body}}}
+    <div id="primaryColor" style="visibility: hidden;">{{colors.primaryColor}}</div>
+    <div id="backgroundColor" style="visibility: hidden;">{{ colors.backgroundColor}}</div>
 </body>
 <script src="/assets/js/wt.js"></script>
-<script src="/assets/js/fetchFunctions.js"></script>
+<script>
+    window.onload = function () {
+        console.log("colors");
+        //var primaryColor = "#eae320";
+        //var backgroundColor = "#0050ff";
+        var primaryColor = document.querySelector("#primaryColor");
+        console.log(primaryColor.innerHTML)
+        var backgroundColor = document.querySelector("#backgroundColor");
+
+        if (primaryColor.innerHTML != "" && backgroundColor.innerHTML != "") {
+            var style = document.createElement('style');
+            style.innerHTML = `:root {
+        --primary-color: ${backgroundColor.innerHTML};
+        --secondary-color: ${primaryColor.innerHTML};
+        }`;
+            document.getElementsByTagName('head')[0].appendChild(style);
+        }
+    }
+</script>
+
 </html>

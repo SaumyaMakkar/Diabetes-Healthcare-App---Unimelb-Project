@@ -6,20 +6,25 @@
 function sideBarController() {
     var btn = document.getElementById("sidebar-button");
     var main_sidebar = document.querySelector("#main_sidebar");
-    btn.onclick = function (event) {
-        if(main_sidebar.classList.contains("sidebar-open")){
-            main_sidebar.classList.remove("sidebar-open");
-        }else{
-            main_sidebar.classList.add("sidebar-open");
+    if (btn) {
+        btn.onclick = function (event) {
+            if (main_sidebar.classList.contains("sidebar-open")) {
+                main_sidebar.classList.remove("sidebar-open");
+            } else {
+                main_sidebar.classList.add("sidebar-open");
+            }
         }
     }
-    main_sidebar.onclick = function (event) {
-        console.log(event.srcElement)
-        var el = event.srcElement;
-        if(el.id != "main_sidebar") return;
-        console.log("removebg")
-        main_sidebar.classList.remove("sidebar-open");
+    if (main_sidebar) {
+        main_sidebar.onclick = function (event) {
+            console.log(event.srcElement)
+            var el = event.srcElement;
+            if (el.id != "main_sidebar") return;
+            console.log("removebg")
+            main_sidebar.classList.remove("sidebar-open");
+        }
     }
+
 }
 
 function openModal(modalId) {
@@ -46,8 +51,8 @@ function openModal(modalId) {
 function enableEditMode(healthDataName, enable) {
     console.log("enableEditMode")
     console.log(healthDataName)
-    var showBlock = document.getElementById(healthDataName+"_ShowBlock");
-    var editBlock = document.getElementById(healthDataName+"_EditBlock");
+    var showBlock = document.getElementById(healthDataName + "_ShowBlock");
+    var editBlock = document.getElementById(healthDataName + "_EditBlock");
 
     console.log("showBlock")
     console.log(showBlock)

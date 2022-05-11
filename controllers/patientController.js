@@ -250,6 +250,27 @@ const getPatientClinicalNotesById = async (req, res, next) => {
     }
 }
 
+const getPatientProfile = async (req, res, next) => {
+    const patientId = req.user.referenceId;
+    console.log("getPatientProfile")
+    try {
+        const patient = await Patient.findById(patientId).lean()
+        if (!patient) {
+            // no author found in database
+            return res.sendStatus(404)
+        }
+        // found person
+        console.log(req.user.colors)
+        return res.render('patient_account', {
+            patient: patient,
+            colors: req.user.colors,
+            themeName: req.user.colors.themeName
+        })
+    } catch (err) {
+        return next(err)
+    }
+}
+
 const getPatientProfileById = async (req, res, next) => {
     console.log("getPatientProfileById");
     try {
@@ -487,6 +508,7 @@ module.exports = {
     getPatientHealthDataById,
     getPatientSupportMessagesById,
     getPatientClinicalNotesById,
+    getPatientProfile,
     getPatientProfileById,
     getAllPatientsComments,
     insertPatient,

@@ -12,7 +12,11 @@
                     <h1>Welcome back {{patient.givenName}} 👋</h1>
                 </div>
                 <div class="wt-card wt-card-content pointer" style="display:flex; align-items:center">
-                    <img class="wt-border-rounded" src="{{patient.urlImage}}" width="40px"> {{!-- <span>Account</span> --}}
+                    <a href="/patient_profile">
+                        <img class="wt-border-rounded" src="{{patient.urlImage}}" width="40px"> {{!--
+                        <span>Account</span>
+                        --}}
+                    </a>
                 </div>
             </div>
         </div>
@@ -120,7 +124,7 @@
                         </span>
                         {{else}}
                         <span>
-                           <p>
+                            <p>
                                 {{#if lastRecord.weight.value}}
                                 <span class="wt-color-green">
                                     <span style="font-size:30px">
@@ -194,7 +198,7 @@
                         </span>
                         {{else}}
                         <span>
-                           <p>
+                            <p>
                                 {{#if lastRecord.insulinDoses.value}}
                                 <span class="wt-color-green">
                                     <span style="font-size:30px">
@@ -269,13 +273,13 @@
                         </span>
                         {{else}}
                         <span>
-                           <p>
+                            <p>
                                 {{#if lastRecord.exercise.value}}
                                 <span class="wt-color-green">
                                     <span style="font-size:30px">
                                         {{lastRecord.exercise.value}}
                                     </span>
-                                     steps - perfect value!</span>
+                                    steps - perfect value!</span>
                                 {{else}}
                                 <span class="wt-color-amber" style="font-size:30px">Pending</span>
                                 {{/if}}

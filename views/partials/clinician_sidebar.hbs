@@ -22,12 +22,13 @@
                     <span class="menu-title">Patient comments</span>
                 </a>
             </li>
-            <li>
-                <a href="/login">
-                    <span class="menu-icon"><i class="material-icons">logout</i></span>
-                    <span class="menu-title">Logout</span>
-                </a>
-            </li>
+            <br/>
+            <div class="wt-text-align-center">
+                <form class="logout" action="/auth/logout" method="post">
+                    <button class="wt-btn wt-btn-secondary wt-btn-with-icon" type="submit">
+                        <i class="material-icons">logout</i> Logout</button>
+                </form>
+            </div>
         </ul>
     </div>
 </div>
