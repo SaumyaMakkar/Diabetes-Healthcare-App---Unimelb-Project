@@ -13,10 +13,10 @@ const getAllPatients = async (req, res, next) => {
         for (let index = 0; index < patients.length; index++) {
             const patient = patients[index];
 
-            console.log("patient")
-            console.log(patient)
+            //console.log("patient")
+            //console.log(patient)
             const today = format(new Date(), 'dd/MM/yyyy');
-            console.log("today", today)
+            //console.log("today", today)
             let lastRecord = await Records.findOne({ patientId: patient._id, date: today }).sort({ date: -1 }).lean()
 
             let lastPosition = patient.requiredRecordsHistory.length - 1;
@@ -70,13 +70,11 @@ const getAllPatients = async (req, res, next) => {
 }
 
 const getPatientDashboard = async (req, res, next) => {
-    console.log("getPatientDashboard")
-
     const today = format(new Date(), 'dd/MM/yyyy');
-    const patientId = "6266b28279efed36161bf58a";
+    const patientId = req.user.referenceId;
     try {
         const patient = await Patient.findById(patientId).lean()
-        console.log(patient);
+        //console.log(patient);
         if (!patient) {
             // no patient found in database
             return res.sendStatus(404)
@@ -87,8 +85,8 @@ const getPatientDashboard = async (req, res, next) => {
         // Finding the last record
         let lastRecord = await Records.findOne({ patientId: patientId, date: today }).sort({ date: -1 }).lean()
 
-        console.log("lastRecord");
-        console.log(lastRecord);
+        //console.log("lastRecord");
+        // console.log(lastRecord);
         if (!lastRecord) {
             await Records.create({
                 patientId: patientId,
@@ -120,13 +118,15 @@ const getPatientDashboard = async (req, res, next) => {
             })
         }
         lastRecord = await Records.findOne({ patientId: patientId, date: today }).sort({ date: -1 }).lean()
-        console.log("lastRecord")
-        console.log(lastRecord)
+
         // found patient
+
+        console.log(req.user.colors)
         return res.render('patient_home', {
             patient: patient,
             healthDataSettings: healthDataSettings,
-            lastRecord: lastRecord
+            lastRecord: lastRecord,
+            colors: req.user.colors
         })
     } catch (err) {
         return next(err)
@@ -141,7 +141,7 @@ const getPatientHealthDataById = async (req, res, next) => {
         }
         console.log("Healthid");
         console.log(patient);
-        
+
         // Finding the records of the patient
         const healthData = await Records.find({ patientId: req.params.id }).sort({ date: -1 }).lean()
 
@@ -182,6 +182,28 @@ const getPatientProfileById = async (req, res, next) => {
         return next(err)
     }
 }
+
+const getPatientProfile = async (req, res, next) => {
+    const patientId = req.user.referenceId;
+    console.log("getPatientProfile")
+    try {
+        const patient = await Patient.findById(patientId).lean()
+        if (!patient) {
+            // no author found in database
+            return res.sendStatus(404)
+        }
+        // found person
+        console.log(req.user.colors)
+        return res.render('patient_account', {
+            patient: patient,
+            colors: req.user.colors,
+            themeName: req.user.colors.themeName
+        })
+    } catch (err) {
+        return next(err)
+    }
+}
+
 const getAllPatientsComments = async (req, res, next) => {
     return res.render('clinician_patients_comments');
 }
@@ -236,6 +258,13 @@ const insertPatient = async (req, res, next) => {
     } catch (err) {
         return next(err)
     }
+}
+
+const updateProfile = () => {
+
+}
+const updatePassword = () => {
+
 }
 
 const updateSettings = async (req, res, next) => {
@@ -353,8 +382,11 @@ module.exports = {
     getPatientHealthDataById,
     getPatientSupportMessagesById,
     getPatientClinicalNotesById,
+    getPatientProfile,
     getPatientProfileById,
     getAllPatientsComments,
     insertPatient,
-    updateSettings
+    updateProfile,
+    updateSettings,
+    updatePassword
 }

@@ -1,6 +1,9 @@
 const Patient = require('../models/patients')
 const Record = require('../models/records')
+const { io } = require("socket.io-client");
 var format = require('date-fns/format')
+
+var socket = io("ws://localhost:3000");
 
 const insertRecord = async (req, res) => {
 
@@ -31,8 +34,15 @@ const insertRecord = async (req, res) => {
         record[healthType].comment = comment;
         record[healthType].outOfTheThreshold = outOfTheThreshold;
         record[healthType].timestamp = new Date();
-        
+
         await record.save();
+        if (outOfTheThreshold) {
+            console.log("insertRecord ---------------------------------------------------")
+            console.log(socket)
+            await socket.emit('notification', { msg: patient.givenName + " entered a data out of the Threshold" });
+            //socket.disconnect()
+        }
+
 
         res.redirect('/patient_home')
     } catch (err) {

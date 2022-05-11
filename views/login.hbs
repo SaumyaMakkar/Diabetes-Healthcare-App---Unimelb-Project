@@ -2,43 +2,39 @@
     <div class="left-login wt-grid-item wt-hidden@p wt-visible@t size-6@t">
     </div>
     <div class="wt-grid-item size-12@p size-6@t wt-bg-white">
-        <div class="wt-grid-container wt-padding">
-            <div class="wt-grid-item size-12@p size-12@t">
-                <a class="wt-color-primary wt-btn-with-icon" onclick="history.back()"><i
-                        class="material-icons">arrow_back</i>BACK TO WEBSITE</a>
-            </div>
-            <div class="wt-grid-item size-12@p size-12@t">
-                <h1>Sign In</h1>
-                <p>Login to your account to access our services</p>
-            </div>
-            <div class="wt-grid-item size-12@p size-12@t">
-                <label>Username</label>
-                <input type="text" />
-            </div>
-            <div class="wt-grid-item size-12@p size-12@t">
-                <label>Password</label>
-                <input type="password" />
-            </div>
-            <div class="wt-grid-item size-12@p">
-                <div class="wt-text-align-right">
-                    <a class="wt-color-primary" onclick="openModal('forgotModal')">Forgot password?</a>
+        <form class="login" action="/auth/login" method="POST">
+            <div class="wt-grid-container wt-padding">
+                <div class="wt-grid-item size-12@p size-12@t">
+                    <a class="wt-color-primary wt-btn-with-icon" onclick="history.back()"><i
+                            class="material-icons">arrow_back</i>BACK TO WEBSITE</a>
+                </div>
+                <div class="wt-grid-item size-12@p size-12@t">
+                    <h1>Sign In</h1>
+                    <p>Login to your account to access our services</p>
+                </div>
+                <div class="wt-grid-item size-12@p size-12@t">
+                    <label>Email</label>
+                    <input name="username" type="text" />
+                </div>
+                <div class="wt-grid-item size-12@p size-12@t">
+                    <label>Password</label>
+                    <input name="password" type="password" />
+                </div>
+                <div class="wt-grid-item size-12@p">
+                    <div class="wt-text-align-right">
+                        <a class="wt-color-primary" onclick="openModal('forgotModal')">Forgot password?</a>
+                    </div>
+                </div>
+                <div class="wt-grid-item size-12@p">
+                    <button type="submit" class="wt-btn wt-btn-primary wt-btn-large wt-fullwidth">Log In</button>
+                </div>
+                <div class="wt-grid-item size-12@p">
+                    {{#each flash}}
+                    <p class="alert">{{this}}</p>
+                    {{/each}}
                 </div>
             </div>
-            <div class="wt-grid-item size-12@p">
-                <a href="./patient_home">
-                    <button class="wt-btn wt-btn-primary wt-btn-large wt-fullwidth">
-                        Login patient
-                    </button>
-                </a>
-            </div>
-            <div class="wt-grid-item size-12@p">
-                <a href="./clinician_dashboard">
-                    <button class="wt-btn wt-btn-primary wt-btn-large wt-fullwidth">
-                        Login clinician
-                    </button>
-                </a>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
 <div id="forgotModal" class="wt-modal">

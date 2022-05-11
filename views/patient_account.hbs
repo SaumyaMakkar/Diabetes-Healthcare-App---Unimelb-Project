@@ -1,0 +1,118 @@
+{{> patient_sidebar}}
+{{> header}}
+<div class="panel-content">
+    <div class="wt-grid-container">
+        <div class="wt-grid-item size-12@p size-12@t">
+            <h1>My account</h1>
+        </div>
+        <div class="wt-grid-item size-12@p size-1@t">
+            <img class="wt-border-rounded" src="{{patient.urlImage}}" width="50px">
+        </div>
+        <div class="wt-grid-item size-12@p size-11@t">
+            <div class="wt-card wt-card-content">
+                <div class="wt-grid-container">
+                    <div class="wt-grid-item size-12@p size-12@t">
+                        <h2>Personal details</h2>
+                    </div>
+                    <div class="wt-grid-item size-6@t">
+                        <label>Given Name</label>
+                        <input name="givenName" type="text"  value={{patient.givenName}} />
+                    </div>
+                    <div class="wt-grid-item size-6@t">
+                        <label>Family Name</label>
+                        <input name="familyName" type="text" value={{patient.familyName}} />
+                    </div>
+                    <div class="wt-grid-item size-6@t">
+                        <label>Email</label>
+                        <input name="email" type="email" value={{patient.email}} readonly title="This value is permanent"/>
+                    </div>
+                    <div class="wt-grid-item size-6@t">
+                        <label>Year of Birth</label>
+                        <input name="yearOfBirth" type="text" pattern="\d*" placeholder="YYYY" maxlength="4" value={{patient.yearOfBirth}} />
+                    </div>
+                    <div class="wt-grid-item size-6@t">
+                        <label>Screen Name</label>
+                        <input name="screenName" type="text" value={{patient.screenName}} />
+                    </div>
+                    <div class="wt-grid-item size-12@t">
+                        <label>Bio</label>
+                        <textarea rows="5" name="bio" >{{patient.bio}}</textarea>
+                    </div>
+                    <div class="wt-grid-item size-12@p size-12@t">
+                        <div class="wt-text-align-right">
+                            <button type="submit" class="wt-btn wt-btn-secondary" onclick="updatePatientDetails()">Update personal details</button>
+                        </div>
+                    </div>
+                    <div class="wt-grid-item size-12@p size-12@t">
+                        <h2>Update password</h2>
+                    </div>
+                    <div class="wt-grid-item size-12@p size-6@t">
+                        <label>Old password</label>
+                        <input name="oldPassword" type="text" />
+                    </div>
+                    <div class="wt-grid-item size-12@p size-6@t">
+                        <label>New password</label>
+                        <input name="newPassword" type="text" />
+                    </div>
+                    <div class="wt-grid-item size-12@p size-12@t">
+                        <div class="wt-text-align-right">
+                            <button type="submit" class="wt-btn wt-btn-secondary" onclick="updatePassword()">Update
+                                password</button>
+                        </div>
+                    </div>
+                    <div class="wt-grid-item size-12@p size-12@t">
+                        <h2>Theme</h2>
+                         <br/>
+                         <br/>
+                         <p>Select new theme </p>
+                        <select id="themeSelector" onchange="onChangeTheme()" >
+                            <option value="default" >Default</option>
+                            <option value="summer" >Summer</option>
+                            <option value="winter" >Winter</option>
+                        </select>
+                    </div>
+                    <div class="wt-grid-item size-12@p size-12@t">
+                        <div class="wt-text-align-right">
+                            <button type="submit" class="wt-btn wt-btn-secondary" onclick="updateTheme()">Save theme</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        function onChangeTheme() {
+            var e = document.getElementById("themeSelector");
+            var selectedTheme = e.value;
+            let backgroundColor = "";
+            let primaryColor = "";
+            switch (selectedTheme) {
+                case "default":
+                    backgroundColor = "#13678A";
+                    primaryColor = "#4AA68B";
+                    break;
+                case "summer":
+                    backgroundColor = "#003a91";
+                    primaryColor = "#db5f00";
+                    break;
+
+                case "winter":
+                    backgroundColor = "#5a8996";
+                    primaryColor = "#087fce";
+                    break;
+
+            }
+            console.log(backgroundColor, primaryColor);
+            var style = document.createElement('style');
+            style.innerHTML = `:root {
+                --primary-color: ${backgroundColor};
+                --secondary-color: ${primaryColor};
+            }`;
+            document.getElementsByTagName('head')[0].appendChild(style);
+        }
+    </script>
+    <div id="notification_clinician" class="wt-notification"> </div>
+    <div id="notification_clinician_warning" class="wt-notification warning"> </div>
+</div>
