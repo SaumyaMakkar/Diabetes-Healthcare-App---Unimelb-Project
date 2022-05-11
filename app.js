@@ -7,7 +7,6 @@ const flash = require('express-flash')  // for showing login error messages
 const session = require('express-session')  // for managing user sessions
 const MongoStore = require('connect-mongo')
 const socket = require("socket.io");
-//const passport = require('./middleware/passport.js')
 
 /* Routes */
 const clinicianCommentsRouter = require('./routes/clinicianCommentsRouter')
