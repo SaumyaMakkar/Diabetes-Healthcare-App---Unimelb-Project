@@ -5,8 +5,9 @@ var format = require('date-fns/format')
 
 const getClinicianInfo = async (req, res, next) => {
     console.log("getClinicianInfo");
+    let clinicianId = req.user.referenceId;
     try {
-        const clinician = await Clinician.findById("6261e9d38bc788f1c0aaa43e").lean()
+        const clinician = await Clinician.findById(clinicianId).lean()
         if (!clinician) {
             // no clinician found in database
             return res.sendStatus(404)
@@ -14,7 +15,7 @@ const getClinicianInfo = async (req, res, next) => {
         // found clinician
         console.log("clinician");
         console.log(clinician);
-        
+
         return res.render('clinician_profile', { clinician: clinician })
     } catch (err) {
         return next(err)
@@ -23,8 +24,9 @@ const getClinicianInfo = async (req, res, next) => {
 
 const getAllPatients = async (req, res, next) => {
     console.log("getAllPatients");
+    let clinicianId = req.user.referenceId;
     try {
-        const patients = await Patient.find({ clinicianId: "6261e9d38bc788f1c0aaa43e" }).lean();
+        const patients = await Patient.find({ clinicianId: clinicianId }).lean();
         const newPatientsArray = [];
 
         for (let index = 0; index < patients.length; index++) {
@@ -98,7 +100,7 @@ const getPatientHealthDataById = async (req, res, next) => {
         // found patient
         console.log("patient");
         console.log(patient);
-        
+
         // find all the records of the patient
         const healthData = await Records.find({ patientId: req.params.id }).sort({ date: -1 }).lean()
         console.log("healthData");
@@ -142,6 +144,7 @@ const getAllPatientsComments = async (req, res, next) => {
 
 const insertPatient = async (req, res, next) => {
     console.log("insertPatient");
+    let clinicianId = req.user.referenceId;
     try {
         // get details from form
         const { email, urlImage, givenName, familyName, screenName, yearOfBirth, bio } = req.body;
@@ -155,7 +158,7 @@ const insertPatient = async (req, res, next) => {
             screenName: screenName,
             yearOfBirth: yearOfBirth,
             bio: bio,
-            clinicianId: "6261e9d38bc788f1c0aaa43e",    // hard-coded clinician ID for now
+            clinicianId: clinicianId,    // hard-coded clinician ID for now
             requiredRecordsHistory: [{
                 fromDate: new Date(),
                 records: {
@@ -265,7 +268,7 @@ const updateSettings = async (req, res, next) => {
         // find latest healthDataSettings
         let lastPosition = patient.requiredRecordsHistory.length - 1;
         const healthDataSettings = patient.requiredRecordsHistory[lastPosition].records;
-        
+
         // update the current values
         if (todayRecord) {
 
@@ -302,14 +305,14 @@ const insertSupportMessage = async (req, res, next) => {
     console.log("insertSupportMessage");
     try {
         const patient = await Patient.findById(req.params.id);
-        if(!patient) {
+        if (!patient) {
             // no patient found in database
             return res.sendStatus(404)
         }
 
         // get details from form
         const { message } = req.body;
-        
+
         // create new support message record
         const newSupportMessage = { message: message }
 
@@ -327,14 +330,14 @@ const insertClinicalNote = async (req, res, next) => {
     console.log("insertClinicalNote");
     try {
         const patient = await Patient.findById(req.params.id);
-        if(!patient) {
+        if (!patient) {
             // no patient found in database
             return res.sendStatus(404)
         }
 
         // get details from form 
         const { message } = req.body;
-        
+
         // create new clinical note record
         const newClinicalNote = { message: message }
 
@@ -386,10 +389,10 @@ const getPatientClinicalNotesById = async (req, res, next) => {
         console.log("clinicalNotes");
         console.log(clinicalNote);
 
-        return res.render('clinician_patient_notes', { 
+        return res.render('clinician_patient_notes', {
             patient: patient,
             clinicalNote: clinicalNote
-         })
+        })
     } catch (err) {
         return next(err)
     }
