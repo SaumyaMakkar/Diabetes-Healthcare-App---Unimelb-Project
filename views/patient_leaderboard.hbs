@@ -3,7 +3,56 @@
 <div class="panel-content">
     <div class="wt-grid-container">
         <div class="wt-grid-item size-12@p size-9@t">
-            <p>leaderboard</p>
+            <h1>Leaderboard</h1>
         </div>
+        <div class="wt-grid-item size-12@p size-12@t">
+            My Engagement rate: {{engagementRate}}%
+        </div>
+        {{#if (hasBadged engagementRate)}}
+        <div class="wt-grid-item size-12@p size-12@t">
+            Your rate is over 80% you won a badge. Congratulations 🎉
+        </div>
+        <div class="wt-grid-item size-12@p size-12@t">
+            <img src="./assets/img/badge.png" width="120px" />
+        </div>
+        {{/if}}
+
+        <div class="wt-grid-item size-12@p size-12@t">
+            <h2>Top 5 patients</h2>
+        </div>
+        <div class="wt-grid-item size-12@p size-12@t">
+            <div class="wt-grid-container">
+                <div class="wt-grid-item size-2@p size-2@t">
+                    <strong>Rank</strong>
+                </div>
+                <div class="wt-grid-item size-7@p size-7@t">
+                    <strong>Name</strong>
+                </div>
+                <div class="wt-grid-item size-2@p size-2@t">
+                    <strong>Engagement Rate</strong>
+                </div>
+            </div>
+        </div>
+        {{#each patients}}
+        <div class="wt-grid-item size-12@p size-12@t">
+            <div class="wt-card">
+                <div class="wt-card-content">
+                    <div class="wt-grid-container">
+                        <div class="wt-grid-item size-2@p size-2@t">
+                            {{order}}
+                        </div>
+
+                        <div class="wt-grid-item size-7@p size-7@t">
+                            <img class="wt-border-rounded" src="{{patientData.urlImage}}" width="40px">
+                            {{screenName}}
+                        </div>
+                        <div class="wt-grid-item size-2@p size-2@t">
+                            {{engagementRate}}%
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
     </div>
 </div>

@@ -16,6 +16,7 @@ const clinicianRouter = require('./routes/clinicianRouter')
 const patientDashboardRouter = require('./routes/patientDashboardRouter')
 const patientProfileRouter = require('./routes/patientProfileRouter')
 const patientRecordsRouter = require('./routes/patientRecordsRouter')
+const patientLeaderboardRouter = require('./routes/patientLeaderboardRouter')
 
 
 var format = require('date-fns/format')
@@ -35,6 +36,10 @@ app.engine('hbs', exphbs.engine({
     helpers: {
         dateFormat: x => {
             return format(x, 'dd/MM/yyyy')
+        },
+        hasBadged: rate => {
+            console.log("hasBadget")
+            return rate >= 40 ? true : false
         },
         dateHourFormat: x => {
             return format(x, 'dd/MM/yyyy hh:mm aaa')
@@ -151,11 +156,9 @@ app.use('/clinician_patients_comments', clinicianCommentsRouter)
 /* Patient */
 app.use('/patient_home', patientDashboardRouter)
 
-app.use('/patient_records', patientRecordsRouter)   
+app.use('/patient_records', patientRecordsRouter)
 
-app.get('/patient_leaderboard', (req, res) => {
-    res.render("patient_leaderboard")
-})
+app.use('/patient_leaderboard', patientLeaderboardRouter)
 
 app.use('/patient_profile', patientProfileRouter)
 app.get('/patient_charts', (req, res) => {

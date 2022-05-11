@@ -57,6 +57,11 @@ const schema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'records' 
     },
+    createdDate: {
+        type: Date,
+        immutable: true,
+        default: () => Date.now()
+    },
 });
 
 const Patient = mongoose.model('patients', schema)

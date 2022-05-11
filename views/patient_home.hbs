@@ -12,10 +12,14 @@
                     <h1>Welcome back {{patient.givenName}} 👋</h1>
                 </div>
                 <div class="wt-card wt-card-content pointer" style="display:flex; align-items:center">
-                    <a href="/patient_profile">
-                        <img class="wt-border-rounded" src="{{patient.urlImage}}" width="40px"> {{!--
-                        <span>Account</span>
-                        --}}
+                    <a href="/patient_profile" class="wt-visible@t wt-hidden@p">
+                        <div style="display: flex; align-items: center;">
+                            <img class="wt-border-rounded" src="{{patient.urlImage}}" width="40px">
+                            <span>Account</span>
+                        </div>
+                    </a>
+                    <a href="/patient_profile" class="wt-visible@p wt-hidden@t">
+                        <img class="wt-border-rounded" src="{{patient.urlImage}}" width="40px">
                     </a>
                 </div>
             </div>

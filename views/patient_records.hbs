@@ -14,7 +14,24 @@
                 </div>
             </div>
         </div>
-
+        <div class="wt-grid-item size-12@p size-12@t">
+            <h4>Charts</h4>
+        </div>
+        <div class="wt-grid-item size-12@p size-6@t">
+            <canvas id="glucoseLevelChart"></canvas>
+        </div>
+        <div class="wt-grid-item size-12@p size-6@t">
+            <canvas id="weightChart"></canvas>
+        </div>
+        <div class="wt-grid-item size-12@p size-6@t">
+            <canvas id="insulinDosesChart"></canvas>
+        </div>
+        <div class="wt-grid-item size-12@p size-6@t">
+            <canvas id="exerciseChart"></canvas>
+        </div>
+        <div class="wt-grid-item size-12@p size-12@t">
+            <h4>Records</h4>
+        </div>
         {{!-- Patient Data Card Table --}}
         <div class="wt-grid-item size-12@t">
             {{!-- Patient Data Card Table Header --}}
@@ -53,181 +70,188 @@
             </div>
             {{!-- Patient Data Card Table Content --}}
             {{#each healthData}}
-                <div class="wt-card">
-                    <div class="wt-card-content">
-                        <div class="wt-grid-container wt-hidden@p wt-visible-flex@t">
-                            <div class="wt-grid-item size-1@t">
-                            </div>
-
-                            <div class="wt-grid-item size-2@t">    
-                                {{date}}
-                            </div>
-
-                            <div class="wt-grid-item size-3@t">
-                                {{#if (isfill glucoseLevel.mandatory)}}
-                                    {{#if glucoseLevel.value}}
-                                        <span class="{{#checkOutOfThreshold glucoseLevel.outOfTheThreshold}} {{/checkOutOfThreshold}}">
-                                            {{{glucoseLevel.value}}}
-                                        </span>
-                                    {{else}}
-                                        <span>
-                                            -
-                                        </span>
-                                    {{/if}}
-                                {{else}}
-                                    <span>
-                                        -
-                                    </span>
-                                {{/if}}
-                            </div>
-
-                            <div class="wt-grid-item size-2@t">
-                                {{#if (isfill weight.mandatory)}}
-                                    {{#if weight.value}}
-                                        <span class="{{#checkOutOfThreshold weight.outOfTheThreshold}} {{/checkOutOfThreshold}}">
-                                            {{{weight.value}}}
-                                        </span>
-                                    {{else}}
-                                        <span>
-                                            -
-                                        </span>
-                                    {{/if}}
-                                {{else}}
-                                    <span>
-                                        -
-                                    </span>
-                                {{/if}}
-                            </div>
-
-                            <div class="wt-grid-item size-2@t">
-                                {{#if (isfill insulinDoses.mandatory)}}
-                                    {{#if insulinDoses.value}}
-                                        <span class="{{#checkOutOfThreshold insulinDoses.outOfTheThreshold}} {{/checkOutOfThreshold}}">
-                                            {{{insulinDoses.value}}}
-                                        </span>
-                                    {{else}}
-                                        <span>
-                                            -
-                                        </span>
-                                    {{/if}}
-                                {{else}}
-                                    <span>
-                                        -
-                                    </span>
-                                {{/if}}
-                            </div>
-
-                            <div class="wt-grid-item size-2@t">
-                                {{#if (isfill exercise.mandatory)}}
-                                    {{#if exercise.value}}
-                                        <span class="{{#checkOutOfThreshold exercise.outOfTheThreshold}} {{/checkOutOfThreshold}}">
-                                            {{{exercise.value}}}
-                                        </span>
-                                    {{else}}
-                                        <span>
-                                            -
-                                        </span>
-                                    {{/if}}
-                                {{else}}
-                                    <span>
-                                        -
-                                    </span>
-                                {{/if}}
-                            </div>    
+            <div class="wt-card">
+                <div class="wt-card-content">
+                    <div class="wt-grid-container wt-hidden@p wt-visible-flex@t">
+                        <div class="wt-grid-item size-1@t">
                         </div>
 
-                        <div class="wt-grid-container wt-hidden@t wt-visible-flex@p">
-                            <div class="wt-grid-item size-12@p">
-                                {{date}}
-                            </div>
-                            <span class="wt-grid-item size-6@p">
-                                <strong>Blood Glucose Level</strong>
-                            </span>
-                            <span class="wt-grid-item size-6@p">
-                                {{#if (isfill glucoseLevel.mandatory)}}
-                                    {{#if glucoseLevel.value}}
-                                        <span class="{{#checkOutOfThreshold glucoseLevel.outOfTheThreshold}} {{/checkOutOfThreshold}}">
-                                            {{{glucoseLevel.value}}}
-                                        </span>
-                                    {{else}}
-                                        <span>
-                                            -
-                                        </span>
-                                    {{/if}}
-                                {{else}}
-                                    <span>
-                                        -
-                                    </span>
-                                {{/if}}
-                            </span>
+                        <div class="wt-grid-item size-2@t">
+                            {{date}}
+                        </div>
 
-                            <span class="wt-grid-item size-6@p">
-                                <strong>Weight</strong>
+                        <div class="wt-grid-item size-3@t">
+                            {{#if (isfill glucoseLevel.mandatory)}}
+                            {{#if glucoseLevel.value}}
+                            <span
+                                class="{{#checkOutOfThreshold glucoseLevel.outOfTheThreshold}} {{/checkOutOfThreshold}}">
+                                {{{glucoseLevel.value}}}
                             </span>
-                            <span class="wt-grid-item size-6@p">
-                                {{#if (isfill weight.mandatory)}}
-                                    {{#if weight.value}}
-                                        <span class="{{#checkOutOfThreshold weight.outOfTheThreshold}} {{/checkOutOfThreshold}}">
-                                            {{{weight.value}}}
-                                        </span>
-                                    {{else}}
-                                        <span>
-                                            -
-                                        </span>
-                                    {{/if}}
-                                {{else}}
-                                    <span>
-                                        -
-                                    </span>
-                                {{/if}}
+                            {{else}}
+                            <span>
+                                -
                             </span>
+                            {{/if}}
+                            {{else}}
+                            <span>
+                                -
+                            </span>
+                            {{/if}}
+                        </div>
 
-                            <span class="wt-grid-item size-6@p">
-                                <strong>Insulin Doses</strong>
+                        <div class="wt-grid-item size-2@t">
+                            {{#if (isfill weight.mandatory)}}
+                            {{#if weight.value}}
+                            <span class="{{#checkOutOfThreshold weight.outOfTheThreshold}} {{/checkOutOfThreshold}}">
+                                {{{weight.value}}}
                             </span>
-                            <span class="wt-grid-item size-6@p">
-                                {{#if (isfill insulinDoses.mandatory)}}
-                                    {{#if insulinDoses.value}}
-                                        <span class="{{#checkOutOfThreshold insulinDoses.outOfTheThreshold}} {{/checkOutOfThreshold}}">
-                                            {{{insulinDoses.value}}}
-                                        </span>
-                                    {{else}}
-                                        <span>
-                                            -
-                                        </span>
-                                    {{/if}}
-                                {{else}}
-                                    <span>
-                                        -
-                                    </span>
-                                {{/if}}
+                            {{else}}
+                            <span>
+                                -
                             </span>
+                            {{/if}}
+                            {{else}}
+                            <span>
+                                -
+                            </span>
+                            {{/if}}
+                        </div>
 
-                            <span class="wt-grid-item size-6@p">
-                                <strong>Exercise</strong>
+                        <div class="wt-grid-item size-2@t">
+                            {{#if (isfill insulinDoses.mandatory)}}
+                            {{#if insulinDoses.value}}
+                            <span
+                                class="{{#checkOutOfThreshold insulinDoses.outOfTheThreshold}} {{/checkOutOfThreshold}}">
+                                {{{insulinDoses.value}}}
                             </span>
-                            <span class="wt-grid-item size-6@p">
-                                {{#if (isfill exercise.mandatory)}}
-                                    {{#if exercise.value}}
-                                        <span class="{{#checkOutOfThreshold exercise.outOfTheThreshold}} {{/checkOutOfThreshold}}">
-                                            {{{exercise.value}}}
-                                        </span>
-                                    {{else}}
-                                        <span>
-                                            -
-                                        </span>
-                                    {{/if}}
-                                {{else}}
-                                    <span>
-                                        -
-                                    </span>
-                                {{/if}}
+                            {{else}}
+                            <span>
+                                -
                             </span>
+                            {{/if}}
+                            {{else}}
+                            <span>
+                                -
+                            </span>
+                            {{/if}}
+                        </div>
+
+                        <div class="wt-grid-item size-2@t">
+                            {{#if (isfill exercise.mandatory)}}
+                            {{#if exercise.value}}
+                            <span class="{{#checkOutOfThreshold exercise.outOfTheThreshold}} {{/checkOutOfThreshold}}">
+                                {{{exercise.value}}}
+                            </span>
+                            {{else}}
+                            <span>
+                                -
+                            </span>
+                            {{/if}}
+                            {{else}}
+                            <span>
+                                -
+                            </span>
+                            {{/if}}
                         </div>
                     </div>
+
+                    <div class="wt-grid-container wt-hidden@t wt-visible-flex@p">
+                        <div class="wt-grid-item size-12@p">
+                            {{date}}
+                        </div>
+                        <span class="wt-grid-item size-6@p">
+                            <strong>Blood Glucose Level</strong>
+                        </span>
+                        <span class="wt-grid-item size-6@p">
+                            {{#if (isfill glucoseLevel.mandatory)}}
+                            {{#if glucoseLevel.value}}
+                            <span
+                                class="{{#checkOutOfThreshold glucoseLevel.outOfTheThreshold}} {{/checkOutOfThreshold}}">
+                                {{{glucoseLevel.value}}}
+                            </span>
+                            {{else}}
+                            <span>
+                                -
+                            </span>
+                            {{/if}}
+                            {{else}}
+                            <span>
+                                -
+                            </span>
+                            {{/if}}
+                        </span>
+
+                        <span class="wt-grid-item size-6@p">
+                            <strong>Weight</strong>
+                        </span>
+                        <span class="wt-grid-item size-6@p">
+                            {{#if (isfill weight.mandatory)}}
+                            {{#if weight.value}}
+                            <span class="{{#checkOutOfThreshold weight.outOfTheThreshold}} {{/checkOutOfThreshold}}">
+                                {{{weight.value}}}
+                            </span>
+                            {{else}}
+                            <span>
+                                -
+                            </span>
+                            {{/if}}
+                            {{else}}
+                            <span>
+                                -
+                            </span>
+                            {{/if}}
+                        </span>
+
+                        <span class="wt-grid-item size-6@p">
+                            <strong>Insulin Doses</strong>
+                        </span>
+                        <span class="wt-grid-item size-6@p">
+                            {{#if (isfill insulinDoses.mandatory)}}
+                            {{#if insulinDoses.value}}
+                            <span
+                                class="{{#checkOutOfThreshold insulinDoses.outOfTheThreshold}} {{/checkOutOfThreshold}}">
+                                {{{insulinDoses.value}}}
+                            </span>
+                            {{else}}
+                            <span>
+                                -
+                            </span>
+                            {{/if}}
+                            {{else}}
+                            <span>
+                                -
+                            </span>
+                            {{/if}}
+                        </span>
+
+                        <span class="wt-grid-item size-6@p">
+                            <strong>Exercise</strong>
+                        </span>
+                        <span class="wt-grid-item size-6@p">
+                            {{#if (isfill exercise.mandatory)}}
+                            {{#if exercise.value}}
+                            <span class="{{#checkOutOfThreshold exercise.outOfTheThreshold}} {{/checkOutOfThreshold}}">
+                                {{{exercise.value}}}
+                            </span>
+                            {{else}}
+                            <span>
+                                -
+                            </span>
+                            {{/if}}
+                            {{else}}
+                            <span>
+                                -
+                            </span>
+                            {{/if}}
+                        </span>
+                    </div>
                 </div>
-                <br />
+            </div>
+            <br />
             {{/each}}
         </div>
     </div>
+    <script>
+        getGraphData();
+    </script>
 </div>

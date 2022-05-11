@@ -1,21 +1,71 @@
-const Clinician = require('../models/clinicians')
 const Patient = require('../models/patients')
 const Records = require('../models/records')
+const mongoose = require('mongoose')
 var format = require('date-fns/format')
 
-const getClinicianInfo = async (req, res, next) => {
-    console.log("getClinicianInfo");
+const getPatientDashboard = async (req, res, next) => {
+    console.log("getPatientDashboard");
+
+    // Patient Pat's ID
+    const patientId = "6266b28279efed36161bf58a";
+
     try {
-        const clinician = await Clinician.findById("6261e9d38bc788f1c0aaa43e").lean()
-        if (!clinician) {
-            // no clinician found in database
+        const patient = await Patient.findById(patientId).lean()
+        if (!patient) {
+            // no patient found in database
             return res.sendStatus(404)
         }
-        // found clinician
-        console.log("clinician");
-        console.log(clinician);
-        
-        return res.render('clinician_profile', { clinician: clinician })
+        // found patient
+        console.log("patient");
+        console.log(patient);
+
+        const today = format(new Date(), 'dd/MM/yyyy');
+
+        // find latest healthDataSettings
+        let lastPosition = patient.requiredRecordsHistory.length - 1;
+        const healthDataSettings = patient.requiredRecordsHistory[lastPosition].records;
+
+        // find the last record for today if not create one
+        let lastRecord = await Records.findOne({ patientId: patientId, date: today }).sort({ date: -1 }).lean()
+        if (!lastRecord) {
+            await Records.create({
+                patientId: patientId,
+                date: today,
+                glucoseLevel: {
+                    value: 0,
+                    comment: "",
+                    outOfTheThreshold: false,
+                    mandatory: healthDataSettings.glucoseLevel.mandatory
+                },
+                weight: {
+                    value: 0,
+                    comment: "",
+                    outOfTheThreshold: false,
+                    mandatory: healthDataSettings.weight.mandatory
+                },
+                insulinDoses: {
+                    value: 0,
+                    comment: "",
+                    outOfTheThreshold: false,
+                    mandatory: healthDataSettings.insulinDoses.mandatory
+                },
+                exercise: {
+                    value: 0,
+                    comment: "",
+                    outOfTheThreshold: false,
+                    mandatory: healthDataSettings.exercise.mandatory
+                }
+            })
+        }
+        lastRecord = await Records.findOne({ patientId: patientId, date: today }).sort({ date: -1 }).lean()
+        console.log("lastRecord");
+        console.log(lastRecord);
+
+        return res.render('patient_home', {
+            patient: patient,
+            healthDataSettings: healthDataSettings,
+            lastRecord: lastRecord
+        })
     } catch (err) {
         return next(err)
     }
@@ -87,6 +137,42 @@ const getAllPatients = async (req, res, next) => {
     }
 }
 
+//waiting for login passport
+const getPatientHealthDataByManualId = async (req, res, next) => {
+    console.log("getPatientHealthDataByManualId");
+    
+    // Patient Pat's ID
+    const patientId = "6266b28279efed36161bf58a";
+
+    try {
+        const patient = await Patient.findById(patientId).lean()
+        if (!patient) {
+            // no patient found in database
+            return res.sendStatus(404)
+        }
+        // found patient
+        console.log("patient");
+        console.log(patient);
+
+        // find all the records of the patient
+        const healthData = await Records.find({ patientId: patientId }).sort({ date: -1 }).lean()
+        console.log("healthData");
+        console.log(healthData);
+
+        // find latest healthDataSettings
+        let lastPosition = patient.requiredRecordsHistory.length - 1;
+        const healthDataSettings = patient.requiredRecordsHistory[lastPosition].records;
+
+        return res.render('patient_records', {
+            patient: patient,
+            healthDataSettings: healthDataSettings,
+            healthData: healthData
+        })
+    } catch (err) {
+        return next(err)
+    }
+}
+
 const getPatientHealthDataById = async (req, res, next) => {
     console.log("getPatientHealthDataById");
     try {
@@ -118,6 +204,51 @@ const getPatientHealthDataById = async (req, res, next) => {
     }
 }
 
+const getPatientSupportMessagesById = async (req, res, next) => {
+    console.log("getPatientSupportMessagesById");
+    try {
+        const patient = await Patient.findById(req.params.id).lean()
+        if (!patient) {
+            // no patient found in database
+            return res.sendStatus(404)
+        }
+
+        // find all the support messages of the patient
+        const supportMessage = (patient.supportMessages).reverse()
+        console.log("supportMessages");
+        console.log(supportMessage);
+
+        return res.render('clinician_patient_support_messages', {
+            patient: patient,
+            supportMessage: supportMessage
+        })
+    } catch (err) {
+        return next(err)
+    }
+}
+
+const getPatientClinicalNotesById = async (req, res, next) => {
+    console.log("getPatientClinicalNotesById");
+    try {
+        const patient = await Patient.findById(req.params.id).lean()
+        if (!patient) {
+            // no patient found in database
+            return res.sendStatus(404)
+        }
+
+        // find all the clinical notes of the patient
+        const clinicalNote = (patient.notes).reverse()
+        console.log("clinicalNotes");
+        console.log(clinicalNote);
+
+        return res.render('clinician_patient_notes', { 
+            patient: patient,
+            clinicalNote: clinicalNote
+         })
+    } catch (err) {
+        return next(err)
+    }
+}
 
 const getPatientProfileById = async (req, res, next) => {
     console.log("getPatientProfileById");
@@ -347,54 +478,12 @@ const insertClinicalNote = async (req, res, next) => {
         return next(err)
     }
 }
+    
 
-
-const getPatientSupportMessagesById = async (req, res, next) => {
-    console.log("getPatientSupportMessagesById");
-    try {
-        const patient = await Patient.findById(req.params.id).lean()
-        if (!patient) {
-            // no patient found in database
-            return res.sendStatus(404)
-        }
-
-        // find all the support messages of the patient
-        const supportMessage = (patient.supportMessages).reverse()
-        console.log("supportMessages");
-        console.log(supportMessage);
-
-        return res.render('clinician_patient_support_messages', {
-            patient: patient,
-            supportMessage: supportMessage
-        })
-    } catch (err) {
-        return next(err)
-    }
-}
-
-const getPatientClinicalNotesById = async (req, res, next) => {
-    console.log("getPatientClinicalNotesById");
-    try {
-        const patient = await Patient.findById(req.params.id).lean()
-        if (!patient) {
-            // no patient found in database
-            return res.sendStatus(404)
-        }
-
-        // find all the clinical notes of the patient
-        const clinicalNote = (patient.notes).reverse()
-        console.log("clinicalNotes");
-        console.log(clinicalNote);
-
-        return res.render('clinician_patient_notes', { 
-            patient: patient,
-            clinicalNote: clinicalNote
-         })
-    } catch (err) {
-        return next(err)
-    }
-}
 module.exports = {
+    getPatientDashboard,
+    getAllPatients,
+    getPatientHealthDataByManualId,
     getPatientHealthDataById,
     getPatientSupportMessagesById,
     getPatientClinicalNotesById,
@@ -403,7 +492,5 @@ module.exports = {
     insertPatient,
     updateSettings,
     insertSupportMessage,
-    insertClinicalNote,
-    getClinicianInfo,
-    getAllPatients
+    insertClinicalNote
 }

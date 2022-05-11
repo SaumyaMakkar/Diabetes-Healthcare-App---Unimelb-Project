@@ -4,10 +4,10 @@ const express = require('express')
 const clinicianCommentsRouter = express.Router()
 
 // require our controller
-const patientController = require('../controllers/patientController')
+const clinicianController = require('../controllers/clinicianController')
 
 // add a route to handle the GET request for all demo data
-clinicianCommentsRouter.get('/', patientController.getAllPatientsComments)
+clinicianCommentsRouter.get('/', clinicianController.getAllPatientsComments)
 
 
 
