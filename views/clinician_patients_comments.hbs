@@ -25,8 +25,13 @@
                     </div>
                 </div>
             </div>
+            {{!-- --}}
 
             {{#each patients}}
+            {{#if (or (checkLength record_patient.0.glucoseLevel.comment) (checkLength
+            record_patient.0.weight.comment) (checkLength record_patient.0.insulinDoses.comment) (checkLength
+            record_patient.0.exercise.comment))}}
+            {{!-- {{#if true}} --}}
             <div class="wt-card">
                 <div class="wt-card-content">
                     <div class="wt-grid-container">
@@ -39,8 +44,8 @@
                         <div class="wt-grid-item size-3@t">
                             <div class="wt-grid-container">
                                 <div class="wt-grid-item size-3@t" style="padding: 0%;">
-                                    {{!-- <img class="wt-border-rounded" src="/assets/img/patient_img.png" width="40px">
-                                    --}}
+                                    <img class="wt-border-rounded" src="/assets/img/patient_img.png" width="30px">
+
                                 </div>
                                 <div class="wt-grid-item size-9@t" style="padding: 0% ;">
                                     {{!-- Jean Vera --}}
@@ -60,9 +65,11 @@
                         </div>
                         <div class="wt-grid-item size-4@t" style="padding: 0%; margin-top:-2%;">
                             <div class="wt-grid-item size-12@t" style="align-items: center;margin-top:-5%;">
-                                <div class="wt-card" id="vertical_scroll_card"
-                                    style="height: 50px; padding: 4% 10% 4% 30%; box-sizing: border-box;">
-                                    {{record_patient.0.glucoseLevel.comment}}
+                                <div class="wt-card" id="vertical_scroll_card">
+                                    <a href="./clinician_dashboard/{{_id}}/clinician_patient_data">
+                                        <input type="text" readonly name="glucose" id="glu"
+                                            value="{{record_patient.0.glucoseLevel.comment}}" style="margin: 0;">
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -76,9 +83,11 @@
                         </div>
                         <div class="wt-grid-item size-4@t" style="padding: 0%;margin-top:-2%;">
                             <div class="wt-grid-item size-12@t" style="align-items: center;">
-                                <div class="wt-card" id="vertical_scroll_card"
-                                    style="height: 50px; padding: 4% 10% 4% 30%; box-sizing: border-box;">
-                                    {{record_patient.0.weight.comment}}
+                                <div class="wt-card" id="vertical_scroll_card">
+                                    <a href="./clinician_dashboard/{{_id}}/clinician_patient_data">
+                                        <input type="text" readonly name="glucose" id="glu"
+                                            value="{{record_patient.0.weight.comment}}" style="margin: 0;">
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -92,9 +101,12 @@
                         </div>
                         <div class="wt-grid-item size-4@t" style="padding: 0%; margin-top:-2%;">
                             <div class="wt-grid-item size-12@t" style="align-items: center;">
-                                <div class="wt-card" id="vertical_scroll_card"
-                                    style="height: 50px; padding: 4% 10% 4% 30%; box-sizing: border-box;">
-                                    {{record_patient.0.insulinDoses.comment}}
+
+                                <div class="wt-card" id="vertical_scroll_card">
+                                    <a href="./clinician_dashboard/{{_id}}/clinician_patient_data">
+                                        <input type="text" readonly name="glucose" id="glu"
+                                            value="{{record_patient.0.insulinDoses.comment}}" style="margin: 0;">
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -109,9 +121,12 @@
                         </div>
                         <div class="wt-grid-item size-4@t" style="padding: 0%;margin-top:-2%;">
                             <div class="wt-grid-item size-12@t" style="align-items: center;">
-                                <div class="wt-card" id="vertical_scroll_card"
-                                    style="height: 50px; padding: 4% 10% 4% 30%; box-sizing: border-box;">
-                                    {{record_patient.0.exercise.comment}}
+
+                                <div class="wt-card" id="vertical_scroll_card">
+                                    <a href="./clinician_dashboard/{{_id}}/clinician_patient_data">
+                                        <input type="text" readonly name="glucose" id="glu"
+                                            value="{{record_patient.0.exercise.comment}}" style="margin: 0;">
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -121,6 +136,8 @@
                 </div>
             </div>
             <br />
+            {{/if}}
+
             {{/each}}
         </div>
 

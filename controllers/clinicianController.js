@@ -33,10 +33,10 @@ const updateClinicianProfile = async (req, res, next) => {
 			'6261e9d38bc788f1c0aaa43e',
 			req.body
 		).lean();
-		
+
 
 		res.redirect('/clinician_profile');
-	} catch (error) {}
+	} catch (error) { }
 };
 
 module.exports = {

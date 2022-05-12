@@ -3,6 +3,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
+const methodOverride = require('method-override');
+
 
 /* Routes */
 const clinicianCommentsRouter = require('./routes/clinicianCommentsRouter')
@@ -19,6 +21,8 @@ const app = express()
 app.use(express.json());
 
 app.use(express.static("public"));
+app.use(methodOverride('_method'));
+
 
 app.engine('hbs', exphbs.engine({
     defaultlayout: "main",
@@ -58,9 +62,13 @@ app.engine('hbs', exphbs.engine({
             }
             return true;
         },
-
+        getCurrentDate: () => Date.now(),
+        or() {
+            return Array.prototype.slice.call(arguments, 0, -1).some(Boolean);
+        }
     }
-}))
+})
+);
 
 app.set("view engine", "hbs")
 
@@ -68,40 +76,41 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use((req, res, next) => {
     console.log('message arrived: ' + req.method + ' ' + req.path)
-    next()
-})
+    next();
+});
 
 /* Setting routes */
 
 /* Website */
 app.get('/', (req, res) => {
     res.render("index")
-})
+});
 
 app.get('/about', (req, res) => {
     res.render("about")
-})
+});
 
 app.get('/login', (req, res) => {
     res.render("login")
 })
 
 /* Clinician */
-app.use('/clinician_dashboard', clinicianPatientRouter)
+app.use('/clinician_dashboard', clinicianPatientRouter);
 
-app.use('/clinician_profile', clinicianRouter)
+app.use('/clinician_profile', clinicianRouter);
 
-app.use('/clinician_patients_comments', clinicianCommentsRouter)
+app.use('/clinician_patients_comments', clinicianCommentsRouter);
 
 /* Patient */
 
-app.use('/patient_home', patientDashboardRouter)
+app.use('/patient_home', patientDashboardRouter);
 
-app.use('/patient_records', patientRecordsRouter)   
-
+app.get('/patient_records', (req, res) => {
+    res.render('patient_records');
+});
 app.get('/patient_leaderboard', (req, res) => {
-    res.render("patient_leaderboard")
-})
+    res.render("patient_leaderboard");
+});
 
 app.get('/patient_profile', (req, res) => {
     res.render("patient_profile")
@@ -129,7 +138,7 @@ db.once('open', async () => {
 
 const port = process.env.PORT || 3000;
 
-// Tells the app to listen on port 3000 and logs tha tinformation to the console.
+// Tells the app to listen on port 3000 and logs the information to the console.
 app.listen(port, () => {
     console.log('Demo app is listening on port 3000!')
 })

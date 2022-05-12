@@ -6,6 +6,8 @@ const schema = new mongoose.Schema({
     urlImage: String,
     givenName: String,
     familyName: String,
+    headline: String,
+
     contactNumber: String,
     yearOfBirth: String,
     bio: String,

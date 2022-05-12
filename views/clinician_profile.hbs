@@ -10,7 +10,7 @@
             </div>
             <div class="wt-grid-item size-12@t" style="">
                 <h3>{{clinician.givenName}} {{clinician.familyName}}</h3>
-                <p style="color: grey; font-size:small;">Accredited Practicing Dietician</p>
+                <p style="color: grey; font-size:small;">{{clinician.headline}}</p>
             </div>
         </div>
 
@@ -154,15 +154,15 @@
                         <div class="wt-grid-item size-5@t"></div>
                         <div class="wt-grid-item size-6@t">
                             <label>Given Name/s</label>
-                            <input name="givenName" type="text" />
+                            <input name="givenName" type="text" value={{clinician.givenName}} />
                         </div>
                         <div class="wt-grid-item size-6@t">
                             <label>Family Name</label>
-                            <input name="familyName" type="text" />
+                            <input name="familyName" type="text" value={{clinician.familyName}} />
                         </div>
                         <div class="wt-grid-item size-9@t">
                             <label>Headline</label>
-                            <input name="headline" type="text" />
+                            <input name="headline" type="text" value={{clinician.headline}} />
                         </div>
                         <div class="wt-grid-item size-12@t">
                             <div class="wt-text-align-right">
@@ -208,46 +208,49 @@
                         <div class="wt-grid-item size-12@t">
                             <h2>Edit your Profile</h2>
                         </div>
-                            <div class="wt-grid-item size-6@t">
-                                <label>Email</label>
-                                <input name="email" type="email" value="{{clinician.email}}" />
+                        <div class="wt-grid-item size-6@t">
+                            <label>Email</label>
+                            <input name="email" type="email" value="{{clinician.email}}" />
+                        </div>
+                        <div class="wt-grid-item size-6@t">
+                            <label>Address</label>
+                            <input name="addressInfo[address]" type="tel" value="{{clinician.addressInfo.address}}" />
+                        </div>
+                        <div class="wt-grid-item size-6@t">
+                            <label>Contact Number</label>
+                            <input name="contactNumber" type="text" value="{{clinician.contactNumber}}" />
+                        </div>
+                        <div class="wt-grid-item size-3@t">
+                            <label>City/Suburb</label>
+                            <input name="addressInfo[citySuburb]" type="text"
+                                value="{{clinician.addressInfo.citySuburb}}" />
+                        </div>
+                        <div class="wt-grid-item size-3@t">
+                            <label>State</label>
+                            <input name="addressInfo[state]" type="text" value="{{clinician.addressInfo.state}}" />
+                        </div>
+                        <div class="wt-grid-item size-3@t">
+                            <label>Password</label>
+                            <input name="password" type="password" value="{{clinician.password}}" />
+                        </div>
+                        <div class="wt-grid-item size-3@t">
+                            <label>Year of Birth</label>
+                            <input name="yearOfBirth" type="text" pattern="\d*" placeholder="YYYY" maxlength="4"
+                                value="{{clinician.yearOfBirth}}" />
+                        </div>
+                        <div class="wt-grid-item size-3@t">
+                            <label>Country</label>
+                            <input name="addressInfo[country]" type="text" value="{{clinician.addressInfo.country}}" />
+                        </div>
+                        <div class="wt-grid-item size-3@t">
+                            <label>Postcode</label>
+                            <input name="addressInfo[postcode]" type="text"
+                                value="{{clinician.addressInfo.postcode}}" />
+                        </div>
+                        <div class="wt-grid-item size-12@t">
+                            <div class="wt-text-align-right">
+                                <button type="submit" class="wt-btn wt-btn-secondary">SAVE</button>
                             </div>
-                            <div class="wt-grid-item size-6@t">
-                                <label>Address</label>
-                                <input name="addressInfo[address]" type="tel" value="{{clinician.addressInfo.address}}"/>
-                            </div>
-                            <div class="wt-grid-item size-6@t">
-                                <label>Contact Number</label>
-                                <input name="contactNumber" type="text" value="{{clinician.contactNumber}}"/>
-                            </div>
-                            <div class="wt-grid-item size-3@t">
-                                <label>City/Suburb</label>
-                                <input name="addressInfo[citySuburb]" type="text" value="{{clinician.addressInfo.citySuburb}}"/>
-                            </div>
-                            <div class="wt-grid-item size-3@t">
-                                <label>State</label>
-                                <input name="addressInfo[state]" type="text" value="{{clinician.addressInfo.state}}"/>
-                            </div>
-                            <div class="wt-grid-item size-3@t">
-                                <label>Password</label>
-                                <input name="password" type="password" value="{{clinician.password}}"/>
-                            </div>
-                            <div class="wt-grid-item size-3@t">
-                                <label>Year of Birth</label>
-                                <input name="yearOfBirth" type="text" pattern="\d*" placeholder="YYYY" maxlength="4" value="{{clinician.yearOfBirth}}"/>
-                            </div>
-                            <div class="wt-grid-item size-3@t">
-                                <label>Country</label>
-                                <input name="addressInfo[country]" type="text" value="{{clinician.addressInfo.country}}"/>
-                            </div>
-                            <div class="wt-grid-item size-3@t">
-                                <label>Postcode</label>
-                                <input name="addressInfo[postcode]" type="text" value="{{clinician.addressInfo.postcode}}"/>
-                            </div>
-                            <div class="wt-grid-item size-12@t">
-                                <div class="wt-text-align-right">
-                                    <button type="submit" class="wt-btn wt-btn-secondary">SAVE</button>
-                                </div>
 
                         </div>
                     </div>

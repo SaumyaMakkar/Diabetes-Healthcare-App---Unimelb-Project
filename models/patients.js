@@ -53,10 +53,10 @@ const schema = new mongoose.Schema({
     requiredRecordsHistory: [recordSchema],
     supportMessages: [textSchema],
     notes: [textSchema],
-    record_patient: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'records' 
-    },
+    record_patient: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'records'
+    }],
 });
 
 const Patient = mongoose.model('patients', schema)
