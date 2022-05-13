@@ -74,8 +74,8 @@ const getPatientDashboard = async (req, res, next) => {
 }
 
 
-const getPatientHealthDataByManualId = async (req, res, next) => {
-    console.log("getPatientHealthDataByManualId");
+const getPatientHealthDataByUserId = async (req, res, next) => {
+    console.log("getPatientHealthDataByUserId");
 
     // Patient Pat's ID
     const patientId = req.user.referenceId;
@@ -216,6 +216,44 @@ const getPatientLeaderboard = async (req, res, next) => {
 
 }
 
+
+const updatePatientDetails = async (req, res, next) => {
+
+    console.log("updatePatientDetails")
+    const clientId = req.user.referenceId;
+
+    console.log(req.user)
+    try {
+        const { givenName, familyName, screenName, yearOfBirth, bio } = req.body;
+
+        const patient = await Patient.findById(clientId);
+        console.log(patient)
+        if (!patient) {
+            return res.json({
+                result: false,
+                msg:"not found"
+            })
+        }
+
+        patient.givenName = givenName;
+        patient.familyName = familyName;
+        patient.screenName = screenName;
+        patient.yearOfBirth = yearOfBirth;
+        patient.bio = bio;
+
+        await patient.save();
+        return res.json({
+            result: true,
+            msg: "Personal details updated"
+        })
+
+
+    } catch (err) {
+        console.log(err)
+        return res.json({ result: false, msg: err })
+    }
+}
+
 //Comparer Function    
 function GetSortOrder(prop) {
     return function (a, b) {
@@ -230,7 +268,8 @@ function GetSortOrder(prop) {
 
 module.exports = {
     getPatientDashboard,
-    getPatientHealthDataByManualId,
+    getPatientHealthDataByUserId,
     getPatientLeaderboard,
     getPatientProfile,
+    updatePatientDetails
 }

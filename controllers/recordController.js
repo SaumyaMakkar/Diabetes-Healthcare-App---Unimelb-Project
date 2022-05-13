@@ -1,5 +1,5 @@
 const Patient = require('../models/patients')
-const Record = require('../models/records')
+const Records = require('../models/records')
 const { io } = require("socket.io-client");
 var format = require('date-fns/format')
 
@@ -9,7 +9,7 @@ const insertRecord = async (req, res) => {
     console.log("insertRecord");
 
     // Patient Pat's ID
-    const clientId = "6266b28279efed36161bf58a";
+    const clientId = req.user.referenceId;
 
     try {
         const patient = await Patient.findById(clientId).lean()
@@ -48,7 +48,7 @@ const insertRecord = async (req, res) => {
         }
 
 
-        res.redirect('/patient_home')
+        res.json({result: true, msg:"Updated record"})
     } catch (err) {
         console.log(err)
         return res.json({ result: false, msg: err })

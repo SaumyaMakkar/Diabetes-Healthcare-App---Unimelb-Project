@@ -1034,9 +1034,11 @@ ul {
     right: -210px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-.wt-notification.warning{
+
+.wt-notification.warning {
     background: #ca9b00;
 }
+
 @keyframes movein {
     from {
         right: -210px;
@@ -1063,4 +1065,11 @@ ul {
 
 .pointer {
     cursor: pointer;
+}
+
+.support_message {
+    background-color: #ffedb1;
+    border: 1px solid #ca9b00;
+    padding: 16px;
+    border-radius: 25px;
 }

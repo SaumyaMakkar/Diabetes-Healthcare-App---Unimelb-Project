@@ -16,11 +16,11 @@
                     </div>
                     <div class="wt-grid-item size-6@t">
                         <label>Given Name</label>
-                        <input name="givenName" type="text"  value={{patient.givenName}} />
+                        <input name="givenName" type="text" required value={{patient.givenName}}  />
                     </div>
                     <div class="wt-grid-item size-6@t">
                         <label>Family Name</label>
-                        <input name="familyName" type="text" value={{patient.familyName}} />
+                        <input name="familyName" type="text" required value={{patient.familyName}}  />
                     </div>
                     <div class="wt-grid-item size-6@t">
                         <label>Email</label>
@@ -28,11 +28,11 @@
                     </div>
                     <div class="wt-grid-item size-6@t">
                         <label>Year of Birth</label>
-                        <input name="yearOfBirth" type="text" pattern="\d*" placeholder="YYYY" maxlength="4" value={{patient.yearOfBirth}} />
+                        <input name="yearOfBirth" type="text" required pattern="\d*" placeholder="YYYY" maxlength="4" value={{patient.yearOfBirth}}  />
                     </div>
                     <div class="wt-grid-item size-6@t">
                         <label>Screen Name</label>
-                        <input name="screenName" type="text" value={{patient.screenName}} />
+                        <input name="screenName" type="text" value={{patient.screenName}} required />
                     </div>
                     <div class="wt-grid-item size-12@t">
                         <label>Bio</label>
