@@ -203,6 +203,14 @@
                         <p>Please enter the following details</p>
                     </div>
                     <div class="wt-grid-item size-6@t">
+                        <label>Email</label>
+                        <input required name="email" type="email" />
+                    </div>
+                    <div class="wt-grid-item size-6@t">
+                        <label>Password</label>
+                        <input required name="password" type="password" minlength="8"/>
+                    </div>
+                    <div class="wt-grid-item size-6@t">
                         <label>Given Name</label>
                         <input required name="givenName" type="text" />
                     </div>
@@ -211,16 +219,12 @@
                         <input required name="familyName" type="text" />
                     </div>
                     <div class="wt-grid-item size-6@t">
-                        <label>Email</label>
-                        <input required name="email" type="email" />
-                    </div>
-                    <div class="wt-grid-item size-6@t">
                         <label>Year of Birth</label>
                         <input required name="yearOfBirth" type="text" pattern="\d*" placeholder="YYYY" maxlength="4" />
                     </div>
                     <div class="wt-grid-item size-6@t">
                         <label>Profile Picture URL</label>
-                        <input required name="urlImage" type="text" />
+                        <input name="urlImage" type="text" />
                     </div>
                     <div class="wt-grid-item size-6@t">
                         <label>Screen Name</label>
@@ -228,7 +232,7 @@
                     </div>
                     <div class="wt-grid-item size-12@t">
                         <label>Bio</label>
-                        <textarea required rows="5" name="bio" ></textarea>
+                        <textarea required rows="5" name="bio"></textarea>
                     </div>
                     <div class="wt-grid-item size-12@t">
                         <div class="wt-text-align-right">

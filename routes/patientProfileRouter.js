@@ -1,6 +1,6 @@
 const express = require('express')
 // add Express-Validator
-const { body, validationResult, check } = require('express-validator')
+const { check } = require('express-validator')
 
 // create our Router object
 const patientProfileRouter = express.Router()

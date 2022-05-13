@@ -1,6 +1,7 @@
 const Clinician = require('../models/clinicians')
 const Patient = require('../models/patients')
 const Records = require('../models/records')
+const Users = require('../models/users')
 var format = require('date-fns/format')
 
 const getClinicianInfo = async (req, res, next) => {
@@ -147,12 +148,13 @@ const insertPatient = async (req, res, next) => {
     let clinicianId = req.user.referenceId;
     try {
         // get details from form
-        const { email, urlImage, givenName, familyName, screenName, yearOfBirth, bio } = req.body;
-
+        const { email, password, urlImage, givenName, familyName, screenName, yearOfBirth, bio } = req.body;
+        const randomPos = Math.floor(Math.random() * 3);
+        const demoImages = ["https://cdn-icons-png.flaticon.com/512/921/921026.png?w=1060", "https://cdn-icons-png.flaticon.com/512/3048/3048122.png", "https://cdn-icons-png.flaticon.com/512/2922/2922510.png"]
         // create new patient
         const newPatient = await Patient.create({
             email: email,
-            urlImage: urlImage,
+            urlImage: urlImage ? urlImage : demoImages[randomPos],
             givenName: givenName,
             familyName: familyName,
             screenName: screenName,
@@ -165,27 +167,39 @@ const insertPatient = async (req, res, next) => {
                     glucoseLevel: {
                         upperThreshold: 0,
                         lowerThreshold: 0,
-                        mandatory: false
+                        mandatory: true
                     },
                     weight: {
                         upperThreshold: 0,
                         lowerThreshold: 0,
-                        mandatory: false
+                        mandatory: true
                     },
                     insulinDoses: {
                         upperThreshold: 0,
                         lowerThreshold: 0,
-                        mandatory: false
+                        mandatory: true
                     },
                     exercise: {
                         upperThreshold: 0,
                         lowerThreshold: 0,
-                        mandatory: false
+                        mandatory: true
                     }
                 }
             }],
             supportMessages: [],
             notes: []
+        })
+
+        const result = Users.create({
+            username: email,
+            password: password,
+            role: "patient",
+            colors: {
+                themeName: "default",
+                primaryColor: "#4AA68B",
+                backgroundColor: "#13678A"
+            },
+            referenceId: newPatient._id
         })
         console.log(newPatient);
 
