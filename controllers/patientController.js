@@ -141,9 +141,9 @@ const getPatientLeaderboard = async (req, res, next) => {
         let patients = await Patient.find()
         const patientsEngagement = []
         let userEngagementRate = 0;
-        for (let j = 0; j < patients.length; j++) {
+        for (let i = 0; i < patients.length; i++) {
 
-            const patient = patients[j];
+            const patient = patients[i];
             const createdDate = patient.createdDate;
             const nOfDays = differenceInDays(today, createdDate);
 
@@ -174,7 +174,7 @@ const getPatientLeaderboard = async (req, res, next) => {
                     numberOfRegisteredRecords++;
                 }
             }
-            const engagementRate = (numberOfRegisteredRecords * 100) / nOfDays;
+            const engagementRate = parseInt((numberOfRegisteredRecords * 100) / nOfDays);
 
             console.log("nOfDays")
             console.log(numberOfRegisteredRecords + " * 100 /" + nOfDays + " = " + engagementRate)

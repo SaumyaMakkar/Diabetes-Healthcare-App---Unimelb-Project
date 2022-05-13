@@ -38,7 +38,7 @@ app.engine('hbs', exphbs.engine({
         },
         hasBadged: rate => {
             console.log("hasBadget")
-            return rate >= 40 ? true : false
+            return rate >= 80 ? true : false
         },
         dateHourFormat: x => {
             return format(x, 'dd/MM/yyyy hh:mm aaa')
@@ -160,9 +160,6 @@ app.use('/patient_records', patientRecordsRouter)
 app.use('/patient_leaderboard', patientLeaderboardRouter)
 
 app.use('/patient_profile', patientProfileRouter)
-app.get('/patient_charts', (req, res) => {
-    res.render("patient_charts")
-})
 
 
 // App config
