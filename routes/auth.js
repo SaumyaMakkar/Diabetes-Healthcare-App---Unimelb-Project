@@ -2,8 +2,12 @@ const passport = require('passport')
 const express = require('express')
 const router = express.Router()
 
+// add Express-Validator
+const { body, validationResult, check } = require('express-validator')
 // require userController controller
 const userController = require('../controllers/userController')
+const { isAuthenticated, hasRole } = require('../middleware/authMiddleware')
+const { validator } = require('../middleware/validator.js')
 
 
 // Handle login
@@ -22,9 +26,15 @@ router.post('/login',
 )
 
 // Handle password
-router.post('/updatePatientDetails', userController.updatePatientDetails)
-// Handle password
-router.post('/updatePassword', userController.updatePassword)
+router.post('/updatePassword', isAuthenticated,
+    check('newPassword', "must be at least 8 characters long").isLength({ min: 8 }),
+    hasRole("patient"),
+    validator,
+    (req, res) => {
+        
+        console.log("/updatePassword")
+        userController.updatePassword(req, res)
+    })
 
 // Handle updateTheme
 router.post('/updateTheme', userController.updateTheme)

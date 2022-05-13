@@ -22,6 +22,10 @@ function insertRecord(healthType) {
         method: 'POST',
         body: JSON.stringify(body)
     }).then(response => {
+        console.log(response)
+        return response.json()
+    }).then(data => {
+        console.log(data)
         window.location.reload();
     })
 }
@@ -33,7 +37,11 @@ function updatePatientDetails() {
     const screenName = document.querySelector('[name="screenName"]').value;
     const yearOfBirth = document.querySelector('[name="yearOfBirth"]').value;
     const bio = document.querySelector('[name="bio"]').value;
-
+    console.log("givenName" + givenName)
+    if (givenName == "" || familyName == "" || screenName == "" || yearOfBirth == "") {
+        alert("Please fill the empty values");
+        return;
+    }
     const body = {
         givenName: givenName,
         familyName: familyName,
@@ -43,7 +51,7 @@ function updatePatientDetails() {
     }
     console.log(body)
     console.log("...loding")
-    fetch(`/auth/updatePatientDetails`, {
+    fetch(`/patient_profile/updatePatientDetails`, {
         headers: {
             'Content-Type': 'application/json'
         },

@@ -44,44 +44,6 @@ const updatePassword = async (req, res, next) => {
     }
 }
 
-
-const updatePatientDetails = async (req, res, next) => {
-
-    console.log("updatePatientDetails")
-    const clientId = req.user.referenceId;
-
-    console.log(req.user)
-    try {
-        const { givenName, familyName, screenName, yearOfBirth, bio } = req.body;
-
-        const patient = await Patient.findById(clientId);
-        console.log(patient)
-        if (!patient) {
-            return res.json({
-                result: false,
-                msg:"not found"
-            })
-        }
-
-        patient.givenName = givenName;
-        patient.familyName = familyName;
-        patient.screenName = screenName;
-        patient.yearOfBirth = yearOfBirth;
-        patient.bio = bio;
-
-        await patient.save();
-        return res.json({
-            result: true,
-            msg: "Personal details updated"
-        })
-
-
-    } catch (err) {
-        console.log(err)
-        return res.json({ result: false, msg: err })
-    }
-}
-
 const updateTheme = async (req, res, next) => {
 
     console.log("updateTheme")
@@ -115,6 +77,5 @@ const updateTheme = async (req, res, next) => {
 
 module.exports = {
     updatePassword,
-    updateTheme,
-    updatePatientDetails
+    updateTheme
 }

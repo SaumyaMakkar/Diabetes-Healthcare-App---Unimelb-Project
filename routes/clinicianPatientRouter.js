@@ -24,8 +24,8 @@ clinicianPatientRouter.post('/insertPatient', isAuthenticated, hasRole('clinicia
 // add a new JSON object to the database
 clinicianPatientRouter.post('/updateSettings/:id', isAuthenticated, hasRole('clinician'), clinicianController.updateSettings)
 
-clinicianPatientRouter.post('/insertSupportMessage/:id', clinicianController.insertSupportMessage)
-clinicianPatientRouter.post('/insertClinicalNote/:id', clinicianController.insertClinicalNote)
+clinicianPatientRouter.post('/insertSupportMessage/:id', isAuthenticated, hasRole('clinician'), clinicianController.insertSupportMessage)
+clinicianPatientRouter.post('/insertClinicalNote/:id', isAuthenticated, hasRole('clinician'), clinicianController.insertClinicalNote)
 
 
 
