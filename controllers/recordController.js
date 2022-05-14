@@ -1,9 +1,11 @@
 const Patient = require('../models/patients')
 const Records = require('../models/records')
 const { io } = require("socket.io-client");
-var format = require('date-fns/format')
+var format = require('date-fns/format');
 
-var socket = io("ws://localhost:3000");
+const port = process.env.PORT || 3000;
+
+var socket = io("ws://localhost:" + port);
 
 const insertRecord = async (req, res) => {
     console.log("insertRecord");
@@ -48,7 +50,7 @@ const insertRecord = async (req, res) => {
         }
 
 
-        res.json({result: true, msg:"Updated record"})
+        res.json({ result: true, msg: "Updated record" })
     } catch (err) {
         console.log(err)
         return res.json({ result: false, msg: err })
