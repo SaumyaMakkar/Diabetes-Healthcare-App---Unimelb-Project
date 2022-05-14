@@ -201,23 +201,23 @@
                     </div>
                     <div class="wt-grid-item size-6@t">
                         <label>Given Name</label>
-                        <input name="givenName" type="text" />
+                        <input required name="givenName" type="text" />
                     </div>
                     <div class="wt-grid-item size-6@t">
                         <label>Family Name</label>
-                        <input name="familyName" type="text" />
+                        <input required name="familyName" type="text" />
                     </div>
                     <div class="wt-grid-item size-6@t">
                         <label>Email</label>
-                        <input name="email" type="email" />
+                        <input required name="email" type="email" />
                     </div>
                     <div class="wt-grid-item size-6@t">
                         <label>Year of Birth</label>
-                        <input name="yearOfBirth" type="text" pattern="\d*" placeholder="YYYY" maxlength="4" />
+                        <input required name="yearOfBirth" type="text" pattern="\d*" placeholder="YYYY" maxlength="4" />
                     </div>
                     <div class="wt-grid-item size-6@t">
                         <label>Screen Name</label>
-                        <input name="screenName" type="text" />
+                        <input required name="screenName" type="text" />
                     </div>
                     <div class="wt-grid-item size-12@t">
                         <label>Bio</label>
@@ -247,10 +247,6 @@
                     </div>
                     <div class="wt-grid-item size-12@t">
                         <textarea readonly rows="5" style="color: black;">
-                            {{!-- Not printing these ! --}}
-                            {{!-- {{ record_patient.0.glucoseLevel.comment}}  --}}
-                            {{!-- {{{record_patient.0.glucoseLevel.value}}} --}}
-                            {{!-- Hi --}}
                         </textarea>
                     </div>
                 </div>
