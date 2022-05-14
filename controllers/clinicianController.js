@@ -23,6 +23,30 @@ const getClinicianInfo = async (req, res, next) => {
     }
 }
 
+const updateClinicianProfile = async (req, res, next) => {
+    let clinicianId = req.user.referenceId;
+    try {
+        const clinician = await Clinician.findById(
+            clinicianId
+        ).lean();
+
+        // clinician not found
+
+        if (!clinician) {
+            return res.sendStatus(404);
+        }
+
+        // clinician found
+        const updatedData = await Clinician.findByIdAndUpdate(
+            clinicianId,
+            req.body
+        ).lean();
+
+
+        res.redirect('/clinician_profile');
+    } catch (error) { }
+};
+
 const getAllPatients = async (req, res, next) => {
     console.log("getAllPatients");
     let clinicianId = req.user.referenceId;
@@ -422,5 +446,6 @@ module.exports = {
     insertSupportMessage,
     insertClinicalNote,
     getClinicianInfo,
+    updateClinicianProfile,
     getAllPatients
 }
