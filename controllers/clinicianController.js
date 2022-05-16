@@ -161,9 +161,76 @@ const getPatientProfileById = async (req, res, next) => {
     }
 }
 
+
+
+
 const getAllPatientsComments = async (req, res, next) => {
     console.log("getAllPatientsComments");
-    return res.render('clinician_patients_comments');
+    // return res.render('clinician_patients_comments');
+
+    let clinicianId = req.user.referenceId;
+    try {
+        const patients = await Patient.find({ clinicianId: clinicianId }).lean();
+        const newPatientsArray = [];
+
+        for (let index = 0; index < patients.length; index++) {
+            const patient = patients[index];
+            console.log("patient");
+            console.log(patient);
+
+            const today = format(new Date(), 'dd/MM/yyyy');
+
+            // find latest healthDataSettings
+            let lastPosition = patient.requiredRecordsHistory.length - 1;
+            const healthDataSettings = patient.requiredRecordsHistory[lastPosition].records;
+
+            // find the last record for today if not create one
+            let lastRecord = await Records.findOne({ patientId: patient._id, date: today }).sort({ date: -1 }).lean()
+            if (!lastRecord) {
+                lastRecord = {
+                    patientId: patient._id,
+                    date: today,
+                    glucoseLevel: {
+                        value: 0,
+                        comment: "",
+                        outOfTheThreshold: false,
+                        mandatory: healthDataSettings.glucoseLevel.mandatory
+                    },
+                    weight: {
+                        value: 0,
+                        comment: "",
+                        outOfTheThreshold: false,
+                        mandatory: healthDataSettings.weight.mandatory
+                    },
+                    insulinDoses: {
+                        value: 0,
+                        comment: "",
+                        outOfTheThreshold: false,
+                        mandatory: healthDataSettings.insulinDoses.mandatory
+                    },
+                    exercise: {
+                        value: 0,
+                        comment: "",
+                        outOfTheThreshold: false,
+                        mandatory: healthDataSettings.exercise.mandatory
+                    }
+                }
+            }
+
+            newPatientsArray.push({
+                patientData: patient,
+                healthData: lastRecord,
+                healthDataSettings: healthDataSettings
+            })
+        }
+
+        return res.render('clinician_patients_comments', {
+            todayDate: new Date(),
+            patients: newPatientsArray
+        })
+    } catch (err) {
+        return next(err)
+    }
 }
 
 
