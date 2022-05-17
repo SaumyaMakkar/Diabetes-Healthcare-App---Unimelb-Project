@@ -90,29 +90,35 @@ function updatePassword() {
     }
     console.log(body)
     console.log("...loding")
-    fetch(`/auth/updatePassword`, {
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        method: 'POST',
-        body: JSON.stringify(body)
-    }).then(response => {
-        return response.json()
-    }).then(jsonData => {
-        console.log(jsonData);
-        var slideout;
-        if (jsonData.result) {
-            slideout = document.getElementById('notification_clinician');
-        } else {
-            slideout = document.getElementById('notification_clinician_warning');
-        }
-        slideout.innerHTML = jsonData.msg;
-        slideout.classList.toggle('visible');
-
-        setTimeout(function () {
+    try {
+        fetch(`/auth/updatePassword`, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'POST',
+            body: JSON.stringify(body)
+        }).then(response => {
+            console.log(response)
+            return response.json()
+        }).then(jsonData => {
+            console.log(jsonData);
+            var slideout;
+            if (jsonData.result) {
+                slideout = document.getElementById('notification_clinician');
+            } else {
+                slideout = document.getElementById('notification_clinician_warning');
+            }
+            slideout.innerHTML = jsonData.msg;
             slideout.classList.toggle('visible');
-        }, 4000);
-    })
+
+            setTimeout(function () {
+                slideout.classList.toggle('visible');
+            }, 4000);
+        })
+    } catch (e) {
+        console.log(e)
+    }
+
 }
 
 function updateTheme() {

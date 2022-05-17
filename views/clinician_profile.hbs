@@ -42,7 +42,7 @@
                 <div class="wt-grid-item size-12@t">
                     <div class="wt-grid-container">
                         <div class="wt-grid-item size-10@t">
-                            <strong>Your Details</strong>
+                            <h3>Your Details</h3>
                         </div>
                         <div class="wt-grid-item size-2@t" style="text-align: right;">
                             <i class="material-icons" style="font-size: large; color:gray; cursor: pointer"
@@ -85,6 +85,25 @@
                             <input readonly type="text" value="{{clinician.addressInfo.postcode}}" />
                         </div>
                         <div class="wt-grid-item size-half@t"></div>
+                        <div class="wt-grid-item size-12@p size-12@t">
+                            <h3>Update password</h3>
+                        </div>
+                        <div class="wt-grid-item size-12@p size-5@t">
+                            <label>Old password</label>
+                            <input name="oldPassword" type="text" />
+                        </div>
+                        <div class="wt-grid-item size-half@t"></div>
+                        <div class="wt-grid-item size-12@p size-5@t">
+                            <label>New password</label>
+                            <input name="newPassword" type="text" />
+                        </div>
+                        <div class="wt-grid-item size-half@t"></div>
+                        <div class="wt-grid-item size-12@p size-12@t">
+                            <div class="wt-text-align-right">
+                                <button type="submit" class="wt-btn wt-btn-secondary" onclick="updatePassword()">Update
+                                    password</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -169,7 +188,8 @@
                         </div>
                         <div class="wt-grid-item size-6@t">
                             <label>Contact Number</label>
-                            <input required name="contactNumber" type="text" pattern="\d*" minlength="10" maxlength="10" value="{{clinician.contactNumber}}" />
+                            <input required name="contactNumber" type="text" pattern="\d*" minlength="10" maxlength="10"
+                                value="{{clinician.contactNumber}}" />
                         </div>
                         <div class="wt-grid-item size-3@t">
                             <label>City/Suburb</label>
@@ -186,8 +206,8 @@
                         </div>
                         <div class="wt-grid-item size-3@t">
                             <label>Year of Birth</label>
-                            <input required name="yearOfBirth" type="text" pattern="\d*" placeholder="YYYY" maxlength="4"
-                                value="{{clinician.yearOfBirth}}" />
+                            <input required name="yearOfBirth" type="text" pattern="\d*" placeholder="YYYY"
+                                maxlength="4" value="{{clinician.yearOfBirth}}" />
                         </div>
                         <div class="wt-grid-item size-3@t">
                             <label>Country</label>
@@ -209,6 +229,8 @@
             </div>
         </div>
 
+        <div id="notification_clinician" class="wt-notification"> </div>
+        <div id="notification_clinician_warning" class="wt-notification warning"> </div>
     </div>
 </div>
 <script>

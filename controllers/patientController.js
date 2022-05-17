@@ -60,11 +60,14 @@ const getPatientDashboard = async (req, res, next) => {
         lastRecord = await Records.findOne({ patientId: patientId, date: today }).sort({ date: -1 }).lean()
         console.log("lastRecord");
         console.log(lastRecord);
+        let lastSupportMessage = "";
+        if (patient.supportMessages.length) {
+            let lastSupportPosition = patient.supportMessages.length - 1;
+            lastSupportMessage = patient.supportMessages[lastSupportPosition].message;
+            console.log("supportMessage");
+            console.log(lastSupportMessage);
+        }
 
-        let lastSupportPosition = patient.supportMessages.length - 1;
-        const lastSupportMessage = patient.supportMessages[lastSupportPosition].message;
-        console.log("supportMessage");
-        console.log(lastSupportMessage);
 
         return res.render('patient_home', {
             patient: patient,
@@ -237,7 +240,7 @@ const updatePatientDetails = async (req, res, next) => {
         if (!patient) {
             return res.json({
                 result: false,
-                msg:"not found"
+                msg: "not found"
             })
         }
 

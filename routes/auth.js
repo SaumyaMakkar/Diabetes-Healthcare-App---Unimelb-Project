@@ -28,7 +28,6 @@ router.post('/login',
 // Handle password
 router.post('/updatePassword', isAuthenticated,
     check('newPassword', "must be at least 8 characters long").isLength({ min: 8 }),
-    hasRole("patient"),
     validator,
     (req, res) => {
         
