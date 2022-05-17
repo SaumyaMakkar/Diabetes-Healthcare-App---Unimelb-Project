@@ -61,12 +61,18 @@ const getPatientDashboard = async (req, res, next) => {
         console.log("lastRecord");
         console.log(lastRecord);
 
+        let lastSupportPosition = patient.supportMessages.length - 1;
+        const lastSupportMessage = patient.supportMessages[lastSupportPosition].message;
+        console.log("supportMessage");
+        console.log(lastSupportMessage);
+
         return res.render('patient_home', {
             patient: patient,
             healthDataSettings: healthDataSettings,
             lastRecord: lastRecord,
             colors: req.user.colors,
-            themeName: req.user.colors.themeName
+            themeName: req.user.colors.themeName,
+            supportMessage: lastSupportMessage
         })
     } catch (err) {
         return next(err)
