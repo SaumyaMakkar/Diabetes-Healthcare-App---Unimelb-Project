@@ -4,7 +4,7 @@ const { format, subDays, addDays } = require('date-fns')
 const getGraphData = async (req, res, next) => {
 
     console.log("getGraphData")
-    const patientId = "6266b28279efed36161bf58a";
+    const patientId = req.user.referenceId;
 
     const patient = await Patient.findById(patientId).lean()
     if (!patient) {
