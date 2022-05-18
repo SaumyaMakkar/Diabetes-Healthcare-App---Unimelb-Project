@@ -3,6 +3,7 @@ const Patient = require('../models/patients')
 const Records = require('../models/records')
 const Users = require('../models/users')
 var format = require('date-fns/format')
+var { format, differenceInDays } = require('date-fns')
 
 const getClinicianInfo = async (req, res, next) => {
     console.log("getClinicianInfo");
@@ -135,8 +136,44 @@ const getPatientHealthDataById = async (req, res, next) => {
         let lastPosition = patient.requiredRecordsHistory.length - 1;
         const healthDataSettings = patient.requiredRecordsHistory[lastPosition].records;
 
+        // find engagement rate
+        const today = new Date();
+        const createdDate = patient.createdDate;
+        const nOfDays = differenceInDays(today, createdDate);
+
+        console.log("personal details")
+        console.log(patient.givenName)
+        console.log("records/healthData")
+        console.log(healthData.length)
+        let numberOfRegisteredRecords = 0;
+
+        for (let j = 0; j < healthData.length; j++) {
+            const element = healthData[j];
+            let flag = false;
+            if (element.glucoseLevel.value != 0) {
+                flag = true;
+            }
+            if (element.weight.value != 0) {
+                flag = true;
+            }
+            if (element.insulinDoses.value != 0) {
+                flag = true;
+            }
+            if (element.exercise.value != 0) {
+                flag = true;
+            }
+            if (flag) {
+                numberOfRegisteredRecords++;
+            }
+        }
+        const engagementRate = parseInt((numberOfRegisteredRecords * 100) / nOfDays);
+
+        console.log("engagementRate calculation")
+        console.log(numberOfRegisteredRecords + " * 100 /" + nOfDays + " = " + engagementRate)
+
         return res.render('clinician_patient_data', {
             patient: patient,
+            engagementRate: engagementRate,
             healthDataSettings: healthDataSettings,
             healthData: healthData
         })
