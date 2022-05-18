@@ -154,7 +154,7 @@ const getPatientLeaderboard = async (req, res, next) => {
 
             const patient = patients[i];
             const createdDate = patient.createdDate;
-            const nOfDays = differenceInDays(today, createdDate);
+            const nOfDays = differenceInDays(today, createdDate) + 1;
 
             let records = await Records.find({ patientId: patient._id }).sort({ date: -1 }).lean()
 
