@@ -293,24 +293,24 @@ const insertPatient = async (req, res, next) => {
                 fromDate: new Date(),
                 records: {
                     glucoseLevel: {
-                        upperThreshold: 0,
-                        lowerThreshold: 0,
-                        mandatory: false
+                        upperThreshold: 7,
+                        lowerThreshold: 4,
+                        mandatory: true
                     },
                     weight: {
-                        upperThreshold: 0,
-                        lowerThreshold: 0,
-                        mandatory: false
+                        upperThreshold: 90,
+                        lowerThreshold: 40,
+                        mandatory: true
                     },
                     insulinDoses: {
-                        upperThreshold: 0,
-                        lowerThreshold: 0,
-                        mandatory: false
+                        upperThreshold: 10,
+                        lowerThreshold: 4,
+                        mandatory: true
                     },
                     exercise: {
-                        upperThreshold: 0,
-                        lowerThreshold: 0,
-                        mandatory: false
+                        upperThreshold: 10000,
+                        lowerThreshold: 8000,
+                        mandatory: true
                     }
                 }
             }],
