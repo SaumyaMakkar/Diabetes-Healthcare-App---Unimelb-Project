@@ -39,7 +39,6 @@ const textSchema = new mongoose.Schema({
 
 const schema = new mongoose.Schema({
     email: String,
-    password: String,
     urlImage: String,
     givenName: String,
     familyName: String,

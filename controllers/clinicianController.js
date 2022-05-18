@@ -295,22 +295,22 @@ const insertPatient = async (req, res, next) => {
                     glucoseLevel: {
                         upperThreshold: 0,
                         lowerThreshold: 0,
-                        mandatory: true
+                        mandatory: false
                     },
                     weight: {
                         upperThreshold: 0,
                         lowerThreshold: 0,
-                        mandatory: true
+                        mandatory: false
                     },
                     insulinDoses: {
                         upperThreshold: 0,
                         lowerThreshold: 0,
-                        mandatory: true
+                        mandatory: false
                     },
                     exercise: {
                         upperThreshold: 0,
                         lowerThreshold: 0,
-                        mandatory: true
+                        mandatory: false
                     }
                 }
             }],
