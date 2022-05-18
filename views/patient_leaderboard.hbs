@@ -2,22 +2,38 @@
 {{> header}}
 <div class="panel-content">
     <div class="wt-grid-container">
-        <div class="wt-grid-item size-12@p size-9@t">
-            <h1>Leaderboard</h1>
+
+        <div class="wt-grid-item size-12@p size-12@t wt-color-primary">
+            <div style="display:flex; align-items:center">
+                <div style="flex-grow: 1;">
+                    <h1>Leaderboard</h1>
+                </div>
+                <div class="wt-card wt-card-content pointer" style="display:flex; align-items:center">
+                    <a href="/patient_profile" class="wt-visible@t wt-hidden@p">
+                        <div style="display: flex; align-items: center;">
+                            <img class="wt-border-rounded" src="{{urlImage}}" width="40px">
+                            <span>Account</span>
+                        </div>
+                    </a>
+                    <a href="/patient_profile" class="wt-visible@p wt-hidden@t">
+                        <img class="wt-border-rounded" src="{{urlImage}}" width="40px">
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="wt-grid-item size-12@p size-12@t">
             My Engagement rate: {{engagementRate}}%
         </div>
-        {{#if (hasBadged engagementRate)}}
+        {{!#if (hasBadged engagementRate)}}
         <div class="wt-grid-item size-12@p size-12@t">
             Your rate is over 80% you won a badge. Congratulations 🎉
         </div>
         <div class="wt-grid-item size-12@p size-12@t">
             <img src="./assets/img/badge.png" width="120px" />
         </div>
-        {{/if}}
+        {{!/if}}
 
-        <div class="wt-grid-item size-12@p size-12@t">
+        <div class="wt-grid-item size-12@p size-12@t wt-color-primary">
             <h2>Top 5 patients</h2>
         </div>
         <div class="wt-grid-item size-12@p size-12@t">

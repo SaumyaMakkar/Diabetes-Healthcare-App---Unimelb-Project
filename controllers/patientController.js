@@ -188,6 +188,7 @@ const getPatientLeaderboard = async (req, res, next) => {
             console.log("nOfDays")
             console.log(numberOfRegisteredRecords + " * 100 /" + nOfDays + " = " + engagementRate)
             if (patient._id == patientId) {
+                userUrlImage = patient.urlImage,
                 userEngagementRate = engagementRate
             }
             patientsEngagement.push(
@@ -210,9 +211,12 @@ const getPatientLeaderboard = async (req, res, next) => {
             }
 
         }
+        console.log("user url image")
+        console.log(userUrlImage)
 
         return res.render("patient_leaderboard",
             {
+                urlImage: userUrlImage,
                 colors: req.user.colors,
                 themeName: req.user.colors.themeName,
                 engagementRate: userEngagementRate,

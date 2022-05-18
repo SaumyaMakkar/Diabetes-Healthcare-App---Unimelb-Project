@@ -12,6 +12,17 @@
                 <div style="flex-grow: 1;">
                     <h1>My Records</h1>
                 </div>
+                <div class="wt-card wt-card-content pointer" style="display:flex; align-items:center">
+                    <a href="/patient_profile" class="wt-visible@t wt-hidden@p">
+                        <div style="display: flex; align-items: center;">
+                            <img class="wt-border-rounded" src="{{patient.urlImage}}" width="40px">
+                            <span>Account</span>
+                        </div>
+                    </a>
+                    <a href="/patient_profile" class="wt-visible@p wt-hidden@t">
+                        <img class="wt-border-rounded" src="{{patient.urlImage}}" width="40px">
+                    </a>
+                </div>
             </div>
         </div>
         <div class="wt-grid-item size-12@p size-12@t">
