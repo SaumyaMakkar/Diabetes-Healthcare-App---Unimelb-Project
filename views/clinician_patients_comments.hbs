@@ -30,33 +30,36 @@
             </div>
 
             {{#each patients}}
-            {{#if (or (checkLength healthData.glucoseLevel.comment) (checkLength
-            healthData.weight.comment) (checkLength healthData.insulinDoses.comment) (checkLength
-            healthData.exercise.comment))}}
+            {{#each healthData}}
+            {{#if (or (checkLength glucoseLevel.comment) (checkLength
+            weight.comment) (checkLength insulinDoses.comment) (checkLength
+            exercise.comment))}}
             <div class="wt-card">
                 <div class="wt-card-content">
                     <div class="wt-grid-container">
+
                         {{!-- <div class="wt-grid-item size-1@t">
                             <img class="wt-border-rounded" src="/assets/img/patient_img.png" width="40px">
                         </div> --}}
                         <div class="wt-grid-item size-2@t" style="padding-left: 5%;">
-                            {{healthData.date}}
+                            {{date}}
 
                         </div>
                         <div class="wt-grid-item size-3@t">
                             <div class="wt-grid-container">
                                 <div class="wt-grid-item size-3@t" style="padding: 0%;">
-                                    <img class="wt-border-rounded" src="{{patientData.urlImage}}" width="35px">
+                                    <img class="wt-border-rounded" src="{{urlImage }}" width="35px">
                                 </div>
                                 <div class="wt-grid-item size-9@t" style="padding: 0%; padding-top:2.5%">
-                                    <a href="./clinician_dashboard/{{patientData._id}}/clinician_patient_data">
-                                        {{patientData.givenName}} {{patientData.familyName}}
+                                    <a href="./clinician_dashboard/{{id}}/clinician_patient_data">
+                                        {{givenName}} {{family}}
                                     </a>
                                 </div>
                             </div>
                         </div>
-
-                        {{#if (checkLength healthData.glucoseLevel.comment)}}
+                        {{!-- patient[i].healthdata[j].patientData.urlimage
+                        patient[0].patientData --}}
+                        {{#if (checkLength glucoseLevel.comment)}}
 
                         <div class="wt-grid-item size-3@t"
                             style="text-align:center; padding-right: 5%; margin-left:40%; margin-top:-6.5%;">
@@ -65,11 +68,11 @@
                         <div class="wt-grid-item size-4@t" style="padding: 0%; margin-top:-5.5%;">
                             <div class="wt-grid-item size-12@t" style="align-items: center;margin-top:-5%;">
                                 {{!-- <div class="wt-card" id="vertical_scroll_card"> --}}
-                                    <a href="./clinician_dashboard/{{patientData._id}}/clinician_patient_data">
+                                    <a href="./clinician_dashboard/{{id}}/clinician_patient_data">
                                         {{!-- <input type="text" readonly name="glucose" id="glu"
-                                            value="{{healthData.glucoseLevel.comment}}" style="margin: 0;"> --}}
+                                            value="{{glucoseLevel.comment}}" style="margin: 0;"> --}}
                                         <textarea name="glucose" id="glu" cols="6" rows="1"
-                                            style="margin: 0;">{{healthData.glucoseLevel.comment}}</textarea>
+                                            style="margin: 0;">{{glucoseLevel.comment}}</textarea>
                                     </a>
                                     {{!--
                                 </div> --}}
@@ -77,7 +80,7 @@
                         </div>
                         {{/if}}
 
-                        {{#if (checkLength healthData.weight.comment)}}
+                        {{#if (checkLength weight.comment)}}
 
                         <div class="wt-grid-item size-3@t"
                             style="text-align:center; padding-right: 5%; margin-left:40%; margin-top:-2%;">
@@ -86,18 +89,18 @@
                         <div class="wt-grid-item size-4@t" style="padding: 0%;margin-top:-3%;">
                             <div class="wt-grid-item size-12@t" style="align-items: center;">
                                 {{!-- <div class="wt-card" id="vertical_scroll_card"> --}}
-                                    <a href="./clinician_dashboard/{{patientData._id}}/clinician_patient_data">
+                                    <a href="./clinician_dashboard/{{id}}/clinician_patient_data">
                                         {{!-- <input type="text" readonly name="glucose" id="glu"
-                                            value="{{healthData.weight.comment}}" style="margin: 0;"> --}}
+                                            value="{{weight.comment}}" style="margin: 0;"> --}}
                                         <textarea name="weight" id="wei" cols="6" rows="1"
-                                            style="margin: 0;">{{healthData.weight.comment}}</textarea>
+                                            style="margin: 0;">{{weight.comment}}</textarea>
                                     </a>
                                     {{!--
                                 </div> --}}
                             </div>
                         </div>
                         {{/if}}
-                        {{#if (checkLength healthData.insulinDoses.comment 0) }}
+                        {{#if (checkLength insulinDoses.comment 0) }}
 
 
                         <div class="wt-grid-item size-3@t"
@@ -108,12 +111,12 @@
                             <div class="wt-grid-item size-12@t" style="align-items: center;">
 
                                 {{!-- <div class="wt-card" id="vertical_scroll_card"> --}}
-                                    <a href="./clinician_dashboard/{{patientData._id}}/clinician_patient_data">
+                                    <a href="./clinician_dashboard/{{id}}/clinician_patient_data">
                                         {{!-- <input type="text" readonly name="glucose" id="glu"
-                                            value="{{healthData.insulinDoses.comment}}" style="margin: 0;"> --}}
+                                            value="{{insulinDoses.comment}}" style="margin: 0;"> --}}
 
                                         <textarea name="Insu" id="Ins" cols="6" rows="1"
-                                            style="margin: 0;">{{healthData.insulinDoses.comment}}</textarea>
+                                            style="margin: 0;">{{insulinDoses.comment}}</textarea>
 
 
                                     </a>
@@ -122,7 +125,7 @@
                             </div>
                         </div>
                         {{/if}}
-                        {{#if (checkLength healthData.exercise.comment)}}
+                        {{#if (checkLength exercise.comment)}}
 
 
 
@@ -134,12 +137,12 @@
                             <div class="wt-grid-item size-12@t" style="align-items: center;">
 
                                 {{!-- <div class="wt-card" id="vertical_scroll_card"> --}}
-                                    <a href="./clinician_dashboard/{{patientData._id}}/clinician_patient_data">
+                                    <a href="./clinician_dashboard/{{id}}/clinician_patient_data">
                                         {{!-- <input type="text" readonly name="glucose" id="glu"
-                                            value="{{healthData.exercise.comment}}" style="margin: 0;"> --}}
+                                            value="{{exercise.comment}}" style="margin: 0;"> --}}
 
                                         <textarea name="Exercise" id="Exe" cols="6" rows="1"
-                                            style="margin: 0;">{{healthData.exercise.comment}}</textarea>
+                                            style="margin: 0;">{{exercise.comment}}</textarea>
                                     </a>
                                     {{!--
                                 </div> --}}
@@ -152,7 +155,7 @@
             </div>
             <br />
             {{/if}}
-
+            {{/each}}
             {{/each}}
         </div>
 

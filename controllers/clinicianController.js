@@ -4,6 +4,7 @@ const Records = require('../models/records')
 const Users = require('../models/users')
 var format = require('date-fns/format')
 var { format, differenceInDays } = require('date-fns')
+const { db } = require('../models/clinicians')
 
 const getClinicianInfo = async (req, res, next) => {
     console.log("getClinicianInfo");
@@ -66,7 +67,7 @@ const getAllPatients = async (req, res, next) => {
             let lastPosition = patient.requiredRecordsHistory.length - 1;
             const healthDataSettings = patient.requiredRecordsHistory[lastPosition].records;
 
-            // find the last record for today if not create one
+            // find the last record for today if not create lastRecord
             let lastRecord = await Records.findOne({ patientId: patient._id, date: today }).sort({ date: -1 }).lean()
             if (!lastRecord) {
                 lastRecord = {
@@ -186,6 +187,7 @@ const getPatientHealthDataById = async (req, res, next) => {
 }
 
 
+
 const getPatientProfileById = async (req, res, next) => {
     console.log("getPatientProfileById");
     try {
@@ -205,68 +207,100 @@ const getPatientProfileById = async (req, res, next) => {
 
 
 const getAllPatientsComments = async (req, res, next) => {
-    console.log("getAllPatientsComments");
+    console.log("getAllPatientsComments1");
     // return res.render('clinician_patients_comments');
-
+    // console.log(req.user);
     let clinicianId = req.user.referenceId;
     try {
         const patients = await Patient.find({ clinicianId: clinicianId }).lean();
         const newPatientsArray = [];
+        // console.log("records", records.length)
 
         for (let index = 0; index < patients.length; index++) {
             const patient = patients[index];
-            console.log("patient");
-            console.log(patient);
 
+            // const records = await Records.find({ patientId: patient._id }).lean();
+
+
+            // const last_seven = [];
             const today = format(new Date(), 'dd/MM/yyyy');
-
             // find latest healthDataSettings
             let lastPosition = patient.requiredRecordsHistory.length - 1;
             const healthDataSettings = patient.requiredRecordsHistory[lastPosition].records;
 
-            // find the last record for today if not create one
-            let lastRecord = await Records.findOne({ patientId: patient._id, date: today }).sort({ date: -1 }).lean()
-            if (!lastRecord) {
-                lastRecord = {
-                    patientId: patient._id,
-                    date: today,
-                    glucoseLevel: {
-                        value: 0,
-                        comment: "",
-                        outOfTheThreshold: false,
-                        mandatory: healthDataSettings.glucoseLevel.mandatory
-                    },
-                    weight: {
-                        value: 0,
-                        comment: "",
-                        outOfTheThreshold: false,
-                        mandatory: healthDataSettings.weight.mandatory
-                    },
-                    insulinDoses: {
-                        value: 0,
-                        comment: "",
-                        outOfTheThreshold: false,
-                        mandatory: healthDataSettings.insulinDoses.mandatory
-                    },
-                    exercise: {
-                        value: 0,
-                        comment: "",
-                        outOfTheThreshold: false,
-                        mandatory: healthDataSettings.exercise.mandatory
-                    }
-                }
-            }
+            let lastRecord = await Records.find({ patientId: patient._id }).sort({ date: -1 }).limit(7).lean();
 
+            for (let i = 0; i < 7 || i < lastRecord.length; i++) {
+                // lastRecord[i].push({ givenName: patient.givenName, familyName: patient.familyName, urlImage: patient.urlImage, id: patient._id });
+                console.log(lastRecord[i], "-----DB-------", patient);
+                if (lastRecord[i] == undefined) continue;
+                lastRecord[i].givenName = patient.givenName;
+                lastRecord[i].family = patient.familyName;
+                lastRecord[i].id = patient._id;
+                lastRecord[i].urlImage = patient.urlImage;
+            }
+            // let new_obj = { last: lastRecord, givenName: patient.givenName, familyName: patient.familyName, urlImage: patient.urlImage, id: patient._id };
+            // console.log(lastRecord);
+            // break;
+            // new_obj.push{}
+            // console.log(lastRecord);
+            // break;
+            // console.log("patient____", patient);
+            // for (let i = 0; i < 7 || i < records.length; i++) {
+            //     // last_seven.push()
+            //     // find the last record for today if not create lastRecord
+
+            //     let lastRecord = lastRecord[i];
+            //     if (!lastRecord) {
+            //         lastRecord = {
+            //             patientId: patient._id,
+            //             date: today,
+            //             glucoseLevel: {
+            //                 value: 0,
+            //                 comment: "",
+            //                 outOfTheThreshold: false,
+            //                 mandatory: healthDataSettings.glucoseLevel.mandatory
+            //             },
+            //             weight: {
+            //                 value: 0,
+            //                 comment: "",
+            //                 outOfTheThreshold: false,
+            //                 mandatory: healthDataSettings.weight.mandatory
+            //             },
+            //             insulinDoses: {
+            //                 value: 0,
+            //                 comment: "",
+            //                 outOfTheThreshold: false,
+            //                 mandatory: healthDataSettings.insulinDoses.mandatory
+            //             },
+            //             exercise: {
+            //                 value: 0,
+            //                 comment: "",
+            //                 outOfTheThreshold: false,
+            //                 mandatory: healthDataSettings.exercise.mandatory
+            //             }
+            //         }
+            //     }
+
+            // last_seven.push(lastRecord);
+
+
+            // console.log(last_seven);
+            // break;
             newPatientsArray.push({
                 patientData: patient,
                 healthData: lastRecord,
-                healthDataSettings: healthDataSettings
+                healthDataSettings: healthDataSettings,
+                // last_seven: lastRecord
             })
-        }
 
+
+        }
         return res.render('clinician_patients_comments', {
             todayDate: new Date(),
-            patients: newPatientsArray
+            patients: newPatientsArray,
+            // last_seven: last_seven
+
         })
     } catch (err) {
         return next(err)
