@@ -141,6 +141,12 @@ const getPatientHealthDataById = async (req, res, next) => {
         const createdDate = patient.createdDate;
         const nOfDays = differenceInDays(today, createdDate) + 1;
 
+        console.log("Today")
+        console.log(today)
+        console.log("created date")
+        console.log(createdDate)
+        console.log("raw difference")
+        console.log(differenceInDays(today, createdDate))
         console.log("personal details")
         console.log(patient.givenName)
         console.log("records/healthData")
