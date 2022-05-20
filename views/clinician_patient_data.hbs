@@ -59,7 +59,7 @@
                                 {{#if (checkLength glucoseLevel.comment)}}
                                 <i class="material-icons" style="font-size: smaller; cursor: pointer;"
                                     onclick="openModal('patientCommentModal_{{date}}_glucoseLevel')">message</i>
-                                {{> modal_patient_comment name=patient.givenName identifier=date
+                                {{> modal_patient_comment_detail name=patient.givenName identifier=date
                                 type="glucoseLevel"
                                 comment=glucoseLevel.comment }}
                                 {{/if }}
