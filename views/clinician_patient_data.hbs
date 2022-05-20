@@ -209,14 +209,14 @@
                     </div>
                     <div class="wt-grid-item size-2@t">
                         <input name="glucoseLevel_lowerThreshold" type="number" placeholder="-"
-                            value={{healthDataSettings.glucoseLevel.lowerThreshold}} />
+                            min="0" value={{healthDataSettings.glucoseLevel.lowerThreshold}} />
                     </div>
                     <div class="wt-grid-item size-1@t wt-text-align-center">
                         <p>to</p>
                     </div>
                     <div class="wt-grid-item size-2@t">
                         <input name="glucoseLevel_upperThreshold" type="number" placeholder="-"
-                            value={{healthDataSettings.glucoseLevel.upperThreshold}} />
+                            min="0" value={{healthDataSettings.glucoseLevel.upperThreshold}} />
                     </div>
 
                     <div class="wt-grid-item size-2@t">
@@ -230,15 +230,15 @@
                         <p>Weight (kg)</p>
                     </div>
                     <div class="wt-grid-item size-2@t">
-                        <input name="weight_lowerThreshold" type="text" placeholder="-"
-                            value={{healthDataSettings.weight.lowerThreshold}} />
+                        <input name="weight_lowerThreshold" type="number" placeholder="-"
+                             min="0" value={{healthDataSettings.weight.lowerThreshold}} />
                     </div>
                     <div class="wt-grid-item size-1@t wt-text-align-center">
                         <p>to</p>
                     </div>
                     <div class="wt-grid-item size-2@t">
-                        <input name="weight_upperThreshold" type="text" placeholder="-"
-                            value={{healthDataSettings.weight.upperThreshold}} />
+                        <input name="weight_upperThreshold" type="number" placeholder="-"
+                            min="0" value={{healthDataSettings.weight.upperThreshold}} />
                     </div>
 
                     <div class="wt-grid-item size-2@t">
@@ -253,14 +253,14 @@
                     </div>
                     <div class="wt-grid-item size-2@t">
                         <input name="insulinDoses_lowerThreshold" type="number" placeholder="-"
-                            value={{healthDataSettings.insulinDoses.lowerThreshold}} />
+                            min="0" value={{healthDataSettings.insulinDoses.lowerThreshold}} />
                     </div>
                     <div class="wt-grid-item size-1@t wt-text-align-center">
                         <p>to</p>
                     </div>
                     <div class="wt-grid-item size-2@t">
                         <input name="insulinDoses_upperThreshold" type="number" placeholder="-"
-                            value={{healthDataSettings.insulinDoses.upperThreshold}} />
+                            min="0" value={{healthDataSettings.insulinDoses.upperThreshold}} />
                     </div>
 
                     <div class="wt-grid-item size-2@t">
@@ -275,14 +275,14 @@
                     </div>
                     <div class="wt-grid-item size-2@t">
                         <input name="exercise_lowerThreshold" type="number" placeholder="-"
-                            value={{healthDataSettings.exercise.lowerThreshold}} />
+                            min="0" value={{healthDataSettings.exercise.lowerThreshold}} />
                     </div>
                     <div class="wt-grid-item size-1@t wt-text-align-center">
                         <p>to</p>
                     </div>
                     <div class="wt-grid-item size-2@t">
                         <input name="exercise_upperThreshold" type="number" placeholder="-"
-                            value={{healthDataSettings.exercise.upperThreshold}} />
+                            min="0" value={{healthDataSettings.exercise.upperThreshold}} />
                     </div>
                     {{!-- Save Button --}}
                     <div class="wt-grid-item size-12@t wt-text-align-right">
