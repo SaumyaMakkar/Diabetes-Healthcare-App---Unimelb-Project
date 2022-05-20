@@ -3,7 +3,7 @@ function insertRecord(healthType) {
     //console.log(data)
 
     const value = document.querySelector('[name="' + healthType + 'Value"]').value;
-    if (value == 0) {
+    if (value <= 0) {
         alert("Invalid value");
         return;
     }
