@@ -20,7 +20,7 @@ const patientLeaderboardRouter = require('./routes/patientLeaderboardRouter')
 
 var format = require('date-fns/format')
 
-/* Express config */
+/* Express config  */
 const app = express()
 
 app.use(express.json());
