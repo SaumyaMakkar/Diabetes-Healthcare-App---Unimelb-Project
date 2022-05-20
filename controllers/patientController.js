@@ -1,7 +1,7 @@
 const Patient = require('../models/patients')
 const Records = require('../models/records')
 const mongoose = require('mongoose')
-var { format, differenceInDays } = require('date-fns')
+var { format, differenceInDays, addDays } = require('date-fns')
 
 const getPatientDashboard = async (req, res, next) => {
     console.log("getPatientDashboard");
@@ -143,9 +143,8 @@ const getPatientProfile = async (req, res, next) => {
 
 const getPatientLeaderboard = async (req, res, next) => {
     const patientId = req.user.referenceId;
-    console.log("getPatientsLeaderboard")
-    const today = new Date();
-
+    console.log("getPatientsLeaderboard------")
+    const today = new Date()
     try {
         let patients = await Patient.find()
         const patientsEngagement = []
@@ -153,13 +152,21 @@ const getPatientLeaderboard = async (req, res, next) => {
         for (let i = 0; i < patients.length; i++) {
 
             const patient = patients[i];
-            const createdDate = patient.createdDate;
-            const nOfDays = differenceInDays(today, createdDate) + 1;
+            console.log(patient.givenName)
+            const formattedDate = new Date(patient.createdDate);
+            const createdDate = formattedDate.setUTCHours(0, 0, 0, 0);
 
+            const nOfDays = differenceInDays(today, createdDate) + 1;
             let records = await Records.find({ patientId: patient._id }).sort({ date: -1 }).lean()
 
+            console.log("Today")
+            console.log(today)
+            console.log("created date")
+            console.log(createdDate)
+            console.log("nOfDays")
+            console.log(nOfDays)
+
             console.log("personal details")
-            console.log(patient.givenName)
             console.log("records")
             console.log(records.length)
             let numberOfRegisteredRecords = 0;
@@ -189,7 +196,7 @@ const getPatientLeaderboard = async (req, res, next) => {
             console.log(numberOfRegisteredRecords + " * 100 /" + nOfDays + " = " + engagementRate)
             if (patient._id == patientId) {
                 userUrlImage = patient.urlImage,
-                userEngagementRate = engagementRate
+                    userEngagementRate = engagementRate
             }
             patientsEngagement.push(
                 {

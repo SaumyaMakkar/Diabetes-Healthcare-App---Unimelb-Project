@@ -138,13 +138,10 @@ const getPatientHealthDataById = async (req, res, next) => {
 
         // find engagement rate
         const today = new Date();
-        const createdDate = patient.createdDate;
+        const formattedDate = new Date(patient.createdDate);
+        const createdDate = formattedDate.setUTCHours(0, 0, 0, 0);
         const nOfDays = differenceInDays(today, createdDate) + 1;
 
-        console.log("Today")
-        console.log(today)
-        console.log("created date")
-        console.log(createdDate)
         console.log("raw difference")
         console.log(differenceInDays(today, createdDate))
         console.log("personal details")
